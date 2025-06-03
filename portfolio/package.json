@@ -9,9 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@primevue/themes": "^4.3.5",
     "bootstrap": "^5.3.6",
     "bootstrap-icons": "^1.13.1",
     "gsap": "^3.13.0",
+    "primeicons": "^7.0.0",
+    "primevue": "^4.3.5",
     "smooth-scrollbar": "^8.8.4",
     "vue": "^3.5.13",
     "vue-router": "^4.5.1"
