@@ -15,10 +15,10 @@
       return {
         navLinks: [
           { name: "Home", path: "/" },
-          { name: "Code", path: "/webdev" },
+          { name: "Dev", path: "/dev" },
           { name: "UX", path: "/ux" },
           { name: "Design", path: "/design" },
-          { name: "Photography", path: "/photography" },
+          { name: "Photo", path: "/photography" },
           { name: "Video", path: "/videography" },
           { name: "About", path: "/about" }
         ]
@@ -73,7 +73,7 @@
     bottom: -2px;
     width: 0%;
     height: 2px;
-    background-color: white;
+    background-color: rgb(0, 0, 0);
     transition: width 0.3s ease;
   }
   

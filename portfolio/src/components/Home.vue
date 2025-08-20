@@ -17,6 +17,7 @@
       </div>
     </router-link>
   </div>
+  <div></div>
 </template>
   
   <script>
@@ -25,11 +26,11 @@
     data() {
       return {
         sections: [
-          { name: 'Code', path: '/webdev', image: new URL('@/assets/code.jpeg', import.meta.url).href },
-          { name: 'UX', path: '/ux', image: new URL('@/assets/code.jpeg', import.meta.url).href },
-          { name: 'Design', path: '/design', image: new URL('@/assets/code.jpeg', import.meta.url).href },
-          { name: 'Photo', path: '/photography', image: new URL('@/assets/code.jpeg', import.meta.url).href },
-          { name: 'Video', path: '/videography', image: new URL('@/assets/code.jpeg', import.meta.url).href }
+          { name: 'Dev', path: '/dev', image: new URL('/home/5.jpg', import.meta.url).href },
+          { name: 'UX', path: '/ux', image: new URL('/home/1.png', import.meta.url).href },
+          { name: 'Design', path: '/design', image: new URL('/home/3.png', import.meta.url).href },
+          { name: 'Photo', path: '/photography', image: new URL('/home/2.png', import.meta.url).href },
+          { name: 'Video', path: '/videography', image: new URL('/home/4.png', import.meta.url).href }
         ]
       }
     }
@@ -53,6 +54,7 @@
   text-align: left;
   line-height: 1;
 }
+
 .portfolio-sections {
   display: flex;
   width: 100vw; /* Force full width */
