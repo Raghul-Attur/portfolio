@@ -1,7 +1,7 @@
 <template>
     <div class="design-gallery">
-      <div class="design-header">
-        <h1>Design</h1>
+      <div class="name-banner">
+        <h1 class="name-header">DESIGN</h1>
       </div>
   
       <div class="project-grid">
@@ -97,9 +97,10 @@
   
   .project-grid {
   display: grid;
-  grid-template-columns: repeat(1, 1fr); /* default for mobile */
-  gap: 0.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 100px 5px;          /* row-gap: 100px, column-gap: 5px */
   justify-items: center;
+  padding-inline: 2px;     /* Reduced side padding */
 }
 
 @media (min-width: 768px) {
@@ -110,7 +111,7 @@
 
 @media (min-width: 1024px) {
   .project-grid {
-    grid-template-columns: repeat(3, 1fr); /* desktop */
+    grid-template-columns: repeat(4, 1fr); /* desktop */
   }
 }
   
@@ -160,4 +161,21 @@
     background: #000;
     color: #fff;
   }
+
+  .name-banner {
+  width: 100vw;
+  margin-top: 50px;
+  color: #000000;
+  padding: 2rem 4rem;
+  overflow-x: hidden;
+}
+
+.name-header {
+  font-size: 100px;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  margin: 0;
+  text-align: left;
+  line-height: 1;
+}
   </style>

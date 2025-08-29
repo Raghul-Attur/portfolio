@@ -13,6 +13,7 @@
     "bootstrap": "^5.3.6",
     "bootstrap-icons": "^1.13.1",
     "gsap": "^3.13.0",
+    "photoswipe": "^5.4.4",
     "primeicons": "^7.0.0",
     "primevue": "^4.3.5",
     "smooth-scrollbar": "^8.8.4",

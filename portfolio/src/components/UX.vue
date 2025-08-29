@@ -231,11 +231,22 @@ process2: '<h3>Validation & Refinement</h3><p>After prototyping, we conducted us
   line-height: 1;
 }
 
-  .ux-projects-container {
-    padding: 2rem;
-    max-width: 1200px;
-    margin: auto;
-  }
+img {
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0;
+}
+
+img[src] {
+  opacity: 1;
+}
+
+.ux-projects-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+  min-height: 100vh;
+  position: relative;
+}
   
   .project-grid {
     display: flex;
@@ -375,14 +386,21 @@ process2: '<h3>Validation & Refinement</h3><p>After prototyping, we conducted us
   }
   
   .fade-enter-active,
-  .fade-leave-active {
-    transition: opacity 0.4s;
-  }
+.fade-leave-active {
+  transition: all 0.6s ease-in-out;
+}
   
-  .fade-enter-from,
-  .fade-leave-to {
-    opacity: 0;
-  }
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+}
   
   @keyframes fadeIn {
     from {
