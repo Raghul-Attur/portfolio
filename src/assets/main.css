@@ -24,13 +24,20 @@ a,
 }
 
 /* REMOVE weird layout grid for large viewports */
-@media (min-width: 1024px) {
-  body {
-    display: block;
+@media (max-width: 768px) {
+  .grid-layout {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
-  #app {
-    display: block;
-    padding: 0;
+  .header,
+  .footer {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .thumbnail {
+    width: 100%;
+    height: auto;
   }
 }

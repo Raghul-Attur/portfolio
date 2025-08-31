@@ -98,16 +98,48 @@
   .project-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 100px 5px;          /* row-gap: 100px, column-gap: 5px */
+  gap: 80px 5px;
   justify-items: center;
-  padding-inline: 2px;     /* Reduced side padding */
+  padding-inline: 2px;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   .project-grid {
-    grid-template-columns: repeat(2, 1fr); /* tablets */
+    gap: 40px 5px;
   }
 }
+
+.name-banner {
+  width: 100%;
+  margin-top: 50px;
+  color: #000000;
+  padding: 2rem 4rem;
+  overflow-x: hidden;
+}
+
+.name-header {
+  font-size: 100px;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  margin: 0;
+  text-align: left;
+  line-height: 1;
+}
+
+/* 👇 Mobile overrides must come after the default styles */
+@media (max-width: 768px) {
+  .name-banner {
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .name-header {
+    font-size: 2.5rem;
+    text-align: center;
+    line-height: 1.2;
+  }
+}
+
 
 @media (min-width: 1024px) {
   .project-grid {
@@ -162,20 +194,4 @@
     color: #fff;
   }
 
-  .name-banner {
-  width: 100vw;
-  margin-top: 50px;
-  color: #000000;
-  padding: 2rem 4rem;
-  overflow-x: hidden;
-}
-
-.name-header {
-  font-size: 100px;
-  font-weight: 900;
-  letter-spacing: 0.05em;
-  margin: 0;
-  text-align: left;
-  line-height: 1;
-}
   </style>

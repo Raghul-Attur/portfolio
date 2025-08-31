@@ -77,4 +77,18 @@
   text-align: left;
   line-height: 1;
 }
-    </style>
+
+/* 👇 Mobile overrides must come after the default styles */
+@media (max-width: 768px) {
+  .name-banner {
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .name-header {
+    font-size: 2.5rem;
+    text-align: center;
+    line-height: 1.2;
+  }
+}
+</style>

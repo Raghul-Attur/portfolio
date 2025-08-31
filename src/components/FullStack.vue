@@ -210,21 +210,21 @@
   }
   
   .project-carousel {
-    flex: 2;
-    min-width: 300px;
-    max-width: 800px;
-    aspect-ratio: 16 / 8;
-    background: #f4f4f4;
-    border-radius: 8px;
-    overflow: hidden;
-  }
+  width: 100%;
+  max-width: 800px;
+  aspect-ratio: 16 / 9;
+  background: #f4f4f4;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 0 auto;
+}
   
-  .project-carousel img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
+.project-carousel img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
   
   .project-description {
     flex: 1;
@@ -326,6 +326,14 @@
     .project-content-wrapper {
       flex-direction: column;
     }
+    .name-header {
+    font-size: 2.5rem;
+    text-align: center;
+  }
+
+  .name-banner {
+    padding: 1rem 2rem;
+  }
   }
   </style>
   

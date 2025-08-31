@@ -13,7 +13,7 @@
             class="project-tile"
             @click="selectProject(index)"
           >
-            <img :src="project.thumbnail" alt="Project Image" class="project-thumbnail" />
+            <img :src="project.thumbnail" loading="lazy" alt="Project Image" class="project-thumbnail" />
             <div class="project-title">{{ project.title }}</div>
           </div>
         </div>
@@ -22,7 +22,7 @@
       <transition name="fade">
         <div v-if="selectedProject !== null" class="project-details">
           <div class="fullwidth-header">
-            <img :src="uxProjects[selectedProject].hero" alt="Hero Image" />
+            <img :src="uxProjects[selectedProject].hero" loading="lazy" alt="Hero Image" />
           </div>
   
           <div class="project-body">
@@ -58,6 +58,7 @@
                 v-for="(img, i) in uxProjects[selectedProject].images"
                 :key="i"
                 :src="img"
+                loading="lazy"
                 alt="Project image"
               />
             </div>
@@ -67,6 +68,7 @@
                 v-for="(img, i) in uxProjects[selectedProject].image"
                 :key="i"
                 :src="img"
+                loading="lazy"
                 alt="Project image"
               />
             </div>
@@ -81,6 +83,7 @@
                 v-for="(img, i) in uxProjects[selectedProject].images2"
                 :key="i"
                 :src="img"
+                loading="lazy"
                 alt="Project image"
               />
             </div>
@@ -94,6 +97,7 @@
                 v-for="(img, i) in uxProjects[selectedProject].images3"
                 :key="i"
                 :src="img"
+                loading="lazy"
                 alt="Project image"
               />
             </div>
@@ -433,4 +437,17 @@ img[src] {
   font-weight: 400;
   line-height: 1.6;
 }
+@media (max-width: 768px) {
+    .project-content-wrapper {
+      flex-direction: column;
+    }
+    .name-header {
+    font-size: 2.5rem;
+    text-align: center;
+  }
+
+  .name-banner {
+    padding: 1rem 2rem;
+  }
+  }
   </style>
