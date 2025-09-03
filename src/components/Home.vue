@@ -1,6 +1,15 @@
 <template>
   <div class="name-banner">
     <h1 class="name-header">RAGHUL ATTUR SUKUMAR</h1>
+    <div class="floating-tags">
+      <span class="tag tag1">Photographer</span>
+      <span class="tag tag2">UI/UX Designer</span>
+      <span class="tag tag3">Developer</span>
+      <span class="tag tag4">Editor</span>
+      <span class="tag tag5">Film Maker</span>
+      <span class="tag tag6">Engineer</span>
+      <span class="tag tag7">Motion Designer</span>
+    </div>
   </div>
 
   <div class="intro-section">
@@ -11,7 +20,6 @@
       Whether you’re a recruiter exploring talent or a curious visitor, I invite you to explore my work. If anything resonates with you, feel free to connect through the links at the bottom of the page.
     </p>
   </div>
-
 
   <div class="portfolio-sections container-fluid p-0">
     <router-link
@@ -28,14 +36,14 @@
       </div>
     </router-link>
   </div>
-    <!-- CLIENT LOGO STRIP -->
+
+  <!-- CLIENT LOGO STRIP -->
   <div class="client-strip">
     <h4>BRANDS THAT I HAVE WORKED WITH</h4>
     <div class="logo-track">
       <img v-for="(logo, i) in clientLogos" :key="i" :src="logo" class="client-logo" alt="Client logo" />
     </div>
   </div>
-  <div></div>
 </template>
   
 <script>
@@ -94,7 +102,7 @@ export default {
 
   .intro-section {
   max-width: 800px;
-  margin: 2rem auto;
+  margin: 4rem auto;
   padding: 0 1.5rem;
   text-align: center;
   font-family: 'Arial', sans-serif;
@@ -243,6 +251,8 @@ export default {
   }
 }
 
+
+
 /* Make responsive on small screens */
 @media (max-width: 768px) {
   .client-logo {
@@ -252,6 +262,72 @@ export default {
   .logo-track {
     gap: 1.5rem;
     animation-duration: 20s;
+  }
+}
+/* === FLOATING TAGS DESKTOP + MOBILE SUPPORT === */
+
+.floating-tags {
+  position: absolute;
+  top: 200px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.tag {
+  position: absolute;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 2rem;
+  font-weight: 600;
+  color: white;
+  font-family: 'Courier New', monospace;
+  white-space: nowrap;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  transform: rotate(var(--angle));
+  animation: floatTag 6s ease-in-out infinite;
+}
+
+/* Individual tags */
+.tag1 { top: -65px; left: 55%; background: #00d4a6; --angle: -12deg; animation-delay: 0s; }
+.tag2 { top: 140px; left: 56%; background: #ff6c00; --angle: 10deg; animation-delay: 0.6s; }
+.tag3 { top: 20px; left: 72%; background: #00b2ff; --angle: 20deg; animation-delay: 0.2s; }
+.tag4 { top: 220px; left: 50%; background: #ffe600; color: #000; --angle: -10deg; animation-delay: 0.7s; }
+.tag5 { top: 200px; left: 78%; background: #9900ff; --angle: -15deg; animation-delay: 0.3s; }
+.tag6 { top: 90px; left: 40%; background: #ff2fad; --angle: 8deg; animation-delay: 0.5s; }
+.tag7 { top: 370px; left: 72%; background: #ff0059; --angle: -7deg; animation-delay: 0.6s; }
+
+@keyframes floatTag {
+  0%, 100% { transform: translateY(0) rotate(var(--angle)); }
+  50% { transform: translateY(-10px) rotate(var(--angle)); }
+}
+
+@media (max-width: 768px) {
+  .floating-tags {
+    position: relative;
+    top: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 0.7rem;
+    padding: 1.5rem 1rem 0 1rem;
+    height: auto;
+  }
+
+  .tag {
+    position: relative;
+    font-size: 0.75rem;
+    padding: 4px 12px;
+    animation: none !important; /* Stop floating animation */
+    transform: rotate(0deg) !important;
+  }
+
+  .tag1, .tag2, .tag3, .tag4, .tag5, .tag6, .tag7 {
+    top: auto;
+    left: auto;
   }
 }
   </style>
