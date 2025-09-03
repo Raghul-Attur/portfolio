@@ -2,6 +2,7 @@
     <div class="design-gallery">
       <div class="name-banner">
         <h1 class="name-header">DESIGN</h1>
+        <h1 class="name-header">& BRANDING</h1>
       </div>
   
       <div class="project-grid">

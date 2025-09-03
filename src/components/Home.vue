@@ -2,6 +2,17 @@
   <div class="name-banner">
     <h1 class="name-header">RAGHUL ATTUR SUKUMAR</h1>
   </div>
+
+  <div class="intro-section">
+    <h2>Welcome to my digital portfolio!</h2>
+    <p>
+      This is where creativity meets precision, where the designer in me collaborates with the developer, and personal passion aligns with professional purpose.
+      Here, you’ll find projects that reflect my journey from a junior designer to a full-stack developer, each thoughtfully crafted with attention to detail and user impact.
+      Whether you’re a recruiter exploring talent or a curious visitor, I invite you to explore my work. If anything resonates with you, feel free to connect through the links at the bottom of the page.
+    </p>
+  </div>
+
+
   <div class="portfolio-sections container-fluid p-0">
     <router-link
       v-for="(section, index) in sections"
@@ -17,27 +28,52 @@
       </div>
     </router-link>
   </div>
+    <!-- CLIENT LOGO STRIP -->
+  <div class="client-strip">
+    <h4>BRANDS THAT I HAVE WORKED WITH</h4>
+    <div class="logo-track">
+      <img v-for="(logo, i) in clientLogos" :key="i" :src="logo" class="client-logo" alt="Client logo" />
+    </div>
+  </div>
   <div></div>
 </template>
   
-  <script>
-  export default {
-    name: 'Home',
-    data() {
-      return {
-        sections: [
-          { name: 'Dev', path: '/dev', image: new URL('/home/5.jpg', import.meta.url).href },
-          { name: 'UX', path: '/ux', image: new URL('/home/1.png', import.meta.url).href },
-          { name: 'Design', path: '/design', image: new URL('/home/3.png', import.meta.url).href },
-          { name: 'Photo', path: '/photography', image: new URL('/home/2.png', import.meta.url).href },
-          { name: 'Video', path: '/videography', image: new URL('/home/4.png', import.meta.url).href }
-        ]
-      }
-    }
+<script>
+export default {
+  name: 'Home',
+  data() {
+    return {
+      sections: [
+        { name: 'Dev', path: '/dev', image: new URL('/home/5.jpg', import.meta.url).href },
+        { name: 'UX', path: '/ux', image: new URL('/home/1.png', import.meta.url).href },
+        { name: 'Design', path: '/design', image: new URL('/home/3.png', import.meta.url).href },
+        { name: 'Photos', path: '/photography', image: new URL('/home/2.png', import.meta.url).href },
+        { name: 'Videos', path: '/videography', image: new URL('/home/4.png', import.meta.url).href }
+      ],
+      clientLogos: [
+        new URL('/images/logos/1.png', import.meta.url).href,
+        new URL('/images/logos/2.png', import.meta.url).href,
+        new URL('/images/logos/3.png', import.meta.url).href,
+        new URL('/images/logos/4.png', import.meta.url).href,
+        new URL('/images/logos/5.png', import.meta.url).href,
+        new URL('/images/logos/6.png', import.meta.url).href,
+        new URL('/images/logos/7.png', import.meta.url).href,
+        new URL('/images/logos/8.png', import.meta.url).href
+      ]
+    };
   }
-  </script>
+}
+</script>
   
   <style scoped>
+
+  .client-strip h4 {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 1.5rem;
+    color: #333;
+  }
+
   .name-banner {
     width: 100%;
     margin-top: 50px;
@@ -47,7 +83,7 @@
   }
   
   .name-header {
-    font-size: 100px;
+    font-size: 200px;
     font-weight: 900;
     letter-spacing: 0.05em;
     margin: 0;
@@ -55,6 +91,27 @@
     line-height: 1;
     word-break: break-word;
   }
+
+  .intro-section {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+.intro-section h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.intro-section p {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
   
   .portfolio-sections {
     display: flex;
@@ -144,4 +201,57 @@
       font-size: 1rem;
     }
   }
+
+  .client-strip {
+  overflow: hidden;
+  width: 100%;
+  background: #f9f9f9;
+  padding: 2rem 0;
+  margin-top: 100px;
+}
+
+.logo-track {
+  display: flex;
+  width: max-content;
+  animation: scroll-left 30s linear infinite;
+  gap: 3rem;
+  align-items: center;
+  padding-inline: 2rem;
+}
+
+.client-logo {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.9;
+  transition: transform 0.3s ease;
+}
+
+.client-logo:hover {
+  transform: scale(1.05);
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Make responsive on small screens */
+@media (max-width: 768px) {
+  .client-logo {
+    height: 40px;
+  }
+
+  .logo-track {
+    gap: 1.5rem;
+    animation-duration: 20s;
+  }
+}
   </style>

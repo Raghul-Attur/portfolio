@@ -3,10 +3,12 @@
       <div class="footer-content">
         <h1>Raghul Attur Sukumar</h1>
         <h3>Melbourne → Earth</h3>
-        <p>&copy; {{ new Date().getFullYear() }}All rights reserved.</p>
+        <p>&copy; {{ new Date().getFullYear() }} All rights reserved.</p>
         <div class="footer-links">
-          <a href="https://github.com/raghul-attur" target="_blank">GitHub</a>
+          <a href="https://www.instagram.com/raghul.sukumar/" target="_blank">Instagram</a>
           <a href="https://linkedin.com/in/raghul-sukumar" target="_blank">LinkedIn</a>
+          <a href="https://www.youtube.com/@raghul24296" target="_blank">YouTube</a>
+          <a href="https://github.com/raghul-attur" target="_blank">GitHub</a>
           <a href="mailto:raghul.attursukumar@gmail.com">Email</a>
         </div>
       </div>
@@ -44,13 +46,8 @@
     margin: 0 1rem;
     color: #ffffff;
     text-decoration: none;
-    transition: color 0.2s ease;
   }
   
-  .footer-links a:hover {
-    color: #000;
-  }
-
   html, body, #app {
   height: 100%;
   margin: 0;

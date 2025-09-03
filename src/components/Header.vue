@@ -37,8 +37,8 @@ export default {
         { name: "Dev", path: "/dev" },
         { name: "UX", path: "/ux" },
         { name: "Design", path: "/design" },
-        { name: "Photo", path: "/photography" },
-        { name: "Video", path: "/videography" },
+        { name: "Photos", path: "/photography" },
+        { name: "Videos", path: "/videography" },
         { name: "About", path: "/about" },
       ],
     };
