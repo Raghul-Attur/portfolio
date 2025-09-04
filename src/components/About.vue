@@ -4,23 +4,30 @@
     </div>
   
     <div class="intro-section">
-      <h2>Full Stack Developer | UX-Focused Engineer | AWS + Azure | Accessibility Advocate</h2>
-      <p>
-How you doing? I'm Raghul. 
+  <h2>Full Stack Developer | UI/UX Designer</h2>
 
-I'm pursuing a Master's in Information Technology at Monash Uni and am on track to graduate by September 2025.
+  <p>How you doing? I'm Raghul.</p>
 
-To Hiring Managers: 
+  <p>
+    I'm currently pursuing a Master's in Information Technology at Monash University and am on track to graduate by September 2025.
+  </p>
 
-I'm a skilled, versatile, and creative IT professional who is passionate about all things tech and eager to provide solutions that help things run smoothly. 
+  <p>
+    <strong>To Hiring Managers:</strong> I'm a skilled, versatile, and creative IT professional who is passionate about all things tech and eager to provide solutions that help things run smoothly.
+  </p>
 
-I bring solid foundational skills in IT, combined with a background in design and communication, to create highly functional products with an eye for detail on the design front. 
+  <p>
+    I bring solid foundational skills in IT, combined with a background in design and communication, to create highly functional products with an eye for detail on the design front.
+  </p>
 
-Previously, I have worked as a Senior Graphic Designer and Motion Designer at Smitten Worldwide, servicing 10+ brands like JW Marriott, Westin, Mount Sinai, Funskool, and Monsoon Harvest to name a few.
+  <p>
+    Previously, I worked as a Senior Graphic Designer and Motion Designer at Smitten Worldwide, servicing 10+ brands like JW Marriott, Westin, Mount Sinai, Funskool, and Monsoon Harvest to name a few.
+  </p>
 
-I keep myself inspired through photography and filmmaking. In my free time, you can find me playing tennis, watching films at Palace Cinemas, and cooking my grandma's recipes.
-      </p>
-    </div>
+  <p>
+    I keep myself inspired through photography and filmmaking. In my free time, you can find me playing tennis, watching films at Palace Cinemas, and cooking my grandma's recipes.
+  </p>
+</div>
   
     <div></div>
   </template>

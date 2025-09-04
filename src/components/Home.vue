@@ -10,6 +10,9 @@
       <span class="tag tag6">Engineer</span>
       <span class="tag tag7">Motion Designer</span>
     </div>
+  <div class="navigation-arrow">
+    <h1>↓</h1>
+  </div>
   </div>
 
   <div class="intro-section">
@@ -21,20 +24,22 @@
     </p>
   </div>
 
-  <div class="portfolio-sections container-fluid p-0">
-    <router-link
-      v-for="(section, index) in sections"
-      :key="section.name"
-      :to="section.path"
-      class="section-tile"
-    >
-      <div class="section-content" :style="{ backgroundImage: `url(${section.image})` }">
-        <div class="overlay">
-          <div class="section-index">0{{ index + 1 }}</div>
-          <div class="section-label">{{ section.name }}</div>
+  <div class="portfolio-wrapper">
+    <div class="portfolio-sections container-fluid p-0">
+      <router-link
+        v-for="(section, index) in sections"
+        :key="section.name"
+        :to="section.path"
+        class="section-tile"
+      >
+        <div class="section-content" :style="{ backgroundImage: `url(${section.image})` }">
+          <div class="overlay">
+            <div class="section-index">0{{ index + 1 }}</div>
+            <div class="section-label">{{ section.name }}</div>
+          </div>
         </div>
-      </div>
-    </router-link>
+      </router-link>
+    </div>
   </div>
 
   <!-- CLIENT LOGO STRIP -->
@@ -47,6 +52,7 @@
 </template>
   
 <script>
+import { onMounted } from 'vue';
 export default {
   name: 'Home',
   data() {
@@ -69,17 +75,24 @@ export default {
         new URL('/images/logos/8.png', import.meta.url).href
       ]
     };
+  },
+  mounted() {
+    setTimeout(() => {
+      window.dispatchEvent(new Event('resize'));
+    }, 100);
   }
 }
 </script>
   
-  <style scoped>
+  <style>
 
   .client-strip h4 {
     text-align: center;
     margin-bottom: 50px;
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: #333;
+    letter-spacing: 10px;
+    word-spacing: 10px;
   }
 
   .name-banner {
@@ -100,9 +113,23 @@ export default {
     word-break: break-word;
   }
 
+  .portfolio-wrapper {
+    margin-top: 50px;
+  }
+
+  .navigation-arrow h1{
+    text-align: center;
+    font-size: 3rem;
+  }
+
+  .navigation-arrow{
+    margin-top: 20px;
+    animation: bounce 2s infinite;
+  }
+
   .intro-section {
   max-width: 800px;
-  margin: 4rem auto;
+  margin: 2rem auto;
   padding: 0 1.5rem;
   text-align: center;
   font-family: 'Arial', sans-serif;
@@ -213,7 +240,7 @@ export default {
   .client-strip {
   overflow: hidden;
   width: 100%;
-  background: #f9f9f9;
+  background: #ffffff;
   padding: 2rem 0;
   margin-top: 100px;
 }
@@ -300,11 +327,6 @@ export default {
 .tag6 { top: 90px; left: 40%; background: #ff2fad; --angle: 8deg; animation-delay: 0.5s; }
 .tag7 { top: 370px; left: 72%; background: #ff0059; --angle: -7deg; animation-delay: 0.6s; }
 
-@keyframes floatTag {
-  0%, 100% { transform: translateY(0) rotate(var(--angle)); }
-  50% { transform: translateY(-10px) rotate(var(--angle)); }
-}
-
 @media (max-width: 768px) {
   .floating-tags {
     position: relative;
@@ -331,3 +353,12 @@ export default {
   }
 }
   </style>
+
+<style>
+@keyframes floatTag {
+  0%, 100% { transform: translateY(0) rotate(var(--angle)); }
+  50% { transform: translateY(-10px) rotate(var(--angle)); }
+}
+
+</style>
+
