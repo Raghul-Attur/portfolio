@@ -339,13 +339,13 @@ export default {
 }
 
 /* Individual tags */
-.tag1 { top: 10%; left: 65%; background: #00d4a6; --angle: -12deg; }
-.tag2 { top: 38%; left: 62%; background: #ff6c00; --angle: 10deg; }
-.tag3 { top: 23%; left: 82%; background: #00b2ff; --angle: 20deg; }
-.tag4 { top:57%; left: 60%; background: #ffe600; color: #000; --angle: -10deg; }
-.tag5 { top: 58%; left: 78%; background: #9900ff; --angle: -15deg; }
-.tag6 { top: 30%; left: 42%; background: #ff2fad; --angle: 8deg; }
-.tag7 { top: 78%; left: 74%; background: #ff0059; --angle: -7deg; }
+.tag1 { top: 10%; left: 60%; background: #00d4a6; --angle: -12deg; }
+.tag2 { top: 38%; left: 57%; background: #ff6c00; --angle: 10deg; }
+.tag3 { top: 25%; left: 80%; background: #00b2ff; --angle: 20deg; }
+.tag4 { top:57%; left: 50%; background: #ffe600; color: #000; --angle: -10deg; }
+.tag5 { top: 52%; left: 78%; background: #9900ff; --angle: -3deg; }
+.tag6 { top: 30%; left: 42%; background: #ff2fad; --angle: -8deg; }
+.tag7 { top: 72%; left: 70%; background: #ff0059; --angle: -9deg; }
 
 @media (max-width: 768px) {
   .floating-tags {
