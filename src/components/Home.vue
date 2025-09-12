@@ -1,6 +1,6 @@
 <template>
-  <div class="name-banner">
-    <h1 class="name-header">RAGHUL<br>ATTUR<br>SUKUMAR</h1>
+  <div class="name-banner-1">
+    <h1 class="name-header-1">RAGHUL<br>ATTUR<br>SUKUMAR</h1>
     <div class="floating-tags">
       <span class="tag tag1">Photographer</span>
       <span class="tag tag2">UI/UX Designer</span>
@@ -98,7 +98,7 @@ export default {
     word-spacing: 10px;
   }
 
-  .name-banner {
+  .name-banner-1 {
   height: 100vh;                /* fill entire viewport */
   display: flex;
   flex-direction: column;
@@ -110,7 +110,7 @@ export default {
   overflow: hidden;
 }
 
-.name-header {
+.name-header-1 {
   font-size: 27vh;              /* scales based on viewport height */
   font-weight: 900;
   line-height: 0.95;
