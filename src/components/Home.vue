@@ -1,6 +1,6 @@
 <template>
   <div class="name-banner">
-    <h1 class="name-header">RAGHUL ATTUR SUKUMAR</h1>
+    <h1 class="name-header">RAGHUL<br>ATTUR<br>SUKUMAR</h1>
     <div class="floating-tags">
       <span class="tag tag1">Photographer</span>
       <span class="tag tag2">UI/UX Designer</span>
@@ -44,11 +44,14 @@
 
   <!-- CLIENT LOGO STRIP -->
   <div class="client-strip">
-    <h4>BRANDS THAT I HAVE WORKED WITH</h4>
+  <h4>BRANDS THAT I HAVE WORKED WITH</h4>
+  <div class="logo-wrapper">
     <div class="logo-track">
-      <img v-for="(logo, i) in clientLogos" :key="i" :src="logo" class="client-logo" alt="Client logo" />
+      <img v-for="(logo, i) in clientLogos" :key="'a' + i" :src="logo" class="client-logo" alt="Client logo" />
+      <img v-for="(logo, i) in clientLogos" :key="'b' + i" :src="logo" class="client-logo" alt="Client logo" />
     </div>
   </div>
+</div>
 </template>
   
 <script>
@@ -96,22 +99,26 @@ export default {
   }
 
   .name-banner {
-    width: 100%;
-    margin-top: 50px;
-    color: #000000;
-    padding: 2rem 4rem;
-    overflow-x: hidden;
-  }
-  
-  .name-header {
-    font-size: 200px;
-    font-weight: 900;
-    letter-spacing: 0.05em;
-    margin: 0;
-    text-align: left;
-    line-height: 1;
-    word-break: break-word;
-  }
+  height: 100vh;                /* fill entire viewport */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;      /* left aligned */
+  justify-content: center;      /* center vertically */
+  padding: 0 2rem;
+  margin-top: 5vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.name-header {
+  font-size: 27vh;              /* scales based on viewport height */
+  font-weight: 900;
+  line-height: 0.95;
+  text-align: left;
+  word-break: break-word;
+  white-space: pre-line;
+  margin: 0;
+}
 
   .portfolio-wrapper {
     margin-top: 50px;
@@ -245,13 +252,27 @@ export default {
   margin-top: 100px;
 }
 
+.logo-wrapper {
+  overflow: hidden;
+  width: 100%;
+}
+
 .logo-track {
   display: flex;
-  width: max-content;
-  animation: scroll-left 30s linear infinite;
+  width: fit-content;
+  animation: scroll-left 40s linear infinite;
   gap: 3rem;
   align-items: center;
   padding-inline: 2rem;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .client-logo {
@@ -269,17 +290,6 @@ export default {
   opacity: 1;
 }
 
-@keyframes scroll-left {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-
-
 /* Make responsive on small screens */
 @media (max-width: 768px) {
   .client-logo {
@@ -295,42 +305,51 @@ export default {
 
 .floating-tags {
   position: absolute;
-  top: 200px;
+  top: 0;
   left: 0;
   right: 0;
+  bottom: 0;
   width: 100%;
-  height: 0;
-  z-index: 10;
+  height: 100%;
   pointer-events: none;
+  z-index: 10;
 }
 
 .tag {
   position: absolute;
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-size: 2rem;
+  padding: 10px 24px;                         /* Bigger padding */
+  border-radius: 24px;
+  font-size: 2rem;                          /* Bigger font size */
   font-weight: 600;
   color: white;
   font-family: 'Courier New', monospace;
   white-space: nowrap;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.45); /* Slightly stronger glow */
   transform: rotate(var(--angle));
   animation: floatTag 6s ease-in-out infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 2;
+}
+
+/* Optional: On hover, make them scale and glow more */
+.tag:hover {
+  transform: scale(1.1) rotate(var(--angle));
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.8);
+  z-index: 5;
 }
 
 /* Individual tags */
-.tag1 { top: -65px; left: 55%; background: #00d4a6; --angle: -12deg; animation-delay: 0s; }
-.tag2 { top: 140px; left: 56%; background: #ff6c00; --angle: 10deg; animation-delay: 0.6s; }
-.tag3 { top: 20px; left: 72%; background: #00b2ff; --angle: 20deg; animation-delay: 0.2s; }
-.tag4 { top: 220px; left: 50%; background: #ffe600; color: #000; --angle: -10deg; animation-delay: 0.7s; }
-.tag5 { top: 200px; left: 78%; background: #9900ff; --angle: -15deg; animation-delay: 0.3s; }
-.tag6 { top: 90px; left: 40%; background: #ff2fad; --angle: 8deg; animation-delay: 0.5s; }
-.tag7 { top: 370px; left: 72%; background: #ff0059; --angle: -7deg; animation-delay: 0.6s; }
+.tag1 { top: 10%; left: 65%; background: #00d4a6; --angle: -12deg; }
+.tag2 { top: 38%; left: 62%; background: #ff6c00; --angle: 10deg; }
+.tag3 { top: 23%; left: 82%; background: #00b2ff; --angle: 20deg; }
+.tag4 { top:57%; left: 60%; background: #ffe600; color: #000; --angle: -10deg; }
+.tag5 { top: 58%; left: 78%; background: #9900ff; --angle: -15deg; }
+.tag6 { top: 30%; left: 42%; background: #ff2fad; --angle: 8deg; }
+.tag7 { top: 78%; left: 74%; background: #ff0059; --angle: -7deg; }
 
 @media (max-width: 768px) {
   .floating-tags {
     position: relative;
-    top: 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -343,7 +362,7 @@ export default {
     position: relative;
     font-size: 0.75rem;
     padding: 4px 12px;
-    animation: none !important; /* Stop floating animation */
+    animation: none !important;
     transform: rotate(0deg) !important;
   }
 
@@ -351,6 +370,10 @@ export default {
     top: auto;
     left: auto;
   }
+}
+
+body {
+  overflow-x: hidden;
 }
   </style>
 
