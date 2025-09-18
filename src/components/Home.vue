@@ -348,27 +348,52 @@ export default {
 .tag7 { top: 72%; left: 70%; background: #ff0059; --angle: -9deg; }
 
 @media (max-width: 768px) {
+  .name-banner-1 {
+    height: auto;
+    padding: 3rem 1rem 1rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  .name-header-1 {
+    font-size: 12vw;
+    line-height: 1.1;
+    text-align: center;
+    white-space: normal;
+  }
+
   .floating-tags {
     position: relative;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 0.5rem 0.7rem;
-    padding: 1.5rem 1rem 0 1rem;
+    margin-top: 1.5rem;
+    padding: 0 1rem;
     height: auto;
   }
 
   .tag {
     position: relative;
-    font-size: 0.75rem;
-    padding: 4px 12px;
+    font-size: 0.9rem;
+    padding: 6px 14px;
     animation: none !important;
     transform: rotate(0deg) !important;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
   }
 
   .tag1, .tag2, .tag3, .tag4, .tag5, .tag6, .tag7 {
     top: auto;
     left: auto;
+  }
+
+  .navigation-arrow {
+    margin-top: 1.5rem;
+  }
+
+  .navigation-arrow h1 {
+    font-size: 2rem;
   }
 }
 
