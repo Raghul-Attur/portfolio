@@ -7,7 +7,7 @@
       <span class="tag tag3">Developer</span>
       <span class="tag tag4">Editor</span>
       <span class="tag tag5">Film Maker</span>
-      <span class="tag tag6">Engineer</span>
+      <span class="tag tag6">Artist</span>
       <span class="tag tag7">Motion Designer</span>
     </div>
   <div class="navigation-arrow">
