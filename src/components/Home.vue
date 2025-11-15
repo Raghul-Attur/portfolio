@@ -42,16 +42,38 @@
     </div>
   </div>
 
-  <!-- CLIENT LOGO STRIP -->
   <div class="client-strip">
-  <h4>BRANDS THAT I HAVE WORKED WITH</h4>
+  <h4 class="client-heading">Creating imapact with great teams & brands</h4>
+
+  <div class="client-stats">
+    <div class="stat-block">
+      <div class="stat-number">12+</div>
+      <div class="stat-label">Collaborations</div>
+    </div>
+
+    <div class="stat-divider">|</div>
+
+    <div class="stat-block">
+      <div class="stat-number">300+</div>
+      <div class="stat-label">Assets Produced</div>
+    </div>
+
+    <div class="stat-divider">|</div>
+
+    <div class="stat-block">
+      <div class="stat-number">5+</div>
+      <div class="stat-label">Years of experience</div>
+    </div>
+  </div>
+
   <div class="logo-wrapper">
     <div class="logo-track">
-      <img v-for="(logo, i) in clientLogos" :key="'a' + i" :src="logo" class="client-logo" alt="Client logo" />
-      <img v-for="(logo, i) in clientLogos" :key="'b' + i" :src="logo" class="client-logo" alt="Client logo" />
+      <img v-for="(logo, i) in clientLogos" :key="'a' + i" :src="logo" class="client-logo" />
+      <img v-for="(logo, i) in clientLogos" :key="'b' + i" :src="logo" class="client-logo" />
     </div>
   </div>
 </div>
+
 </template>
   
 <script>
@@ -91,11 +113,8 @@ export default {
 
   .client-strip h4 {
     text-align: center;
-    margin-bottom: 50px;
-    font-size: 1rem;
+    font-size: 1.3rem;
     color: #333;
-    letter-spacing: 10px;
-    word-spacing: 10px;
   }
 
   .name-banner-1 {
@@ -138,6 +157,7 @@ export default {
   max-width: 800px;
   margin: 2rem auto;
   padding: 0 1.5rem;
+  padding-bottom: 100px;
   text-align: center;
   font-family: 'Arial', sans-serif;
   color: #333;
@@ -244,14 +264,82 @@ export default {
     }
   }
 
-  .client-strip {
-  overflow: hidden;
+.client-strip {
   width: 100%;
+  padding: 4rem 0;
   background: #ffffff;
-  padding: 2rem 0;
-  margin-top: 100px;
+  text-align: center;
 }
 
+/* Highlight stats */
+.client-highlights {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.highlight {
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.7rem 1.4rem;
+  border: 1px solid #ddd;
+  border-radius: 30px;
+  background: #f8f8f8;
+  transition: 0.3s ease;
+}
+
+.highlight:hover {
+  background: #111;
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+/* Heading ---------------------------------------- */
+.client-heading {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+  color: #111;
+  text-align: center;
+}
+
+/* Stats Section ---------------------------------- */
+.client-stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  flex-wrap: nowrap;
+}
+
+.stat-block {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 8.2rem;
+  font-weight: 800;
+  line-height: 1;
+  color: #111;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #666;
+}
+
+.stat-divider {
+  font-size: 2rem;
+  font-weight: 200;
+  color: #ccc;
+  margin: 0 0.5rem;
+}
+
+/* Logos ------------------------------------------ */
 .logo-wrapper {
   overflow: hidden;
   width: 100%;
@@ -259,46 +347,49 @@ export default {
 
 .logo-track {
   display: flex;
-  width: fit-content;
-  animation: scroll-left 40s linear infinite;
   gap: 3rem;
+  width: max-content;
+  animation: scroll-left 40s linear infinite;
   align-items: center;
   padding-inline: 2rem;
 }
 
-@keyframes scroll-left {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
 .client-logo {
   height: 60px;
-  width: auto;
-  object-fit: contain;
   filter: grayscale(100%);
-  opacity: 0.9;
-  transition: transform 0.3s ease;
+  opacity: 0.8;
+  transition: 0.3s ease;
 }
 
 .client-logo:hover {
-  transform: scale(1.05);
   filter: grayscale(0%);
   opacity: 1;
+  transform: scale(1.05);
 }
 
-/* Make responsive on small screens */
+/* Animation */
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Mobile Responsive */
 @media (max-width: 768px) {
-  .client-logo {
-    height: 40px;
+  .client-stats {
+    flex-wrap: wrap;
+    gap: 1.2rem;
   }
 
-  .logo-track {
-    gap: 1.5rem;
-    animation-duration: 20s;
+  .stat-divider {
+    display: none;
+  }
+
+  .stat-number {
+    font-size: 1.7rem;
+  }
+
+  .client-logo {
+    height: 45px;
   }
 }
 /* === FLOATING TAGS DESKTOP + MOBILE SUPPORT === */
