@@ -43,7 +43,7 @@
   </div>
 
   <div class="client-strip">
-  <h4 class="client-heading">Creating imapact with great teams & brands</h4>
+  <h4 class="client-heading">Creating impact with great teams & brands</h4>
 
   <div class="client-stats">
     <div class="stat-block">
