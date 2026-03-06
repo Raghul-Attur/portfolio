@@ -58,7 +58,7 @@
         :to="section.path"
         class="section-tile"
       >
-        <div class="section-content" :style="{ backgroundImage: `url(${section.image})` }">
+        <div class="section-content" :style="{ backgroundImage: `url(${section.image})`, backgroundPosition: section.position || 'center' }">
           <div class="overlay">
             <div class="section-index">0{{ index + 1 }}</div>
             <div class="section-label">{{ section.name }}</div>
@@ -185,10 +185,10 @@ export default {
       animFrameId: null,
 
       sections: [
-        { name: 'UX',     path: '/ux',         image: new URL('/home/1.png', import.meta.url).href },
-        { name: 'Design', path: '/design',      image: new URL('/home/3.png', import.meta.url).href },
-        { name: 'Videos', path: '/videography', image: new URL('/home/4.png', import.meta.url).href },
-        { name: 'Dev',    path: '/dev',         image: new URL('/home/5.jpg', import.meta.url).href },
+        { name: 'UX',     path: '/ux',         image: new URL('/home/1.png', import.meta.url).href,         position: 'center' },
+        { name: 'Design', path: '/design',      image: new URL('/home/3.png', import.meta.url).href,         position: 'center' },
+        { name: 'Videos', path: '/videography', image: new URL('/home/4.png', import.meta.url).href,         position: 'center' },
+        { name: 'Dev',    path: '/dev',         image: new URL('/dev/ReadEase1.png', import.meta.url).href,  position: 'top center' },
       ],
 
       featuredProjects: [
@@ -250,8 +250,11 @@ export default {
           tools: [
             { name: 'Vue.js',         icon: 'https://cdn.simpleicons.org/vuedotjs' },
             { name: 'React',          icon: 'https://cdn.simpleicons.org/react' },
-            { name: 'HTML / CSS',     icon: 'https://cdn.simpleicons.org/html5' },
+            { name: 'HTML',           icon: 'https://cdn.simpleicons.org/html5' },
+            { name: 'CSS',            icon: 'https://cdn.simpleicons.org/css' },
             { name: 'Python',         icon: 'https://cdn.simpleicons.org/python' },
+            { name: 'JavaScript',     icon: 'https://cdn.simpleicons.org/javascript' },
+            { name: 'Docker',         icon: 'https://cdn.simpleicons.org/docker' },
           ]
         },
       ],
