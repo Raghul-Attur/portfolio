@@ -79,6 +79,25 @@
     </div>
   </div>
 
+
+  <!-- ── TOOLS & SKILLS ────────────────────────────────────── -->
+  <div class="tools-section">
+    <h2 class="tools-heading">Tools & Skills</h2>
+    <div class="tools-categories">
+
+      <div class="tools-category" v-for="cat in toolCategories" :key="cat.name">
+        <h3 class="tools-cat-label">{{ cat.name }}</h3>
+        <div class="tools-grid">
+          <div class="tool-item" v-for="tool in cat.tools" :key="tool.name">
+            <img :src="tool.icon" :alt="tool.name" />
+            <span class="tool-tooltip">{{ tool.name }}</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <!-- ── FEATURED WORK ──────────────────────────────────────── -->
   <div class="featured-section">
     <div class="featured-header">
@@ -206,6 +225,36 @@ export default {
         { number: '6+',   label: 'Years of experience'                     },
       ],
 
+
+      toolCategories: [
+        {
+          name: 'Design',
+          tools: [
+            { name: 'Figma',          icon: 'https://cdn.simpleicons.org/figma' },
+            { name: 'Illustrator',    icon: 'https://upload.wikimedia.org/wikipedia/commons/f/fb/Adobe_Illustrator_CC_icon.svg' },
+            { name: 'Photoshop',      icon: 'https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg' },
+            { name: 'InDesign',       icon: 'https://upload.wikimedia.org/wikipedia/commons/4/48/Adobe_InDesign_CC_icon.svg' },
+            { name: 'Lightroom',      icon: 'https://upload.wikimedia.org/wikipedia/commons/b/b6/Adobe_Photoshop_Lightroom_CC_logo.svg' },
+            { name: 'Framer',         icon: 'https://cdn.simpleicons.org/framer' },
+          ]
+        },
+        {
+          name: 'Motion & Video',
+          tools: [
+            { name: 'After Effects',  icon: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Adobe_After_Effects_CC_icon.svg' },
+            { name: 'Premiere Pro',   icon: 'https://upload.wikimedia.org/wikipedia/commons/4/40/Adobe_Premiere_Pro_CC_icon.svg' },
+          ]
+        },
+        {
+          name: 'Development',
+          tools: [
+            { name: 'Vue.js',         icon: 'https://cdn.simpleicons.org/vuedotjs' },
+            { name: 'React',          icon: 'https://cdn.simpleicons.org/react' },
+            { name: 'HTML / CSS',     icon: 'https://cdn.simpleicons.org/html5' },
+            { name: 'Python',         icon: 'https://cdn.simpleicons.org/python' },
+          ]
+        },
+      ],
       clientLogos: [
         new URL('/images/logos/1.png', import.meta.url).href,
         new URL('/images/logos/2.png', import.meta.url).href,
@@ -492,6 +541,109 @@ export default {
   filter: contrast(1.04);
 }
 
+
+/* ── TOOLS & SKILLS ──────────────────────────────────────────── */
+.tools-section {
+  max-width: 1200px;
+  margin: 5rem auto;
+  padding: 0 2rem;
+}
+
+.tools-heading {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #000;
+  margin: 0 0 3rem 0;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+  font-family: 'Arial', sans-serif;
+}
+
+.tools-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.tools-cat-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #aaa;
+  margin: 0 0 1rem 0;
+  font-family: 'Arial', sans-serif;
+}
+
+.tools-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.tool-item {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid #ebebeb;
+  border-radius: 14px;
+  background: #fff;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: default;
+}
+
+.tool-item:hover {
+  border-color: #000;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+.tool-item img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Tooltip */
+.tool-tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #111;
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 0.3rem 0.65rem;
+  border-radius: 6px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  transform: translateX(-50%) translateY(4px);
+  z-index: 10;
+}
+
+.tool-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #111;
+}
+
+.tool-item:hover .tool-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
 /* ── MARQUEE ─────────────────────────────────────────────────── */
 .marquee-band {
   width: 100%;
@@ -754,6 +906,12 @@ body { overflow-x: hidden; }
   .hero-cta { justify-content: center; }
   .hero-btn { font-size: 0.8rem; padding: 0.7rem 1.6rem; }
   .typewriter-row { justify-content: center; }
+
+  .tools-section { margin: 3rem auto; }
+  .tools-heading { font-size: 1.8rem; }
+  .tools-grid { gap: 0.5rem; }
+  .tool-item { width: 46px; height: 46px; border-radius: 12px; }
+  .tool-item img { width: 24px; height: 24px; }
 
   .portfolio-sections { flex-direction: column; height: auto; }
   .section-tile { flex: none; height: 30vh; }
