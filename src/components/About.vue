@@ -157,7 +157,7 @@ export default {
         },
         {
           year: '2020 – 2023',
-          role: 'Senior Motion Designer',
+          role: 'Senior Graphic & Motion Designer',
           company: 'Smitten Worldwide',
           desc: 'Led motion and campaign design for 10+ brands including JW Marriott, Westin, Funskool, and Mount Sinai. Funskool campaign drove 125% engagement growth.'
         },
