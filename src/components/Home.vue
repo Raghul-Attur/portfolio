@@ -49,33 +49,62 @@
     </div>
   </div>
 
-  <!-- ── PORTFOLIO TILES ────────────────────────────────────── -->
-  <div class="portfolio-wrapper" id="portfolio">
-    <div class="portfolio-sections">
-      <router-link
-        v-for="(section, index) in sections"
-        :key="section.name"
-        :to="section.path"
-        class="section-tile"
-      >
-        <div class="section-content" :style="{ backgroundImage: `url(${section.image})`, backgroundPosition: section.position || 'center' }">
-          <div class="overlay">
-            <div class="section-index">0{{ index + 1 }}</div>
-            <div class="section-label">{{ section.name }}</div>
+  <!-- ── PORTFOLIO BENTO ───────────────────────────────────── -->
+  <div class="bento-wrapper" id="portfolio">
+    <div class="bento-header">
+      <span class="bento-eyebrow">Work</span>
+      <h2 class="bento-title">Selected Projects</h2>
+    </div>
+    <div class="bento-grid">
+
+      <router-link :to="sections[0].path" class="bento-tile bento-tile--large">
+        <div class="bento-bg" :style="{ backgroundImage: 'url(' + sections[0].image + ')' }"></div>
+        <div class="bento-content">
+          <span class="bento-index">01</span>
+          <div class="bento-bottom">
+            <span class="bento-cat">UI / UX Design</span>
+            <h3 class="bento-name">UX</h3>
+            <span class="bento-arrow">&#x2192;</span>
           </div>
         </div>
       </router-link>
-    </div>
-  </div>
 
-  <!-- ── MARQUEE BAND 2 ─────────────────────────────────────── -->
-  <div class="marquee-band marquee-band--reverse">
-    <div class="marquee-track marquee-track--reverse">
-      <span v-for="n in 3" :key="n">
-        After Effects &nbsp;✦&nbsp; Figma &nbsp;✦&nbsp; Adobe Creative Suite &nbsp;✦&nbsp;
-        Vue.js &nbsp;✦&nbsp; React &nbsp;✦&nbsp; Python &nbsp;✦&nbsp; AWS &nbsp;✦&nbsp;
-        Premiere Pro &nbsp;✦&nbsp; InDesign &nbsp;✦&nbsp; Photoshop &nbsp;✦&nbsp;
-      </span>
+      <router-link :to="sections[1].path" class="bento-tile bento-tile--tall">
+        <div class="bento-bg" :style="{ backgroundImage: 'url(' + sections[1].image + ')' }"></div>
+        <div class="bento-content">
+          <span class="bento-index">02</span>
+          <div class="bento-bottom">
+            <span class="bento-cat">Brand &amp; Campaign</span>
+            <h3 class="bento-name">Design</h3>
+            <span class="bento-arrow">&#x2192;</span>
+          </div>
+        </div>
+      </router-link>
+
+      <router-link :to="sections[2].path" class="bento-tile bento-tile--small">
+        <div class="bento-bg" :style="{ backgroundImage: 'url(' + sections[2].image + ')' }"></div>
+        <div class="bento-content">
+          <span class="bento-index">03</span>
+          <div class="bento-bottom">
+            <span class="bento-cat">Motion &amp; Film</span>
+            <h3 class="bento-name">Videos</h3>
+            <span class="bento-arrow">&#x2192;</span>
+          </div>
+        </div>
+      </router-link>
+
+      <router-link :to="sections[3].path" class="bento-tile bento-tile--wide">
+        <div class="bento-bg" :style="{ backgroundImage: 'url(' + sections[3].image + ')', backgroundPosition: 'top center' }"></div>
+        <div class="bento-content">
+          <span class="bento-index">04</span>
+          <div class="bento-bottom">
+            <span class="bento-cat">Development</span>
+            <h3 class="bento-name">Dev</h3>
+            <span class="bento-arrow">&#x2192;</span>
+          </div>
+        </div>
+      </router-link>
+
     </div>
   </div>
 
@@ -149,22 +178,6 @@
     </div>
   </div>
 
-  <!-- ── CTA STRIP ──────────────────────────────────────────── -->
-  <div class="cta-strip">
-    <p class="cta-label">Want to work together?</p>
-    <div class="cta-actions">
-      <a href="mailto:raghul.attursukumar@gmail.com" class="cta-btn cta-outline">
-        raghul.attursukumar@gmail.com
-      </a>
-      <a href="https://linkedin.com/in/raghul-sukumar" target="_blank" class="cta-btn cta-outline">
-        LinkedIn
-      </a>
-      <a href="/Raghul_Sukumar_Resume.pdf" download class="cta-btn cta-solid">
-        Download Resume
-      </a>
-    </div>
-  </div>
-
 </template>
 
 <script>
@@ -196,7 +209,7 @@ export default {
           title: 'ReadEase',
           tag: 'UX Design / Full Stack',
           description: 'An accessible learning platform built for young Australians with dyslexia. OCR document reader, AI summarisation, phonetic support, and gamified learning tools.',
-          result: '🏆 Best Project — Monash University Expo 2025',
+          result: 'Best Project — Monash University Expo 2025',
           image: '/dev/ReadEase1.png',
           link: '/dev',
         },
@@ -224,7 +237,6 @@ export default {
         { number: '200+', label: 'Digital assets delivered'                },
         { number: '6+',   label: 'Years of experience'                     },
       ],
-
 
       toolCategories: [
         {
@@ -258,6 +270,7 @@ export default {
           ]
         },
       ],
+
       clientLogos: [
         new URL('/images/logos/1.png', import.meta.url).href,
         new URL('/images/logos/2.png', import.meta.url).href,
@@ -411,7 +424,7 @@ export default {
   align-items: stretch;
   justify-content: center;
   margin-top: 0;
-  padding-top: 70px; /* clear fixed navbar */
+  padding-top: 70px;
   position: relative;
   overflow: hidden;
   background: #fff;
@@ -426,7 +439,6 @@ export default {
   z-index: 0;
 }
 
-/* Two-column inner layout */
 .hero-inner {
   display: flex;
   align-items: center;
@@ -439,7 +451,6 @@ export default {
   gap: 0;
 }
 
-/* ── LEFT: TEXT ───── */
 .hero-content {
   flex: 0 0 auto;
   width: 50%;
@@ -519,7 +530,6 @@ export default {
 .hero-btn--secondary { background: transparent; color: #000; border: 2px solid #000; }
 .hero-btn--secondary:hover { background: #000; color: #fff; }
 
-/* ── RIGHT: PHOTO ─── */
 .hero-image-wrap {
   flex: 0 0 auto;
   width: 44%;
@@ -533,7 +543,6 @@ export default {
 }
 
 .hero-photo {
-  /* mix-blend-mode removes the black background naturally on a white page */
   mix-blend-mode: multiply;
   width: 100%;
   max-width: 480px;
@@ -544,6 +553,172 @@ export default {
   filter: contrast(1.04);
 }
 
+/* ── MARQUEE ─────────────────────────────────────────────────── */
+.marquee-band {
+  width: 100%;
+  background: #000;
+  padding: 1rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-track {
+  display: inline-block;
+  animation: marquee-left 30s linear infinite;
+  font-family: 'Arial', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.marquee-track--reverse {
+  animation: marquee-right 30s linear infinite;
+}
+
+@keyframes marquee-left {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-33.33%); }
+}
+
+@keyframes marquee-right {
+  0%   { transform: translateX(-33.33%); }
+  100% { transform: translateX(0); }
+}
+
+/* ── BENTO GRID ──────────────────────────────────────────────── */
+.bento-wrapper {
+  background: #0a0a0a;
+  padding: 5rem 3rem;
+  width: 100%;
+}
+
+.bento-header {
+  max-width: 1300px;
+  margin: 0 auto 2.5rem;
+  display: flex;
+  align-items: baseline;
+  gap: 1.2rem;
+}
+
+.bento-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #555;
+  font-family: Arial, sans-serif;
+}
+
+.bento-title {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 900;
+  color: #fff;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.bento-grid {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 380px 260px;
+  gap: 12px;
+}
+
+.bento-tile--large { grid-column: 1 / 3; grid-row: 1; }
+.bento-tile--tall  { grid-column: 3;     grid-row: 1 / 3; }
+.bento-tile--small { grid-column: 1;     grid-row: 2; }
+.bento-tile--wide  { grid-column: 2;     grid-row: 2; }
+
+.bento-tile {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+}
+
+.bento-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  filter: brightness(0.55);
+}
+
+.bento-tile:hover .bento-bg {
+  transform: scale(1.06);
+  filter: brightness(0.35);
+}
+
+.bento-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.4rem 1.6rem;
+}
+
+.bento-index {
+  font-family: Arial, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.3);
+}
+
+.bento-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.bento-cat {
+  font-family: Arial, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  transition: color 0.3s ease;
+}
+
+.bento-tile:hover .bento-cat { color: rgba(255,255,255,0.75); }
+
+.bento-name {
+  font-family: Arial, sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  font-weight: 900;
+  color: #fff;
+  margin: 0;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  transition: letter-spacing 0.3s ease;
+}
+
+.bento-tile:hover .bento-name { letter-spacing: 0.02em; }
+
+.bento-arrow {
+  font-size: 1.2rem;
+  color: rgba(255,255,255,0);
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+  transform: translateX(-8px);
+  margin-top: 0.4rem;
+}
+
+.bento-tile:hover .bento-arrow {
+  color: #fff;
+  transform: translateX(0);
+}
 
 /* ── TOOLS & SKILLS ──────────────────────────────────────────── */
 .tools-section {
@@ -611,7 +786,6 @@ export default {
   display: block;
 }
 
-/* Tooltip */
 .tool-tooltip {
   position: absolute;
   bottom: calc(100% + 8px);
@@ -645,88 +819,6 @@ export default {
 .tool-item:hover .tool-tooltip {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
-}
-
-/* ── MARQUEE ─────────────────────────────────────────────────── */
-.marquee-band {
-  width: 100%;
-  background: #000;
-  padding: 1rem 0;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.marquee-track {
-  display: inline-block;
-  animation: marquee-left 30s linear infinite;
-  font-family: 'Arial', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #fff;
-}
-
-.marquee-track--reverse {
-  animation: marquee-right 30s linear infinite;
-}
-
-@keyframes marquee-left {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-33.33%); }
-}
-
-@keyframes marquee-right {
-  0%   { transform: translateX(-33.33%); }
-  100% { transform: translateX(0); }
-}
-
-/* ── PORTFOLIO TILES ─────────────────────────────────────────── */
-.portfolio-wrapper { margin-top: 0; }
-
-.portfolio-sections {
-  display: flex;
-  width: 100vw;
-  height: 85vh;
-  overflow: hidden;
-  margin: 0; padding: 0;
-}
-
-.section-tile {
-  flex: 1;
-  text-decoration: none;
-  color: white;
-  transition: flex 0.4s ease;
-  min-width: 0;
-}
-
-.section-tile:hover { flex: 2; }
-
-.section-content {
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
-  padding: 20px;
-}
-
-.overlay {
-  background: rgba(0,0,0,0.6);
-  padding: 1rem;
-  border-top: 1px solid white;
-}
-
-.section-index { font-size: 1rem; font-weight: 600; letter-spacing: 2px; }
-
-.section-label {
-  font-size: 1.3rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  margin-top: 0.3rem;
-  letter-spacing: 2px;
 }
 
 /* ── FEATURED WORK ───────────────────────────────────────────── */
@@ -889,10 +981,7 @@ body { overflow-x: hidden; }
     align-items: center;
   }
 
-  .hero-content {
-    width: 100%;
-    text-align: center;
-  }
+  .hero-content { width: 100%; text-align: center; }
 
   .hero-image-wrap {
     width: 70%;
@@ -901,11 +990,7 @@ body { overflow-x: hidden; }
     align-items: flex-end;
   }
 
-  .hero-photo {
-    height: 100%;
-    object-position: top center;
-  }
-
+  .hero-photo { height: 100%; object-position: top center; }
   .hero-cta { justify-content: center; }
   .hero-btn { font-size: 0.8rem; padding: 0.7rem 1.6rem; }
   .typewriter-row { justify-content: center; }
@@ -916,9 +1001,19 @@ body { overflow-x: hidden; }
   .tool-item { width: 46px; height: 46px; border-radius: 12px; }
   .tool-item img { width: 24px; height: 24px; }
 
-  .portfolio-sections { flex-direction: column; height: auto; }
-  .section-tile { flex: none; height: 30vh; }
-  .section-label { font-size: 1rem; }
+  .bento-wrapper { padding: 3rem 1.2rem; }
+  .bento-grid {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: repeat(4, 220px) !important;
+  }
+  .bento-tile--large,
+  .bento-tile--tall,
+  .bento-tile--small,
+  .bento-tile--wide {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+  }
+  .bento-name { font-size: 2rem !important; }
 
   .featured-project { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 3rem; }
   .featured-project--reverse { direction: ltr; }
@@ -934,7 +1029,6 @@ body { overflow-x: hidden; }
 }
 
 @media (max-width: 480px) {
-  .section-tile { height: 25vh; }
   .results-inner { grid-template-columns: 1fr 1fr; gap: 1rem; }
 }
 </style>
