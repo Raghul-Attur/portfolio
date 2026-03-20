@@ -133,6 +133,40 @@
             </div>
           </div>
 
+          <!-- Browser mockup — tabbed (Option A) -->
+          <div v-else-if="section.type === 'browsermockup'" class="ux-browser-wrap">
+            <div class="ux-browser-tabs">
+              <button
+                v-for="(screen, j) in section.screens"
+                :key="j"
+                class="ux-browser-tab"
+                :class="{ active: (browserIndex[i] || 0) === j }"
+                @click="setBrowserTab(i, j)"
+              >{{ screen.label }}</button>
+            </div>
+            <div class="ux-browser">
+              <div class="ux-browser-bar">
+                <div class="ux-browser-dots">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="ux-browser-url">
+                  {{ section.screens[browserIndex[i] || 0].url }}
+                </div>
+              </div>
+              <div class="ux-browser-screen">
+                <transition name="screen-fade" mode="out-in">
+                  <img
+                    :key="browserIndex[i] || 0"
+                    :src="section.screens[browserIndex[i] || 0].src"
+                    :alt="section.screens[browserIndex[i] || 0].label"
+                    loading="lazy"
+                  />
+                </transition>
+              </div>
+            </div>
+            <p v-if="section.caption" class="ux-gallery-caption">{{ section.caption }}</p>
+          </div>
+
         </div>
 
         <!-- Nav to next project -->
@@ -160,6 +194,7 @@ export default {
   data() {
     return {
       selectedProject: null,
+      browserIndex: {},
 
       uxProjects: [
 
@@ -214,10 +249,12 @@ export default {
               content: '<p>1 in 10 Australians has dyslexia. Most digital reading tools are built for neurotypical users, and the few that exist for dyslexic readers are fragmented, clinical, or difficult for young people to engage with. There was no single platform that combined accessibility settings, document reading, vocabulary support, and gamified practice in one place.</p><p>The brief was to design and build a platform specifically for young Australians with dyslexia that felt engaging rather than remedial, and that addressed reading challenges at multiple levels simultaneously.</p>'
             },
             {
-              type: 'images',
-              layout: 'single',
-              images: ['/dev/ReadEase1.png'],
-              caption: 'ReadEase homepage — adaptive reading interface with accessibility panel'
+              type: 'browsermockup',
+              screens: [
+                { label: 'Homepage',     url: 'readease.me',                src: '/dev/ReadEase1.png' },
+                { label: 'Accessibility Panel', url: 'readease.me',         src: '/dev/ReadEase2.png' },
+              ],
+              caption: 'ReadEase homepage and accessibility panel — tab to switch between screens'
             },
             {
               type: 'text',
@@ -225,10 +262,12 @@ export default {
               content: '<p>The team conducted user research across three iterations, developing personas for two primary user groups: a 12-year-old student diagnosed with dyslexia navigating school reading tasks, and a parent seeking tools to support their child at home. Research drew on AIHW education data showing the impact of learning disabilities on educational outcomes across Australia.</p><p>We audited existing tools including Natural Reader, Beeline Reader, and Microsoft Immersive Reader to identify gaps. Key findings: most tools addressed only one aspect of the problem (text-to-speech only, or font adjustment only). None offered adaptive learning, gamified reinforcement, and document accessibility in one product.</p>'
             },
             {
-              type: 'images',
-              layout: 'two-col',
-              images: ['/dev/ReadEase1.png', '/dev/ReadEase2.png'],
-              caption: 'User personas developed across Iteration 1 research phase'
+              type: 'browsermockup',
+              screens: [
+                { label: 'Persona — Student',  url: 'readease.me/research', src: '/dev/ReadEase1.png' },
+                { label: 'Persona — Parent',   url: 'readease.me/research', src: '/dev/ReadEase2.png' },
+              ],
+              caption: 'User personas developed across the Iteration 1 research phase'
             },
             {
               type: 'text',
@@ -241,10 +280,12 @@ export default {
               content: '<p>Accessibility was not retrofitted — it was the brief. Every design decision was made against WCAG 2.1 AA criteria from the first wireframe. Key decisions included: OpenDyslexic font support alongside Lexend Deca and standard options; minimum 16px body text with user-adjustable sizing; six colour themes (Light, Dark, Sepia, Night, Sky, Mint) each independently tested for contrast; generous line height and letter spacing controls; large touch targets across all interactive elements.</p><p>The accessibility panel was designed to be reachable within two interactions from any page and to persist user preferences across sessions without requiring login.</p>'
             },
             {
-              type: 'images',
-              layout: 'single',
-              images: ['/dev/ReadEase2.png'],
-              caption: 'Accessibility settings panel — font, spacing, and colour theme controls'
+              type: 'browsermockup',
+              screens: [
+                { label: 'Accessibility Settings', url: 'readease.me/settings', src: '/dev/ReadEase2.png' },
+                { label: 'Reading Interface',       url: 'readease.me/read',     src: '/dev/ReadEase1.png' },
+              ],
+              caption: 'Accessibility settings panel and reading interface — font, spacing, and colour theme controls'
             },
             {
               type: 'text',
@@ -431,6 +472,75 @@ export default {
           ]
         },
 
+        // ── CORPORATE CHEMISTRY WEBSITE ──────────────────────────
+        {
+          title: 'Corporate Chemistry',
+          subtitle: 'Website UI design for a talent acquisition and recruitment firm.',
+          summary: 'Five-page website UI for a recruitment agency — homepage, services, about, application forms, and contact — designed around a bold yellow and charcoal identity system.',
+          award: null,
+          tags: ['UI Design', 'Web Design', 'Brand Application'],
+          thumbnail: '/CC_Web_01.jpg',
+          hero: '/CC_Web_01.jpg',
+          role: 'UI Designer',
+          year: '2021',
+          tools: ['Adobe Photoshop', 'Adobe Illustrator'],
+          liveUrl: null,
+          figma: null,
+
+          sections: [
+            {
+              type: 'text',
+              label: 'Brief',
+              content: '<p>Corporate Chemistry is a talent acquisition and recruitment firm specialising in mid to senior-level placements across industries. Alongside the pitch deck (DS-15), the engagement included designing the full public-facing website — five pages covering the brand story, service offering, candidate and company application forms, and contact information.</p><p>The design challenge was to translate the pitch deck\'s visual identity — bold yellow, charcoal, geometric illustration, custom iconography — into a web layout that worked for two distinct audiences simultaneously: companies looking to hire, and candidates looking for roles.</p>'
+            },
+            {
+              type: 'text',
+              label: 'Design System',
+              content: '<p>The visual language carries directly from the brand identity: golden yellow (#FFC107) as the dominant hero colour, dark charcoal (#555555) as the structural colour, and off-white (#F2F2F2) as the page ground. Typography uses a single bold sans-serif across all headings, keeping the design assertive and consistent at every scale.</p><p>Custom line icons were designed for all six service offerings — three for candidates (Consulting, Grooming, Interviewing) and three for companies (Sourcing, Shortlisting, Interviewing). Each icon uses a yellow rounded-square container, giving them a unified, badge-like quality across the services page. The same icons appear in the pitch deck, extending the visual system across both deliverables.</p>'
+            },
+            {
+              type: 'browsermockup',
+              screens: [
+                { label: 'Homepage',    url: 'corporatechemistry.com',          src: '/CC_Web_01.jpg' },
+                { label: 'Our Services', url: 'corporatechemistry.com/services', src: '/CC_Web_02.jpg' },
+                { label: 'About Us',    url: 'corporatechemistry.com/about',    src: '/CC_Web_03.jpg' },
+                { label: 'Apply Now',   url: 'corporatechemistry.com/apply',    src: '/CC_Web_04.jpg' },
+                { label: 'Contact Us',  url: 'corporatechemistry.com/contact',  src: '/CC_Web_05.jpg' },
+              ],
+              caption: 'All five pages — click the tabs to browse each screen'
+            },
+            {
+              type: 'text',
+              label: 'Homepage',
+              content: '<p>The homepage is structured around a clear binary entry point: Hiring for a job or Looking for a job. Both CTAs appear as equal-weight yellow buttons on a full-bleed black-and-white hero photograph, resolving the dual-audience problem immediately on landing without requiring users to read copy to understand where they belong.</p><p>Below the hero, two content blocks develop the brand positioning. The yellow band introduces the agency with a custom illustration of spotlit candidates — reinforcing the human-centric positioning. The grey section introduces the "chemistry" metaphor through a molecular structure motif rendered in yellow and charcoal, with the brand\'s core line: "We\'re making hiring human."</p>'
+            },
+            {
+              type: 'text',
+              label: 'Services & About',
+              content: '<p>The Services page splits cleanly into two sections — For Candidates on a yellow background, For Companies on charcoal — using colour to establish the division before users read a word. Each service is presented in an identical white card with the custom icon at centre, service name, and a single explanatory line. The symmetry across both sections makes the offering readable at a glance.</p><p>The About Us page uses the same card grid to express four brand values: people-centric, human-centric, connection-centric, and Corporate Chemistry. The layout mirrors the Services page structurally, reducing the cognitive load of navigating between sections. A yellow band at the top maintains the page hierarchy established across the site.</p>'
+            },
+            {
+              type: 'text',
+              label: 'Forms & Contact',
+              content: '<p>The Apply Now page handles the most complex content on the site — a 12-field candidate form and a 4-field company form — without feeling overwhelming. Both forms sit in white cards that emerge from their coloured band backgrounds (yellow for candidates, charcoal for companies), visually separating the two audiences while maintaining layout consistency. The yellow Submit button is the only coloured element inside each form, directing attention clearly to the action.</p><p>The Contact page keeps the same card-on-yellow structure and pairs the contact details with an embedded Google Maps panel — practical, clean, and requiring no additional design decisions to be useful.</p>'
+            },
+            {
+              type: 'text',
+              label: 'Navigation',
+              content: '<p>The dark charcoal navigation bar persists across all five pages with the active page highlighted in yellow — providing orientation without requiring any additional wayfinding elements. The logo sits top-left in white against charcoal, maintaining legibility regardless of the page content below. The nav system is intentionally minimal: four links, no dropdowns, no hamburger menu at this design phase.</p><p>This project was completed as part of the same engagement as the Corporate Chemistry pitch deck (DS-15), with both deliverables sharing the same visual system and icon library.</p>'
+            },
+            {
+              type: 'stats',
+              stats: [
+                { number: '5',  label: 'Pages designed' },
+                { number: '6',  label: 'Custom service icons' },
+                { number: '2',  label: 'Distinct audiences served' },
+                { number: '1',  label: 'Unified system across web and pitch deck' },
+              ]
+            },
+          ]
+        },
+
       ]
     };
   },
@@ -444,12 +554,17 @@ export default {
   methods: {
     openProject(index) {
       this.selectedProject = index;
+      this.browserIndex = {};
       this.$nextTick(() => window.scrollTo({ top: 0, behavior: 'smooth' }));
     },
     closeProject() {
       this.selectedProject = null;
+      this.browserIndex = {};
       this.$nextTick(() => window.scrollTo({ top: 0, behavior: 'smooth' }));
-    }
+    },
+    setBrowserTab(sectionIndex, tabIndex) {
+      this.browserIndex = { ...this.browserIndex, [sectionIndex]: tabIndex };
+    },
   }
 };
 </script>
@@ -908,7 +1023,6 @@ export default {
 
 .ux-next-btn:hover { background: #333; }
 
-
 /* Timeline */
 .ux-timeline {
   display: flex;
@@ -985,6 +1099,107 @@ export default {
   font-family: Arial, sans-serif;
 }
 
+/* ── BROWSER MOCKUP ──────────────────────────────────────────── */
+.ux-browser-wrap {
+  width: 100%;
+}
+
+.ux-browser-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.ux-browser-tab {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 5px 16px;
+  border-radius: 999px;
+  border: 1.5px solid #e0e0e0;
+  background: transparent;
+  color: #888;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  letter-spacing: 0.04em;
+  transition: all 0.18s ease;
+}
+
+.ux-browser-tab:hover {
+  border-color: #aaa;
+  color: #333;
+}
+
+.ux-browser-tab.active {
+  background: #000;
+  border-color: #000;
+  color: #fff;
+}
+
+.ux-browser {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+  background: #fff;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+}
+
+.ux-browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background: #f5f5f5;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.ux-browser-dots {
+  display: flex;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.ux-browser-dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: block;
+}
+
+.ux-browser-dots span:nth-child(1) { background: #ff5f57; }
+.ux-browser-dots span:nth-child(2) { background: #febc2e; }
+.ux-browser-dots span:nth-child(3) { background: #28c840; }
+
+.ux-browser-url {
+  flex: 1;
+  font-size: 0.72rem;
+  color: #999;
+  font-family: Arial, sans-serif;
+  background: #fff;
+  border-radius: 5px;
+  padding: 4px 12px;
+  border: 1px solid #e8e8e8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ux-browser-screen img {
+  width: 100%;
+  display: block;
+}
+
+/* Screen fade transition */
+.screen-fade-enter-active,
+.screen-fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.screen-fade-enter-from,
+.screen-fade-leave-to {
+  opacity: 0;
+}
+
 /* ── TRANSITIONS ─────────────────────────────────────────────── */
 .page-fade-enter-active,
 .page-fade-leave-active { transition: opacity 0.4s ease, transform 0.4s ease; }
@@ -1036,5 +1251,7 @@ export default {
   .ux-detail-body { padding: 2rem 1.5rem 4rem; }
 
   .ux-detail-nav { flex-direction: column; gap: 1rem; align-items: flex-start; }
+
+  .ux-browser-tab { font-size: 0.68rem; padding: 4px 12px; }
 }
 </style>
