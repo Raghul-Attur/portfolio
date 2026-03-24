@@ -107,6 +107,91 @@
     </div>
   </div>
 
+  <!-- ── PHOTOGRAPHY ────────────────────────────────────────── -->
+  <div class="about-photo-section" ref="photoSection">
+    <div class="about-photo-header">
+      <div class="about-photo-header-inner">
+        <div class="about-photo-label">Shot on Sony Alpha a6400 &amp; iPhone 15</div>
+        <h2 class="about-photo-title">Through the lens</h2>
+        <p class="about-photo-desc">Street, portrait, and travel — 10 cities, no colour grading.</p>
+      </div>
+      <div class="about-photo-hint">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M2 6l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        hover to lift · click to open
+      </div>
+    </div>
+
+    <!-- Scatter surface -->
+    <div class="photo-scatter" ref="scatter">
+      <div
+        v-for="(photo, i) in visiblePhotos"
+        :key="photo.index"
+        class="photo-card"
+        :class="{ 'photo-card--active': activePhoto === i, 'photo-card--revealed': photo.revealed }"
+        :style="getCardStyle(photo, i)"
+        @mouseenter="liftCard(i)"
+        @mouseleave="dropCard(i)"
+        @click="openLightbox(photo)"
+      >
+        <div class="photo-card-inner">
+          <img
+            :src="photo.src"
+            :alt="'Photography ' + photo.index"
+            class="photo-card-img"
+            loading="lazy"
+          />
+          <div class="photo-card-shadow"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Show more -->
+    <div class="photo-scatter-footer">
+      <button
+        v-if="visibleCount < photos.length"
+        class="photo-more-btn"
+        @click="showMore"
+      >
+        Show more photos ↓
+      </button>
+      <span class="photo-count">{{ visibleCount }} of {{ photos.length }}</span>
+    </div>
+  </div>
+
+  <!-- ── LIGHTBOX ───────────────────────────────────────────── -->
+  <transition name="lb-fade">
+    <div v-if="lightboxPhoto" class="photo-lightbox" @click.self="closeLightbox">
+      <button class="lb-close" @click="closeLightbox">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M3 3l14 14M17 3L3 17" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <button class="lb-prev" @click.stop="prevPhoto">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M13 3L6 10l7 7" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <div class="lb-img-wrap">
+        <transition name="lb-img" mode="out-in">
+          <img
+            :key="lightboxIndex"
+            :src="lightboxPhoto.src"
+            class="lb-img"
+            alt=""
+          />
+        </transition>
+      </div>
+      <button class="lb-next" @click.stop="nextPhoto">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M7 3l7 7-7 7" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <div class="lb-counter">{{ lightboxIndex + 1 }} / {{ photos.length }}</div>
+    </div>
+  </transition>
+
   <!-- ── CTA ────────────────────────────────────────────────── -->
   <div class="about-cta">
     <h2 class="about-cta-heading">Want to work together?</h2>
@@ -123,12 +208,38 @@
 </template>
 
 <script>
+// Seeded random — consistent layout per session, no re-shuffles on re-render
+function seededRandom(seed) {
+  const x = Math.sin(seed + 1) * 10000;
+  return x - Math.floor(x);
+}
+
+const INITIAL_COUNT = 18;
+const STEP_COUNT    = 12;
+const TOTAL_PHOTOS  = 47;
+
 export default {
   name: 'About',
 
   data() {
+    const photos = Array.from({ length: TOTAL_PHOTOS }, (_, i) => ({
+      index: i + 1,
+      src: `/images/photo/${i + 1}.jpg`,
+      // Each card gets stable seeded position/rotation values
+      rx: seededRandom(i * 3)      * 80 - 40,   // horizontal offset %  (-40 to +40)
+      ry: seededRandom(i * 3 + 1)  * 60 - 30,   // vertical offset %    (-30 to +30)
+      rot: seededRandom(i * 3 + 2) * 24 - 12,   // rotation deg         (-12 to +12)
+      revealed: false,
+    }));
+
     return {
       timelineVisible: true,
+      photos,
+      visibleCount: INITIAL_COUNT,
+      activePhoto: null,
+      liftedCards: new Set(),
+      lightboxPhoto: null,
+      lightboxIndex: 0,
 
       timeline: [
         {
@@ -209,31 +320,136 @@ export default {
     };
   },
 
+  computed: {
+    visiblePhotos() {
+      return this.photos.slice(0, this.visibleCount);
+    },
+    scatterHeight() {
+      const rows = Math.ceil(this.visibleCount / 6);
+      return `${rows * 260 + 60}px`;
+    },
+  },
+
   mounted() {
     this.observeTimeline();
+    this.observePhotoSection();
+    window.addEventListener('keydown', this.handleKeydown);
+  },
+
+  beforeUnmount() {
+    window.removeEventListener('keydown', this.handleKeydown);
   },
 
   methods: {
     observeTimeline() {
-      // Use nextTick to ensure DOM is ready, then fall back to immediate visible if observer fails
       this.$nextTick(() => {
         const el = this.$refs.timeline;
-        if (!el) {
-          // Fallback: just make timeline visible immediately
-          this.timelineVisible = true;
-          return;
-        }
+        if (!el) { this.timelineVisible = true; return; }
         const observer = new IntersectionObserver(
-          ([entry]) => {
-            if (entry.isIntersecting) {
-              this.timelineVisible = true;
-              observer.disconnect();
-            }
-          },
-          { threshold: 0, rootMargin: '0px 0px 0px 0px' }
+          ([entry]) => { if (entry.isIntersecting) { this.timelineVisible = true; observer.disconnect(); } },
+          { threshold: 0 }
         );
         observer.observe(el);
       });
+    },
+
+    observePhotoSection() {
+      this.$nextTick(() => {
+        const el = this.$refs.photoSection;
+        if (!el) return;
+        const observer = new IntersectionObserver(
+          ([entry]) => {
+            if (entry.isIntersecting) {
+              // Stagger reveal of cards as section comes into view
+              this.visiblePhotos.forEach((photo, i) => {
+                setTimeout(() => { photo.revealed = true; }, i * 40);
+              });
+              observer.disconnect();
+            }
+          },
+          { threshold: 0.05 }
+        );
+        observer.observe(el);
+      });
+    },
+
+    getCardStyle(photo, i) {
+      const isLifted  = this.liftedCards.has(i);
+      const isRevealed = photo.revealed;
+      const cols  = 6;
+      const col   = i % cols;
+      const row   = Math.floor(i / cols);
+      const baseX = (col / (cols - 1)) * 82 + 4;
+      const baseY = row * 250 + 30;
+
+      return {
+        left:      `calc(${baseX}% + ${photo.rx * 0.25}px)`,
+        top:       `${baseY + photo.ry}px`,
+        opacity:   isRevealed ? 1 : 0,
+        transform: isLifted
+          ? `rotate(${photo.rot * 0.3}deg) translateY(-18px) scale(1.07)`
+          : isRevealed
+            ? `rotate(${photo.rot}deg)`
+            : `rotate(${photo.rot}deg) translateY(20px)`,
+        zIndex:    isLifted ? 50 : 10 + (i % 8),
+        transition: isLifted
+          ? 'transform 0.22s cubic-bezier(0.34, 1.4, 0.64, 1), box-shadow 0.22s ease, opacity 0.4s ease'
+          : 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.35s ease, opacity 0.4s ease',
+        boxShadow: isLifted
+          ? '0 28px 60px rgba(0,0,0,0.3), 0 8px 20px rgba(0,0,0,0.18)'
+          : '0 4px 16px rgba(0,0,0,0.1), 0 1px 4px rgba(0,0,0,0.07)',
+      };
+    },
+
+    liftCard(i) {
+      this.liftedCards = new Set([...this.liftedCards, i]);
+      this.activePhoto = i;
+    },
+
+    dropCard(i) {
+      const next = new Set(this.liftedCards);
+      next.delete(i);
+      this.liftedCards = next;
+      if (this.activePhoto === i) this.activePhoto = null;
+    },
+
+    showMore() {
+      const prevCount = this.visibleCount;
+      this.visibleCount = Math.min(this.visibleCount + STEP_COUNT, this.photos.length);
+      // Reveal new cards with stagger
+      this.$nextTick(() => {
+        this.photos.slice(prevCount, this.visibleCount).forEach((photo, i) => {
+          setTimeout(() => { photo.revealed = true; }, i * 40);
+        });
+      });
+    },
+
+    openLightbox(photo) {
+      this.lightboxIndex = photo.index - 1;
+      this.lightboxPhoto = this.photos[this.lightboxIndex];
+      document.body.style.overflow = 'hidden';
+    },
+
+    closeLightbox() {
+      this.lightboxPhoto = null;
+      document.body.style.overflow = '';
+    },
+
+    prevPhoto() {
+      this.lightboxIndex = (this.lightboxIndex - 1 + this.photos.length) % this.photos.length;
+      this.lightboxPhoto = this.photos[this.lightboxIndex];
+    },
+
+    nextPhoto() {
+      this.lightboxIndex = (this.lightboxIndex + 1) % this.photos.length;
+      this.lightboxPhoto = this.photos[this.lightboxIndex];
+    },
+
+    handleKeydown(e) {
+      if (!this.lightboxPhoto) return;
+      if (e.key === 'ArrowRight') this.nextPhoto();
+      if (e.key === 'ArrowLeft')  this.prevPhoto();
+      if (e.key === 'Escape')     this.closeLightbox();
     },
   },
 };
@@ -243,10 +459,10 @@ export default {
 
 /* ── TOKENS ──────────────────────────────────────────────────── */
 :root {
-  --black: #0a0a0a;
-  --white: #ffffff;
-  --grey:  #666666;
-  --light: #f5f5f5;
+  --black:  #0a0a0a;
+  --white:  #ffffff;
+  --grey:   #666666;
+  --light:  #f5f5f5;
   --border: #e8e8e8;
 }
 
@@ -284,7 +500,7 @@ export default {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #aaa;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
   margin-bottom: 1.2rem;
 }
 
@@ -295,7 +511,7 @@ export default {
   letter-spacing: -0.02em;
   color: #000;
   margin: 0 0 1.8rem 0;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 .about-lead {
@@ -303,7 +519,7 @@ export default {
   color: #555;
   line-height: 1.8;
   margin: 0 0 2.5rem 0;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
   max-width: 480px;
 }
 
@@ -312,7 +528,7 @@ export default {
   padding: 0.85rem 2rem;
   background: #000;
   color: #fff;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
   font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -323,10 +539,7 @@ export default {
   transition: all 0.25s ease;
 }
 
-.about-resume-btn:hover {
-  background: transparent;
-  color: #000;
-}
+.about-resume-btn:hover { background: transparent; color: #000; }
 
 .about-hero-image {
   flex: 0 0 38%;
@@ -362,7 +575,7 @@ export default {
   margin: 0 0 3rem 0;
   padding-bottom: 1rem;
   border-bottom: 1px solid #e8e8e8;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 /* ── BIO ─────────────────────────────────────────────────────── */
@@ -386,7 +599,7 @@ export default {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #aaa;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
   padding-top: 0.4rem;
 }
 
@@ -395,7 +608,7 @@ export default {
   color: #333;
   line-height: 1.85;
   margin: 0 0 1.4rem 0;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 .about-bio-text p:last-child { margin-bottom: 0; }
@@ -421,22 +634,16 @@ export default {
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.timeline-item.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+.timeline-item.visible { opacity: 1; transform: translateY(0); }
 
-.timeline-left {
-  padding-top: 0.2rem;
-  text-align: right;
-}
+.timeline-left { padding-top: 0.2rem; text-align: right; }
 
 .timeline-year {
   font-size: 0.72rem;
   font-weight: 700;
   color: #aaa;
   letter-spacing: 0.08em;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
   white-space: nowrap;
 }
 
@@ -464,15 +671,13 @@ export default {
   min-height: 3rem;
 }
 
-.timeline-right {
-  padding-bottom: 3rem;
-}
+.timeline-right { padding-bottom: 3rem; }
 
 .timeline-role {
   font-size: 1rem;
   font-weight: 700;
   color: #000;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
   line-height: 1.3;
 }
 
@@ -481,7 +686,7 @@ export default {
   font-weight: 600;
   color: #aaa;
   margin: 0.25rem 0 0.6rem;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
   letter-spacing: 0.04em;
 }
 
@@ -489,7 +694,7 @@ export default {
   font-size: 0.9rem;
   color: #666;
   line-height: 1.7;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 /* ── VALUES ──────────────────────────────────────────────────── */
@@ -519,7 +724,7 @@ export default {
   font-weight: 700;
   color: #555;
   letter-spacing: 0.12em;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
   margin-bottom: 1rem;
 }
 
@@ -528,7 +733,7 @@ export default {
   font-weight: 700;
   color: #fff;
   margin: 0 0 0.8rem 0;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
   line-height: 1.3;
 }
 
@@ -537,7 +742,7 @@ export default {
   color: #888;
   line-height: 1.75;
   margin: 0;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 /* ── FUN FACTS ───────────────────────────────────────────────── */
@@ -563,22 +768,11 @@ export default {
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
-.fact-item:hover {
-  border-color: #000;
-  transform: translateY(-2px);
-}
+.fact-item:hover { border-color: #000; transform: translateY(-2px); }
 
-.fact-icon {
-  font-size: 1.6rem;
-  flex-shrink: 0;
-  margin-top: 0.1rem;
-}
+.fact-icon { font-size: 1.6rem; flex-shrink: 0; margin-top: 0.1rem; }
 
-.fact-text {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
+.fact-text { display: flex; flex-direction: column; gap: 0.25rem; }
 
 .fact-label {
   font-size: 0.7rem;
@@ -586,16 +780,244 @@ export default {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #aaa;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 .fact-value {
   font-size: 0.92rem;
   font-weight: 600;
   color: #111;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
   line-height: 1.4;
 }
+
+/* ── PHOTOGRAPHY SECTION ─────────────────────────────────────── */
+.about-photo-section {
+  background: #fff;
+  padding: 6rem 0 4rem;
+  overflow: hidden;
+}
+
+.about-photo-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 6vw 3rem;
+  border-bottom: 1px solid #e8e8e8;
+  margin-bottom: 3rem;
+}
+
+.about-photo-header-inner { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.about-photo-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #aaa;
+  font-family: Arial, sans-serif;
+}
+
+.about-photo-title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 900;
+  color: #000;
+  margin: 0;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-family: Arial, sans-serif;
+}
+
+.about-photo-desc {
+  font-size: 0.95rem;
+  color: #888;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.about-photo-hint {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #bbb;
+  font-family: Arial, sans-serif;
+  text-transform: uppercase;
+}
+
+/* ── SCATTER SURFACE ─────────────────────────────────────────── */
+.photo-scatter {
+  position: relative;
+  width: 100%;
+  min-height: v-bind(scatterHeight);
+  padding: 1rem 4vw 2rem;
+}
+
+.photo-card {
+  position: absolute;
+  width: clamp(160px, 15vw, 220px);
+  cursor: pointer;
+}
+
+.photo-card--revealed {
+  /* reveal handled via inline style, class kept for potential future use */
+}
+
+.photo-card-inner {
+  position: relative;
+  background: #fff;
+  padding: 8px 8px 28px;
+  border: 1px solid #e8e8e8;
+  border-radius: 2px;
+}
+
+.photo-card-img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+  border-radius: 1px;
+}
+
+/* Slight vignette at bottom of photo */
+.photo-card-shadow {
+  position: absolute;
+  bottom: 28px;
+  left: 8px;
+  right: 8px;
+  height: 30%;
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.04));
+  pointer-events: none;
+  border-radius: 0 0 1px 1px;
+}
+
+/* ── SCATTER FOOTER ──────────────────────────────────────────── */
+.photo-scatter-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem 6vw 1rem;
+  border-top: 1px solid #e8e8e8;
+  margin-top: 2rem;
+}
+
+.photo-more-btn {
+  background: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  font-family: Arial, sans-serif;
+  padding: 0.75rem 2rem;
+  border-radius: 999px;
+  transition: background 0.2s ease;
+}
+
+.photo-more-btn:hover { background: #333; }
+
+.photo-count {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #ccc;
+  letter-spacing: 0.1em;
+  font-family: Arial, sans-serif;
+  text-transform: uppercase;
+}
+
+/* ── LIGHTBOX ────────────────────────────────────────────────── */
+.photo-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.94);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lb-img-wrap {
+  max-width: 90vw;
+  max-height: 88vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lb-img {
+  max-width: 90vw;
+  max-height: 88vh;
+  object-fit: contain;
+  border-radius: 2px;
+  display: block;
+}
+
+.lb-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(255,255,255,0.08);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.lb-close:hover { background: rgba(255,255,255,0.16); }
+
+.lb-prev,
+.lb-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.08);
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.lb-prev { left: 1.5rem; }
+.lb-next { right: 1.5rem; }
+.lb-prev:hover,
+.lb-next:hover { background: rgba(255,255,255,0.18); }
+
+.lb-counter {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.4);
+  font-family: Arial, sans-serif;
+}
+
+/* Lightbox transitions */
+.lb-fade-enter-active,
+.lb-fade-leave-active { transition: opacity 0.25s ease; }
+.lb-fade-enter-from,
+.lb-fade-leave-to     { opacity: 0; }
+
+.lb-img-enter-active,
+.lb-img-leave-active { transition: opacity 0.18s ease; }
+.lb-img-enter-from,
+.lb-img-leave-to     { opacity: 0; }
 
 /* ── CTA ─────────────────────────────────────────────────────── */
 .about-cta {
@@ -609,7 +1031,7 @@ export default {
   font-weight: 900;
   color: #000;
   margin: 0 0 2.5rem 0;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 .about-cta-actions {
@@ -623,7 +1045,7 @@ export default {
   display: inline-block;
   padding: 0.9rem 2.4rem;
   border-radius: 999px;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
   font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -660,30 +1082,28 @@ export default {
   .about-lead { max-width: 100%; }
   .about-resume-btn { margin: 0 auto; }
 
-  .about-hero-image {
-    flex: none;
-    width: 60%;
-    height: 35vh;
-  }
+  .about-hero-image { flex: none; width: 60%; height: 35vh; }
 
-  .about-bio-inner {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
+  .about-bio-inner { grid-template-columns: 1fr; gap: 1rem; }
 
-  .timeline-item {
-    grid-template-columns: 100px 32px 1fr;
-  }
+  .timeline-item { grid-template-columns: 100px 32px 1fr; }
 
   .values-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
 
   .facts-list { grid-template-columns: 1fr 1fr; }
+
+  .about-photo-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+
+  .photo-card { width: clamp(120px, 40vw, 180px); }
+
+  .lb-prev { left: 0.5rem; }
+  .lb-next { right: 0.5rem; }
 }
 
 @media (max-width: 480px) {
   .facts-list { grid-template-columns: 1fr; }
   .values-grid { grid-template-columns: 1fr; }
   .timeline-item { grid-template-columns: 80px 28px 1fr; }
+  .photo-card { width: clamp(110px, 38vw, 160px); }
 }
-
 </style>
