@@ -38,7 +38,7 @@
     </div>
   </div>
 
-  <!-- ── MARQUEE BAND 1 ─────────────────────────────────────── -->
+  <!-- ── MARQUEE BAND ───────────────────────────────────────── -->
   <div class="marquee-band">
     <div class="marquee-track">
       <span v-for="n in 3" :key="n">
@@ -49,65 +49,52 @@
     </div>
   </div>
 
-  <!-- ── PORTFOLIO BENTO ───────────────────────────────────── -->
-  <div class="bento-wrapper" id="portfolio">
-    <div class="bento-header">
-      <span class="bento-eyebrow">Work</span>
-      <h2 class="bento-title">Selected Projects</h2>
+  <!-- ── PORTFOLIO CARDS ───────────────────────────────────── -->
+  <div class="cards-wrapper" id="portfolio">
+    <div class="cards-header">
+      <span class="cards-eyebrow">Work</span>
+      <h2 class="cards-title">Selected Projects</h2>
     </div>
-    <div class="bento-grid">
 
-      <router-link :to="sections[0].path" class="bento-tile bento-tile--large">
-        <div class="bento-bg" :style="{ backgroundImage: 'url(' + sections[0].image + ')' }"></div>
-        <div class="bento-content">
-          <span class="bento-index">01</span>
-          <div class="bento-bottom">
-            <span class="bento-cat">UI / UX Design</span>
-            <h3 class="bento-name">UX</h3>
-            <span class="bento-arrow">&#x2192;</span>
+    <div class="cards-stage">
+      <router-link
+        v-for="(section, idx) in sections"
+        :key="section.path"
+        :to="section.path"
+        class="card-3d-wrap"
+        draggable="false"
+        @mouseenter="(e) => onCardEnter(e, idx)"
+        @mousemove="(e) => onCardMove(e, idx)"
+        @mouseleave="onCardLeave(idx)"
+      >
+        <!-- Depth shadow layer -->
+        <div class="card-3d-shadow"></div>
+
+        <!-- Main card -->
+        <div class="card-3d" :style="cardStyles[idx]">
+          <div
+            class="card-3d-bg"
+            :style="{
+              backgroundImage: 'url(' + section.image + ')',
+              backgroundPosition: section.position || 'center'
+            }"
+          ></div>
+
+          <!-- Specular gloss that tracks cursor -->
+          <div class="card-3d-gloss" :style="glossStyles[idx]"></div>
+
+          <div class="card-3d-content">
+            <span class="card-3d-index">0{{ idx + 1 }}</span>
+            <div class="card-3d-bottom">
+              <span class="card-3d-cat">{{ section.cat }}</span>
+              <h3 class="card-3d-name">{{ section.name }}</h3>
+              <span class="card-3d-cta">Explore &#x2197;</span>
+            </div>
           </div>
         </div>
       </router-link>
-
-      <router-link :to="sections[1].path" class="bento-tile bento-tile--tall">
-        <div class="bento-bg" :style="{ backgroundImage: 'url(' + sections[1].image + ')' }"></div>
-        <div class="bento-content">
-          <span class="bento-index">02</span>
-          <div class="bento-bottom">
-            <span class="bento-cat">Brand &amp; Campaign</span>
-            <h3 class="bento-name">Design</h3>
-            <span class="bento-arrow">&#x2192;</span>
-          </div>
-        </div>
-      </router-link>
-
-      <router-link :to="sections[2].path" class="bento-tile bento-tile--small">
-        <div class="bento-bg" :style="{ backgroundImage: 'url(' + sections[2].image + ')' }"></div>
-        <div class="bento-content">
-          <span class="bento-index">03</span>
-          <div class="bento-bottom">
-            <span class="bento-cat">Motion &amp; Film</span>
-            <h3 class="bento-name">Videos</h3>
-            <span class="bento-arrow">&#x2192;</span>
-          </div>
-        </div>
-      </router-link>
-
-      <router-link :to="sections[3].path" class="bento-tile bento-tile--wide">
-        <div class="bento-bg" :style="{ backgroundImage: 'url(' + sections[3].image + ')', backgroundPosition: 'top center' }"></div>
-        <div class="bento-content">
-          <span class="bento-index">04</span>
-          <div class="bento-bottom">
-            <span class="bento-cat">Development</span>
-            <h3 class="bento-name">Dev</h3>
-            <span class="bento-arrow">&#x2192;</span>
-          </div>
-        </div>
-      </router-link>
-
     </div>
   </div>
-
 
   <!-- ── TOOLS & SKILLS ────────────────────────────────────── -->
   <div class="tools-section">
@@ -197,11 +184,40 @@ export default {
       particles: [],
       animFrameId: null,
 
+      // Per-card tilt state
+      cardStyles: [{}, {}, {}, {}],
+      glossStyles: [{}, {}, {}, {}],
+      floatTimers: [null, null, null, null],
+
       sections: [
-        { name: 'UX',     path: '/ux',         image: new URL('/home/1.png', import.meta.url).href,         position: 'center' },
-        { name: 'Design', path: '/design',      image: new URL('/home/3.png', import.meta.url).href,         position: 'center' },
-        { name: 'Videos', path: '/videography', image: new URL('/home/4.png', import.meta.url).href,         position: 'center' },
-        { name: 'Dev',    path: '/dev',         image: new URL('/dev/ReadEase1.png', import.meta.url).href,  position: 'top center' },
+        {
+          name: 'UX',
+          cat: 'UI / UX Design',
+          path: '/ux',
+          image: new URL('/home/1.png', import.meta.url).href,
+          position: 'center'
+        },
+        {
+          name: 'Design',
+          cat: 'Brand & Campaign',
+          path: '/design',
+          image: new URL('/home/3.png', import.meta.url).href,
+          position: 'center'
+        },
+        {
+          name: 'Videos',
+          cat: 'Motion & Film',
+          path: '/videography',
+          image: new URL('/home/4.png', import.meta.url).href,
+          position: 'center'
+        },
+        {
+          name: 'Dev',
+          cat: 'Development',
+          path: '/dev',
+          image: new URL('/dev/ReadEase1.png', import.meta.url).href,
+          position: 'top center'
+        },
       ],
 
       featuredProjects: [
@@ -242,31 +258,31 @@ export default {
         {
           name: 'Design',
           tools: [
-            { name: 'Figma',          icon: 'https://cdn.simpleicons.org/figma' },
-            { name: 'Illustrator',    icon: 'https://upload.wikimedia.org/wikipedia/commons/f/fb/Adobe_Illustrator_CC_icon.svg' },
-            { name: 'Photoshop',      icon: 'https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg' },
-            { name: 'InDesign',       icon: 'https://upload.wikimedia.org/wikipedia/commons/4/48/Adobe_InDesign_CC_icon.svg' },
-            { name: 'Lightroom',      icon: 'https://upload.wikimedia.org/wikipedia/commons/b/b6/Adobe_Photoshop_Lightroom_CC_logo.svg' },
-            { name: 'Framer',         icon: 'https://cdn.simpleicons.org/framer' },
+            { name: 'Figma',        icon: 'https://cdn.simpleicons.org/figma' },
+            { name: 'Illustrator',  icon: 'https://upload.wikimedia.org/wikipedia/commons/f/fb/Adobe_Illustrator_CC_icon.svg' },
+            { name: 'Photoshop',    icon: 'https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg' },
+            { name: 'InDesign',     icon: 'https://upload.wikimedia.org/wikipedia/commons/4/48/Adobe_InDesign_CC_icon.svg' },
+            { name: 'Lightroom',    icon: 'https://upload.wikimedia.org/wikipedia/commons/b/b6/Adobe_Photoshop_Lightroom_CC_logo.svg' },
+            { name: 'Framer',       icon: 'https://cdn.simpleicons.org/framer' },
           ]
         },
         {
           name: 'Motion & Video',
           tools: [
-            { name: 'After Effects',  icon: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Adobe_After_Effects_CC_icon.svg' },
-            { name: 'Premiere Pro',   icon: 'https://upload.wikimedia.org/wikipedia/commons/4/40/Adobe_Premiere_Pro_CC_icon.svg' },
+            { name: 'After Effects', icon: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Adobe_After_Effects_CC_icon.svg' },
+            { name: 'Premiere Pro',  icon: 'https://upload.wikimedia.org/wikipedia/commons/4/40/Adobe_Premiere_Pro_CC_icon.svg' },
           ]
         },
         {
           name: 'Development',
           tools: [
-            { name: 'Vue.js',         icon: 'https://cdn.simpleicons.org/vuedotjs' },
-            { name: 'React',          icon: 'https://cdn.simpleicons.org/react' },
-            { name: 'HTML',           icon: 'https://cdn.simpleicons.org/html5' },
-            { name: 'CSS',            icon: 'https://cdn.simpleicons.org/css' },
-            { name: 'Python',         icon: 'https://cdn.simpleicons.org/python' },
-            { name: 'JavaScript',     icon: 'https://cdn.simpleicons.org/javascript' },
-            { name: 'Docker',         icon: 'https://cdn.simpleicons.org/docker' },
+            { name: 'Vue.js',      icon: 'https://cdn.simpleicons.org/vuedotjs' },
+            { name: 'React',       icon: 'https://cdn.simpleicons.org/react' },
+            { name: 'HTML',        icon: 'https://cdn.simpleicons.org/html5' },
+            { name: 'CSS',         icon: 'https://cdn.simpleicons.org/css' },
+            { name: 'Python',      icon: 'https://cdn.simpleicons.org/python' },
+            { name: 'JavaScript',  icon: 'https://cdn.simpleicons.org/javascript' },
+            { name: 'Docker',      icon: 'https://cdn.simpleicons.org/docker' },
           ]
         },
       ],
@@ -288,12 +304,14 @@ export default {
     setTimeout(() => window.dispatchEvent(new Event('resize')), 100);
     this.initParticles();
     this.startTypewriter();
+    this.startFloatAnimations();
     window.addEventListener('resize', this.resizeCanvas);
   },
 
   beforeUnmount() {
     clearTimeout(this.typeTimer);
     cancelAnimationFrame(this.animFrameId);
+    this.floatTimers.forEach(t => { if (t) clearInterval(t); });
     window.removeEventListener('resize', this.resizeCanvas);
     const banner = this.$refs.particleCanvas?.parentElement;
     if (banner) {
@@ -303,6 +321,8 @@ export default {
   },
 
   methods: {
+
+    // ── TYPEWRITER ─────────────────────────────────────────────
     startTypewriter() {
       const currentRole = this.roles[this.roleIndex];
       const typeSpeed   = 80;
@@ -332,6 +352,97 @@ export default {
       }
     },
 
+    // ── 3D CARD INTERACTIONS ───────────────────────────────────
+    onCardEnter(e, idx) {
+      // Stop idle float while hovering
+      if (this.floatTimers[idx]) {
+        clearInterval(this.floatTimers[idx]);
+        this.floatTimers[idx] = null;
+      }
+    },
+
+    onCardMove(e, idx) {
+      const el   = e.currentTarget;
+      const rect = el.getBoundingClientRect();
+      const x    = e.clientX - rect.left;
+      const y    = e.clientY - rect.top;
+      const cx   = rect.width  / 2;
+      const cy   = rect.height / 2;
+
+      // Tilt: max ±18deg
+      const tiltY =  ((x - cx) / cx) * 18;
+      const tiltX = -((y - cy) / cy) * 14;
+
+      // Gloss position
+      const gx = (x / rect.width)  * 100;
+      const gy = (y / rect.height) * 100;
+
+      this.cardStyles = this.cardStyles.map((s, i) =>
+        i === idx ? {
+          transform: `perspective(900px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.04, 1.04, 1.04) translateY(-8px)`,
+          transition: 'transform 0.12s ease',
+          boxShadow: '0 32px 80px rgba(0,0,0,0.45), 0 8px 20px rgba(0,0,0,0.25)',
+        } : s
+      );
+
+      this.glossStyles = this.glossStyles.map((s, i) =>
+        i === idx ? {
+          background: `radial-gradient(circle at ${gx}% ${gy}%, rgba(255,255,255,0.18) 0%, transparent 65%)`,
+          opacity: 1,
+        } : s
+      );
+    },
+
+    onCardLeave(idx) {
+      this.cardStyles = this.cardStyles.map((s, i) =>
+        i === idx ? {
+          transform: 'perspective(900px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1) translateY(0)',
+          transition: 'transform 0.55s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.55s ease',
+          boxShadow: '0 16px 48px rgba(0,0,0,0.28), 0 4px 12px rgba(0,0,0,0.16)',
+        } : s
+      );
+      this.glossStyles = this.glossStyles.map((s, i) =>
+        i === idx ? { opacity: 0, transition: 'opacity 0.4s ease' } : s
+      );
+
+      // Resume idle float after leaving
+      this.startFloatForCard(idx);
+    },
+
+    startFloatForCard(idx) {
+      const offsets = [0, 1200, 600, 1800]; // stagger per card
+      setTimeout(() => {
+        let t = offsets[idx] / 1000;
+        const amp = [6, 8, 5, 7][idx];
+        const speed = [2200, 2600, 2400, 2800][idx];
+
+        if (this.floatTimers[idx]) clearInterval(this.floatTimers[idx]);
+        this.floatTimers[idx] = setInterval(() => {
+          t += 16 / 1000;
+          const yOff = Math.sin(t * (Math.PI * 2) / (speed / 1000)) * amp;
+          const rX   = Math.sin(t * 0.7) * 1.5;
+          const rY   = Math.cos(t * 0.5) * 2;
+
+          // Only apply if not currently being hovered (check by looking at current style)
+          const cur = this.cardStyles[idx];
+          if (!cur.transform || cur.transform.includes('rotateX(0') || cur.transform.includes('scale3d(1,')) {
+            this.cardStyles = this.cardStyles.map((s, i) =>
+              i === idx ? {
+                transform: `perspective(900px) rotateX(${rX}deg) rotateY(${rY}deg) translateY(${yOff}px)`,
+                transition: 'none',
+                boxShadow: '0 16px 48px rgba(0,0,0,0.28), 0 4px 12px rgba(0,0,0,0.16)',
+              } : s
+            );
+          }
+        }, 16);
+      }, offsets[idx]);
+    },
+
+    startFloatAnimations() {
+      this.sections.forEach((_, idx) => this.startFloatForCard(idx));
+    },
+
+    // ── PARTICLES ─────────────────────────────────────────────
     buildGrid(width, height) {
       const SPACING = 28;
       this.particles = [];
@@ -445,7 +556,7 @@ export default {
   justify-content: space-between;
   width: 100%;
   max-width: 1400px;
-  padding: 0 6vw 0 6vw;
+  padding: 0 6vw;
   position: relative;
   z-index: 1;
   gap: 0;
@@ -469,7 +580,7 @@ export default {
 .typewriter-row {
   display: flex;
   align-items: baseline;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
   font-size: clamp(1.2rem, 2.2vw, 2rem);
   font-weight: 400;
   color: #111;
@@ -498,7 +609,7 @@ export default {
 }
 
 .hero-bio {
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
   font-size: clamp(0.85rem, 1.1vw, 1rem);
   color: #777;
   line-height: 1.75;
@@ -515,7 +626,7 @@ export default {
   display: inline-block;
   padding: 0.85rem 2.2rem;
   border-radius: 999px;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
   font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -565,7 +676,7 @@ export default {
 .marquee-track {
   display: inline-block;
   animation: marquee-left 30s linear infinite;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
   font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -573,36 +684,27 @@ export default {
   color: #fff;
 }
 
-.marquee-track--reverse {
-  animation: marquee-right 30s linear infinite;
-}
-
 @keyframes marquee-left {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-33.33%); }
 }
 
-@keyframes marquee-right {
-  0%   { transform: translateX(-33.33%); }
-  100% { transform: translateX(0); }
-}
-
-/* ── BENTO GRID ──────────────────────────────────────────────── */
-.bento-wrapper {
+/* ── PORTFOLIO CARDS ─────────────────────────────────────────── */
+.cards-wrapper {
   background: #0a0a0a;
-  padding: 5rem 3rem;
+  padding: 5rem 3rem 6rem;
   width: 100%;
 }
 
-.bento-header {
+.cards-header {
   max-width: 1300px;
-  margin: 0 auto 2.5rem;
+  margin: 0 auto 3.5rem;
   display: flex;
   align-items: baseline;
   gap: 1.2rem;
 }
 
-.bento-eyebrow {
+.cards-eyebrow {
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.22em;
@@ -611,7 +713,7 @@ export default {
   font-family: Arial, sans-serif;
 }
 
-.bento-title {
+.cards-title {
   font-size: clamp(1.6rem, 3vw, 2.4rem);
   font-weight: 900;
   color: #fff;
@@ -620,102 +722,196 @@ export default {
   letter-spacing: -0.02em;
 }
 
-.bento-grid {
+/* Stage: horizontal row of floating cards */
+.cards-stage {
   max-width: 1300px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 380px 260px;
-  gap: 12px;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 2rem 0 3rem;
 }
 
-.bento-tile--large { grid-column: 1 / 3; grid-row: 1; }
-.bento-tile--tall  { grid-column: 3;     grid-row: 1 / 3; }
-.bento-tile--small { grid-column: 1;     grid-row: 2; }
-.bento-tile--wide  { grid-column: 2;     grid-row: 2; }
-
-.bento-tile {
+/* Each card wrapper provides the perspective context */
+.card-3d-wrap {
   position: relative;
-  border-radius: 16px;
-  overflow: hidden;
+  flex: 0 0 auto;
+  width: clamp(240px, 22vw, 300px);
+  aspect-ratio: 3 / 4;
   text-decoration: none;
-  display: block;
   cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  isolation: isolate;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background: transparent;
+  background-color: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  color: inherit;
 }
 
-.bento-bg {
+.card-3d-wrap:hover,
+.card-3d-wrap:focus,
+.card-3d-wrap:active,
+.card-3d-wrap:visited {
+  background: transparent;
+  background-color: transparent;
+  outline: none;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-3d-wrap *,
+.card-3d-wrap *::before,
+.card-3d-wrap *::after {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.card-3d-wrap::selection,
+.card-3d-wrap *::selection {
+  background: transparent;
+}
+
+.card-3d-wrap:focus-visible .card-3d {
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.6), 0 16px 48px rgba(0,0,0,0.28);
+}
+
+.card-3d-wrap:nth-child(even) {
+  margin-top: 3rem;
+}
+
+/* Shadow layer behind the card */
+.card-3d-shadow {
   position: absolute;
-  inset: 0;
+  inset: 20px -4px -24px 4px;
+  background: rgba(0,0,0,0.5);
+  border-radius: 20px;
+  filter: blur(24px);
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease, inset 0.4s ease;
+}
+
+.card-3d-wrap:hover .card-3d-shadow {
+  opacity: 1;
+  inset: 24px -8px -28px 8px;
+}
+
+/* The actual 3D card */
+.card-3d {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.28), 0 4px 12px rgba(0,0,0,0.16);
+  z-index: 1;
+  will-change: transform;
+  background: #000;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Background image fill — slightly oversized to prevent gap at edges during 3D tilt */
+.card-3d-bg {
+  position: absolute;
+  inset: -2px;
   background-size: cover;
   background-position: center;
-  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  filter: brightness(0.55);
+  background-repeat: no-repeat;
+  filter: brightness(0.6);
+  transition: filter 0.4s ease, transform 0.4s ease;
+  border-radius: 20px;
 }
 
-.bento-tile:hover .bento-bg {
-  transform: scale(1.06);
-  filter: brightness(0.35);
+.card-3d-wrap:hover .card-3d-bg {
+  filter: brightness(0.4);
+  transform: scale(1.04);
 }
 
-.bento-content {
-  position: relative;
+/* Specular gloss overlay */
+.card-3d-gloss {
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  opacity: 0;
+  pointer-events: none;
   z-index: 2;
-  height: 100%;
+  transition: opacity 0.3s ease;
+  mix-blend-mode: screen;
+}
+
+/* Content overlay */
+.card-3d-content {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 1.4rem 1.6rem;
 }
 
-.bento-index {
+.card-3d-index {
   font-family: Arial, sans-serif;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.18em;
   color: rgba(255,255,255,0.3);
 }
 
-.bento-bottom {
+.card-3d-bottom {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: 0.25rem;
 }
 
-.bento-cat {
+.card-3d-cat {
   font-family: Arial, sans-serif;
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.45);
   transition: color 0.3s ease;
 }
 
-.bento-tile:hover .bento-cat { color: rgba(255,255,255,0.75); }
+.card-3d-wrap:hover .card-3d-cat {
+  color: rgba(255,255,255,0.8);
+}
 
-.bento-name {
+.card-3d-name {
   font-family: Arial, sans-serif;
-  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  font-size: clamp(1.6rem, 2.8vw, 2.2rem);
   font-weight: 900;
   color: #fff;
   margin: 0;
   line-height: 1;
   letter-spacing: -0.02em;
-  transition: letter-spacing 0.3s ease;
 }
 
-.bento-tile:hover .bento-name { letter-spacing: 0.02em; }
-
-.bento-arrow {
-  font-size: 1.2rem;
+.card-3d-cta {
+  font-family: Arial, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
   color: rgba(255,255,255,0);
+  letter-spacing: 0.06em;
   transition: color 0.3s ease, transform 0.3s ease;
   display: inline-block;
-  transform: translateX(-8px);
-  margin-top: 0.4rem;
+  transform: translateX(-6px);
+  margin-top: 0.5rem;
 }
 
-.bento-tile:hover .bento-arrow {
+.card-3d-wrap:hover .card-3d-cta {
   color: #fff;
   transform: translateX(0);
 }
@@ -734,7 +930,7 @@ export default {
   margin: 0 0 3rem 0;
   padding-bottom: 1rem;
   border-bottom: 1px solid #e0e0e0;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 .tools-categories {
@@ -750,7 +946,7 @@ export default {
   text-transform: uppercase;
   color: #aaa;
   margin: 0 0 1rem 0;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 .tools-grid {
@@ -790,10 +986,10 @@ export default {
   position: absolute;
   bottom: calc(100% + 8px);
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(4px);
   background: #111;
   color: #fff;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
   font-size: 0.72rem;
   font-weight: 600;
   white-space: nowrap;
@@ -802,7 +998,6 @@ export default {
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.15s ease, transform 0.15s ease;
-  transform: translateX(-50%) translateY(4px);
   z-index: 10;
 }
 
@@ -837,7 +1032,7 @@ export default {
   padding-bottom: 1rem;
 }
 
-.featured-title   { font-size: 2.5rem; font-weight: 900; color: #000; margin: 0; }
+.featured-title { font-size: 2.5rem; font-weight: 900; color: #000; margin: 0; }
 
 .featured-view-all {
   font-size: 0.9rem; font-weight: 600; color: #000;
@@ -874,7 +1069,7 @@ export default {
   font-weight: 700; font-size: 1rem; letter-spacing: 0.08em;
   display: flex; align-items: center; justify-content: center;
   opacity: 0; transition: opacity 0.3s ease;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 .featured-image-wrap:hover .featured-image-overlay { opacity: 1; }
@@ -884,18 +1079,18 @@ export default {
 .featured-tag {
   font-size: 0.75rem; font-weight: 700;
   letter-spacing: 0.14em; text-transform: uppercase;
-  color: #888; font-family: 'Arial', sans-serif;
+  color: #888; font-family: Arial, sans-serif;
 }
 
 .featured-name { font-size: 2.2rem; font-weight: 900; color: #000; margin: 0; line-height: 1.1; }
 
-.featured-desc { font-size: 1rem; color: #555; line-height: 1.7; margin: 0; font-family: 'Arial', sans-serif; }
+.featured-desc { font-size: 1rem; color: #555; line-height: 1.7; margin: 0; font-family: Arial, sans-serif; }
 
 .featured-result {
   font-size: 0.9rem; font-weight: 700; color: #000;
   background: #f4f4f4; padding: 0.6rem 1rem;
   border-radius: 6px; border-left: 3px solid #000;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 .featured-link {
@@ -903,7 +1098,7 @@ export default {
   color: #000; text-decoration: none; letter-spacing: 0.06em;
   border-bottom: 2px solid #000; padding-bottom: 2px;
   width: fit-content; transition: opacity 0.2s;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
 }
 .featured-link:hover { opacity: 0.5; }
 
@@ -916,8 +1111,8 @@ export default {
   gap: 2rem; text-align: center;
 }
 
-.result-number { font-size: 4rem; font-weight: 900; color: #fff; line-height: 1; font-family: 'Arial', sans-serif; }
-.result-label  { font-size: 0.8rem; color: #888; margin-top: 0.5rem; font-family: 'Arial', sans-serif; letter-spacing: 0.06em; text-transform: uppercase; }
+.result-number { font-size: 4rem; font-weight: 900; color: #fff; line-height: 1; font-family: Arial, sans-serif; }
+.result-label  { font-size: 0.8rem; color: #888; margin-top: 0.5rem; font-family: Arial, sans-serif; letter-spacing: 0.06em; text-transform: uppercase; }
 
 /* ── CLIENT LOGOS ────────────────────────────────────────────── */
 .client-strip { width: 100%; padding: 4rem 0; background: #fff; text-align: center; }
@@ -925,7 +1120,7 @@ export default {
 .client-heading {
   font-size: 1.1rem; font-weight: 700; margin-bottom: 2.5rem;
   color: #111; letter-spacing: 0.06em; text-transform: uppercase;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 .logo-wrapper { overflow: hidden; width: 100%; }
@@ -939,33 +1134,45 @@ export default {
 .client-logo { height: 60px; filter: grayscale(100%); opacity: 0.6; transition: 0.3s ease; }
 .client-logo:hover { filter: grayscale(0%); opacity: 1; transform: scale(1.05); }
 
-/* ── CTA STRIP ───────────────────────────────────────────────── */
-.cta-strip { width: 100%; padding: 5rem 2rem; background: #f7f7f7; text-align: center; }
-
-.cta-label { font-size: 2.2rem; font-weight: 700; color: #000; margin-bottom: 2rem; font-family: 'Arial', sans-serif; }
-
-.cta-actions { display: flex; justify-content: center; align-items: center; gap: 1.2rem; flex-wrap: wrap; }
-
-.cta-btn {
-  display: inline-block; padding: 0.8rem 2rem; border-radius: 999px;
-  font-size: 0.95rem; font-weight: 600; font-family: 'Arial', sans-serif;
-  text-decoration: none; transition: all 0.25s ease; letter-spacing: 0.04em;
-}
-
-.cta-outline { border: 2px solid #000; color: #000; background: transparent; }
-.cta-outline:hover { background: #000; color: #fff; }
-.cta-solid   { background: #000; color: #fff; border: 2px solid #000; }
-.cta-solid:hover { background: transparent; color: #000; }
-
 /* ── ANIMATIONS ──────────────────────────────────────────────── */
 @keyframes scroll-left {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
+/* Global reset for all anchor hover states to prevent browser grey highlight */
+a:hover,
+a:focus,
+a:active {
+  background: transparent;
+  background-color: transparent;
+  outline: none;
+}
+
 body { overflow-x: hidden; }
 
+/* Remove all browser highlight artifacts on interactive elements */
+.card-3d-wrap,
+.card-3d-wrap *,
+.card-3d-wrap:focus,
+.card-3d-wrap:active,
+.card-3d-wrap:hover {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+  -moz-outline: none !important;
+  box-decoration-break: clone;
+}
+
 /* ── RESPONSIVE ──────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .cards-stage {
+    gap: 1.4rem;
+  }
+  .card-3d-wrap {
+    width: clamp(200px, 20vw, 260px);
+  }
+}
+
 @media (max-width: 768px) {
   .name-banner-1 {
     height: auto;
@@ -995,25 +1202,29 @@ body { overflow-x: hidden; }
   .hero-btn { font-size: 0.8rem; padding: 0.7rem 1.6rem; }
   .typewriter-row { justify-content: center; }
 
+  .cards-wrapper { padding: 3rem 1.5rem 4rem; }
+
+  .cards-stage {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+
+  .card-3d-wrap {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+  }
+
+  .card-3d-wrap:nth-child(even) {
+    margin-top: 1.5rem;
+  }
+
   .tools-section { margin: 3rem auto; }
   .tools-heading { font-size: 1.8rem; }
   .tools-grid { gap: 0.5rem; }
   .tool-item { width: 46px; height: 46px; border-radius: 12px; }
   .tool-item img { width: 24px; height: 24px; }
-
-  .bento-wrapper { padding: 3rem 1.2rem; }
-  .bento-grid {
-    grid-template-columns: 1fr !important;
-    grid-template-rows: repeat(4, 220px) !important;
-  }
-  .bento-tile--large,
-  .bento-tile--tall,
-  .bento-tile--small,
-  .bento-tile--wide {
-    grid-column: 1 !important;
-    grid-row: auto !important;
-  }
-  .bento-name { font-size: 2rem !important; }
 
   .featured-project { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 3rem; }
   .featured-project--reverse { direction: ltr; }
@@ -1022,13 +1233,12 @@ body { overflow-x: hidden; }
   .results-inner { grid-template-columns: repeat(2, 1fr); }
   .result-number { font-size: 2.5rem; }
 
-  .cta-label { font-size: 1.5rem; }
-  .cta-actions { flex-direction: column; }
-  .cta-btn { width: 100%; max-width: 320px; text-align: center; }
   .client-logo { height: 40px; }
 }
 
 @media (max-width: 480px) {
   .results-inner { grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .cards-stage { grid-template-columns: 1fr; }
+  .card-3d-wrap:nth-child(even) { margin-top: 0; }
 }
 </style>
