@@ -7,6 +7,7 @@ import Photo from "@/components/Photo.vue"
 import UX from "@/components/UX.vue"
 import Video from "@/components/Video.vue"
 import UXDetailsPage from '@/components/UXDetailsPage.vue'
+import AusHealth from '@/components/ux/AusHealth.vue'
 
 // ✅ Import your design project detail pages
 import Preventika from '@/components/design/Preventika.vue'
@@ -86,7 +87,8 @@ const routes = [
     path: '/About',
     name: 'About',
     component: About,
-  }
+  },
+  { path: '/ux/aushealth', name: 'AusHealth', component: AusHealth },
 ]
 
 const router = createRouter({

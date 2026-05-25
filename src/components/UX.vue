@@ -198,6 +198,22 @@ export default {
 
       uxProjects: [
 
+      {
+          title: 'AusHealth Dashboard',
+          subtitle: 'An executive intelligence platform for Australian private health insurance — designed to replace Power BI.',
+          summary: 'Full-stack UX and product design for an executive health dashboard built for a Bupa pitch. Features AI-powered natural language search, dynamic board-ready narratives, annotation system, competitor intelligence, and a 3D Australia choropleth map — all powered by real APRA quarterly data.',
+          award: null,
+          tags: ['Product Design', 'Data Visualisation', 'AI', 'Full Stack'],
+          thumbnail: '/images/ux/aushealth-hero.png',
+          hero: '/images/ux/aushealth-hero.png',
+          role: 'Solo — UX, UI & Full Stack Development',
+          year: '2025',
+          tools: ['Next.js', 'TypeScript', 'D3.js', 'Claude AI API', 'Figma', 'Tailwind'],
+          liveUrl: 'https://aushealth-dashboard.vercel.app',
+          figma: null,
+          sections: []
+        },
+
         // ── READEASE ─────────────────────────────────────────────
         {
           title: 'ReadEase',
@@ -553,6 +569,10 @@ export default {
 
   methods: {
     openProject(index) {
+      if (this.uxProjects[index].title === 'AusHealth Dashboard') {
+        this.$router.push('/ux/aushealth')
+        return
+      }
       this.selectedProject = index;
       this.browserIndex = {};
       this.$nextTick(() => window.scrollTo({ top: 0, behavior: 'smooth' }));
