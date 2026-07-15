@@ -6,7 +6,7 @@
       <span class="vd-eyebrow">Portfolio</span>
       <h1 class="vd-page-title">Video<br>&amp; Motion</h1>
       <p class="vd-page-desc">
-        Brand films, campaign edits, animated content, and motion graphics — produced across agency and freelance environments over 6 years.
+        Brand films, campaign edits, animated content, and motion graphics, produced across agency and freelance environments over 6 years.
       </p>
     </div>
     <div class="vd-header-count">{{ videos.length + 2 }} Films</div>
@@ -43,7 +43,7 @@
           </div>
           <div class="vd-poster-bottom">
             <span class="vd-poster-client">Smitten Worldwide / Funskool</span>
-            <h3 class="vd-poster-title">Funskool — Social Campaign</h3>
+            <h3 class="vd-poster-title">Funskool, Social Campaign</h3>
             <p class="vd-poster-sub">7-post animated social series · 125% engagement increase</p>
             <span class="vd-poster-cta">View All Posts ↗</span>
           </div>
@@ -71,7 +71,7 @@
           </div>
           <div class="vd-poster-bottom">
             <span class="vd-poster-client">Smitten Worldwide / Monsoon Harvest</span>
-            <h3 class="vd-poster-title">Monsoon Harvest — Ads</h3>
+            <h3 class="vd-poster-title">Monsoon Harvest, Ads</h3>
             <p class="vd-poster-sub">3 animated ad creatives for a premium snack brand</p>
             <span class="vd-poster-cta">View All Ads ↗</span>
           </div>
@@ -125,7 +125,7 @@
         <div class="vd-title-block">
           <span class="vd-detail-cat">Social Content · Motion Graphics</span>
           <h1 class="vd-detail-title">Funskool Campaign</h1>
-          <p class="vd-detail-subtitle">7-post animated social series producing a 125% engagement increase over 6 months. Hover each post to preview — click to watch with sound.</p>
+          <p class="vd-detail-subtitle">7-post animated social series producing a 125% engagement increase over 6 months. Hover each post to preview, click to watch with sound.</p>
         </div>
 
         <!-- Clock / fan stage -->
@@ -205,8 +205,8 @@
         <div class="vd-case-section">
           <div class="vd-section-label">Overview</div>
           <div class="vd-section-content">
-            <p>Animated social content series for Funskool, one of India's largest toy manufacturers. The account moved from static product photography to motion-first content — short looping animations designed specifically for Reels and Stories. Modular animation templates were built in After Effects to allow rapid production across different products and seasonal moments.</p>
-            <p>The campaign covered product launches, seasonal events, and brand storytelling across 7 posts. Each post was designed as a 15-30 second looping sequence paced for mobile-first viewing — energetic, playful, and unmistakably Funskool.</p>
+            <p>Animated social content series for Funskool, one of India's largest toy manufacturers. The account moved from static product photography to motion-first content, short looping animations designed specifically for Reels and Stories. Modular animation templates were built in After Effects to allow rapid production across different products and seasonal moments.</p>
+            <p>The campaign covered product launches, seasonal events, and brand storytelling across 7 posts. Each post was designed as a 15-30 second looping sequence paced for mobile-first viewing, energetic, playful, and unmistakably Funskool.</p>
           </div>
         </div>
 
@@ -214,7 +214,7 @@
           <div class="vd-section-label">Approach</div>
           <div class="vd-section-content">
             <p>Animation was the brief from the start, not a finishing layer. A consistent visual system was maintained across all posts to build brand recognition over time, compounding the engagement numbers. Colour, motion language, and typographic rhythm were locked early so each post felt part of a family rather than a standalone execution.</p>
-            <p>The 125% engagement increase was driven by the shift to motion — the platform rewards content that holds attention past the first second, and a well-timed loop does exactly that.</p>
+            <p>The 125% engagement increase was driven by the shift to motion, the platform rewards content that holds attention past the first second, and a well-timed loop does exactly that.</p>
           </div>
         </div>
 
@@ -233,7 +233,7 @@
         <div class="vd-title-block">
           <span class="vd-detail-cat">Social Content · Motion Graphics</span>
           <h1 class="vd-detail-title">Monsoon Harvest</h1>
-          <p class="vd-detail-subtitle">Animated ad creatives for a premium Australian health snack brand — square posts for Instagram feed, widescreen for YouTube.</p>
+          <p class="vd-detail-subtitle">Animated ad creatives for a premium Australian health snack brand, square posts for Instagram feed, widescreen for YouTube.</p>
         </div>
 
         <!-- ── INSTAGRAM ROW (2 square posts) ────────────────── -->
@@ -487,7 +487,7 @@
         <div class="vd-case-section">
           <div class="vd-section-label">Overview</div>
           <div class="vd-section-content">
-            <p>Animated ad creatives for Monsoon Harvest, a premium Australian health snack brand known for natural ingredients and clean-label positioning. Three ads produced across square and widescreen formats — each built around the product as hero, using motion to bring texture and freshness to life.</p>
+            <p>Animated ad creatives for Monsoon Harvest, a premium Australian health snack brand known for natural ingredients and clean-label positioning. Three ads produced across square and widescreen formats, each built around the product as hero, using motion to bring texture and freshness to life.</p>
             <p>The animation language was restrained and premium. Movement was used to suggest quality: ingredients settling, light catching texture, type appearing with weight and intention.</p>
           </div>
         </div>
@@ -624,25 +624,25 @@ export default {
 
       mhPosts: [
         {
-          title:   'Granola Bars — Ad V4',
+          title:   'Granola Bars, Ad V4',
           format:  '1 : 1  Square',
           src:     '/videos/mh/MH---Granola-Bars-Ad---V4.mp4',
           aspect:  '1/1',
           caption: 'Fuel your day the natural way 🌿 Our crunchy granola bars are made with real oats, honey, and nothing you can\'t pronounce. #MonsoonHarvest #CleanEating',
         },
         {
-          title:   'Granola Bars — Ad V2',
+          title:   'Granola Bars, Ad V2',
           format:  '1 : 1  Square',
           src:     '/videos/mh/MH---Granola-Bras-Ad---V2.mp4',
           aspect:  '1/1',
           caption: 'Simple ingredients. Big flavour. 🌾 The snack that doesn\'t compromise. #MonsoonHarvest #NaturalSnacks #HealthyLiving',
         },
         {
-          title:   'Monsoon Harvest — Banana Clusters',
+          title:   'Monsoon Harvest, Banana Clusters',
           format:  '16 : 9  Widescreen',
           src:     '/videos/mh/MH---SBV-Banana-Clusters---V2.mp4',
           aspect:  '16/9',
-          desc:    'Widescreen display ad for Banana Clusters — textural close-ups and natural product movement.',
+          desc:    'Widescreen display ad for Banana Clusters, textural close-ups and natural product movement.',
         },
       ],
 
@@ -650,44 +650,44 @@ export default {
         {
           title: 'Cupcake Party',
           src:   '/videos/funskool/Cupcake_party_post.mp4',
-          desc:  'Animated product launch post for the baking playset — sweet, colourful, and paced for Reels.'
+          desc:  'Animated product launch post for the baking playset, sweet, colourful, and paced for Reels.'
         },
         {
           title: 'Dough Alphabet',
           src:   '/videos/funskool/Dough_Alphabet_Post_V4.mp4',
-          desc:  'Educational play content — letters come alive through stop-motion-inspired animation.'
+          desc:  'Educational play content, letters come alive through stop-motion-inspired animation.'
         },
         {
           title: 'Easter Egg',
           src:   '/videos/funskool/Easter_Egg_post_V3.mp4',
-          desc:  'Seasonal Easter campaign post — festive motion design timed to the holiday moment.'
+          desc:  'Seasonal Easter campaign post, festive motion design timed to the holiday moment.'
         },
         {
           title: 'Ask Santa',
           src:   '/videos/funskool/Funskool_Ask_Santa.mp4',
-          desc:  'Christmas campaign animation — building excitement around gifting season and product discovery.'
+          desc:  'Christmas campaign animation, building excitement around gifting season and product discovery.'
         },
         {
           title: 'Food Truck',
           src:   '/videos/funskool/Funskool---Food-Truck-Post---V2.mp4',
-          desc:  'Product feature post for the Food Truck playset — dynamic cuts and bright colour palette.'
+          desc:  'Product feature post for the Food Truck playset, dynamic cuts and bright colour palette.'
         },
         {
           title: 'My Clock',
           src:   '/videos/funskool/Funskool---My-Clock-Post---V1.mp4',
-          desc:  'Learning-focused product post — animated clock faces teaching kids to tell time.'
+          desc:  'Learning-focused product post, animated clock faces teaching kids to tell time.'
         },
         {
           title: 'Strike 4',
           src:   '/videos/funskool/Strike_4_v3.mp4',
-          desc:  'Game launch content — fast-paced edit built around competitive play energy.'
+          desc:  'Game launch content, fast-paced edit built around competitive play energy.'
         },
       ],
 
       videos: [
         {
           id: 'LPFtsO1CuVQ',
-          title: 'Deloitte — Learning in Motion',
+          title: 'Deloitte, Learning in Motion',
           subtitle: 'Internal instructional motion graphics video for Deloitte employee training',
           client: 'Deloitte',
           year: '2023',
@@ -696,14 +696,14 @@ export default {
           deliverables: 'Full-length instructional video, motion graphics system, storyboard',
           size: 'wide',
           sections: [
-            { label: 'Overview', content: '<p>An internal training video commissioned by Deloitte — designed to communicate complex procedural information in a way that was clear, engaging, and unmistakably on-brand. Every element was built from scratch: storyboard, illustration, animation, and sound — a cohesive system rather than slides with motion applied as an afterthought.</p>' },
-            { label: 'Storyboard', content: '<p>The process started with pencil sketches. The entire narrative arc was mapped as rough thumbnail frames before opening After Effects. The decision to use simple geometric shapes as the core visual language came from this stage — abstract forms strip away the noise and force the message to carry the weight.</p>' },
-            { label: 'Design & Motion', content: '<p>Working strictly within Deloitte\'s brand guidelines produced something that felt owned by the brand rather than borrowed from it. Motion timing was treated with the same discipline as layout — easing curves dialled to feel deliberate and calm. Nothing bounces, nothing overshoots.</p>' },
+            { label: 'Overview', content: '<p>An internal training video commissioned by Deloitte, designed to communicate complex procedural information in a way that was clear, engaging, and unmistakably on-brand. Every element was built from scratch: storyboard, illustration, animation, and sound, a cohesive system rather than slides with motion applied as an afterthought.</p>' },
+            { label: 'Storyboard', content: '<p>The process started with pencil sketches. The entire narrative arc was mapped as rough thumbnail frames before opening After Effects. The decision to use simple geometric shapes as the core visual language came from this stage, abstract forms strip away the noise and force the message to carry the weight.</p>' },
+            { label: 'Design & Motion', content: '<p>Working strictly within Deloitte\'s brand guidelines produced something that felt owned by the brand rather than borrowed from it. Motion timing was treated with the same discipline as layout, easing curves dialled to feel deliberate and calm. Nothing bounces, nothing overshoots.</p>' },
           ]
         },
         {
           id: '32hKGUPsk7g',
-          title: 'ReadEase — Product Launch Film',
+          title: 'ReadEase, Product Launch Film',
           subtitle: 'Explainer and pitch film for the ReadEase accessibility platform',
           client: 'ReadEase (Personal)',
           year: '2025',
@@ -713,7 +713,7 @@ export default {
           size: 'normal',
           sections: [
             { label: 'Overview', content: '<p>ReadEase needed a film that could introduce the product to first-time users and make a compelling case to investors simultaneously. The brief was to communicate empathy, utility, and technological credibility without feeling clinical or remedial.</p>' },
-            { label: 'Approach', content: '<p>Built entirely from stock footage sourced through Pexels. The visual language was deliberately contemporary and inclusive. Technology is woven into the narrative as a bridge, not a spectacle — the product solves something real, and the film makes that felt before it makes it understood.</p>' },
+            { label: 'Approach', content: '<p>Built entirely from stock footage sourced through Pexels. The visual language was deliberately contemporary and inclusive. Technology is woven into the narrative as a bridge, not a spectacle, the product solves something real, and the film makes that felt before it makes it understood.</p>' },
           ]
         },
         {
@@ -728,13 +728,13 @@ export default {
           size: 'wide',
           sections: [
             { label: 'Overview', content: '<p>Melbourne. Singapore. Bangalore. Salem. Coimbatore. Dubai. Seattle. Portland. Los Angeles. Melbourne again. Ten cities. One question underneath all of it: where do I fit?</p>' },
-            { label: 'The Constraint', content: '<p>Shooting on a phone was a creative decision. There is no colour grade — the footage is exactly as the camera rendered it. The imperfections are the point. This is what those places actually looked like.</p>' },
-            { label: 'The Idea', content: '<p>The search for belonging across continents only to arrive back where you started — and realise the answer was never geographic. <em>I\'m Here</em> is a declaration made after a long look around. Not a discovery of place, but of self.</p>' },
+            { label: 'The Constraint', content: '<p>Shooting on a phone was a creative decision. There is no colour grade, the footage is exactly as the camera rendered it. The imperfections are the point. This is what those places actually looked like.</p>' },
+            { label: 'The Idea', content: '<p>The search for belonging across continents only to arrive back where you started, and realise the answer was never geographic. <em>I\'m Here</em> is a declaration made after a long look around. Not a discovery of place, but of self.</p>' },
           ]
         },
         {
           id: 'IxPqinGQR8o',
-          title: 'pH Projecct — pHact or pHiction',
+          title: 'pH Projecct, pHact or pHiction',
           subtitle: 'Launch campaign film for pH Projecct\'s debut summer collection',
           client: 'pH Projecct (Freelance)',
           year: '2022',
@@ -743,14 +743,14 @@ export default {
           deliverables: 'Campaign launch film, social cutdowns',
           size: 'normal',
           sections: [
-            { label: 'Overview', content: '<p>pHact or pHiction introduced both the brand and its debut summer collection to the world: fast, loud, and unapologetically confident. Full-service production — shot, edited, and colour graded from the ground up.</p>' },
-            { label: 'Direction', content: '<p>Quick cuts timed to the music, colour that pops off the screen, movement that never sits still long enough to feel posed. The colour grade pushed the summer palette hard — warm, saturated, alive.</p>' },
+            { label: 'Overview', content: '<p>pHact or pHiction introduced both the brand and its debut summer collection to the world: fast, loud, and unapologetically confident. Full-service production, shot, edited, and colour graded from the ground up.</p>' },
+            { label: 'Direction', content: '<p>Quick cuts timed to the music, colour that pops off the screen, movement that never sits still long enough to feel posed. The colour grade pushed the summer palette hard, warm, saturated, alive.</p>' },
           ]
         },
         {
           id: '2S42BNMtn1M',
           title: 'Moments',
-          subtitle: 'A personal film — frames from life during the 2020 lockdowns',
+          subtitle: 'A personal film, frames from life during the 2020 lockdowns',
           client: 'Personal',
           year: '2020',
           category: 'Personal Film',
@@ -759,12 +759,12 @@ export default {
           size: 'normal',
           sections: [
             { label: 'Overview', content: '<p>A collection of moments shot during the Covid lockdowns. Not a document of the pandemic, not a statement. Just frames from a life that had gone very quiet.</p>' },
-            { label: 'Tone', content: '<p>Grainy, moody, a little underexposed. But the music holds something the images don\'t always show — hope underneath it. <em>Moments</em> is both a record of what was hard and a reminder that it was still a life worth filming.</p>' },
+            { label: 'Tone', content: '<p>Grainy, moody, a little underexposed. But the music holds something the images don\'t always show, hope underneath it. <em>Moments</em> is both a record of what was hard and a reminder that it was still a life worth filming.</p>' },
           ]
         },
         {
           id: 'Sc5d1SZilLs',
-          title: 'XO — Shaq-T ft. Da$a',
+          title: 'XO, Shaq-T ft. Da$a',
           subtitle: 'No-budget music video shot, edited, and graded for independent hip-hop artists',
           client: 'Shaq-T & Da$a (Freelance)',
           year: '2020',
@@ -774,8 +774,8 @@ export default {
           size: 'wide',
           sections: [
             { label: 'Overview', content: '<p>Shot, edited, colour graded, and finished with essentially no budget. The visual concept drew direct inspiration from ASAP Rocky\'s Forever video: a single rotating shot as the centrepiece, built around the artists rather than around resources.</p>' },
-            { label: 'The Rig', content: '<p>The rotating shot required equipment that didn\'t exist in the budget — so it was built. A custom camera rig, constructed specifically for this shoot, made the signature visual possible without a single rental invoice.</p>' },
-            { label: 'Post-Production', content: '<p>The colour grade pushed the footage into a filmic, high-contrast register. Effects were applied with restraint — used to reinforce moments rather than compensate for them.</p>' },
+            { label: 'The Rig', content: '<p>The rotating shot required equipment that didn\'t exist in the budget, so it was built. A custom camera rig, constructed specifically for this shoot, made the signature visual possible without a single rental invoice.</p>' },
+            { label: 'Post-Production', content: '<p>The colour grade pushed the footage into a filmic, high-contrast register. Effects were applied with restraint, used to reinforce moments rather than compensate for them.</p>' },
           ]
         },
       ],
@@ -1248,7 +1248,7 @@ export default {
   white-space: nowrap;
 }
 
-/* Individual clock card — square and bigger */
+/* Individual clock card, square and bigger */
 .vd-clock-card {
   position: absolute;
   top: 50%;
@@ -1326,7 +1326,7 @@ export default {
   flex-shrink: 0;
 }
 
-/* ── POST LIGHTBOX — square player ──────────────────────────── */
+/* ── POST LIGHTBOX, square player ──────────────────────────── */
 .vd-post-lightbox {
   position: fixed;
   inset: 0;

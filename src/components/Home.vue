@@ -118,7 +118,6 @@
   <div class="featured-section">
     <div class="featured-header">
       <h2 class="featured-title">Selected Work</h2>
-      <router-link to="/ux" class="featured-view-all">View all →</router-link>
     </div>
 
     <div
@@ -225,9 +224,25 @@ export default {
           title: 'ReadEase',
           tag: 'UX Design / Full Stack',
           description: 'An accessible learning platform built for young Australians with dyslexia. OCR document reader, AI summarisation, phonetic support, and gamified learning tools.',
-          result: 'Best Project — Monash University Expo 2025',
+          result: 'Best Project, Monash University Expo 2025',
           image: '/dev/ReadEase1.png',
           link: '/dev',
+        },
+        {
+          title: 'pH Projecct',
+          tag: 'Brand Identity',
+          description: 'Full visual identity system for a high-fashion apparel label. Logo system, typography, colour palette, and brand collateral built for runway and editorial applications.',
+          result: '',
+          image: '/images/design/ph-01.jpg',
+          link: '/design',
+        },
+        {
+          title: 'Preventika',
+          tag: 'Packaging Design',
+          description: 'Brand identity and packaging for effervescent hygiene tablets. High-contrast yellow and black system designed to stand out in the Indian hygiene category.',
+          result: '',
+          image: '/images/design/Preventika-01.jpg',
+          link: '/design',
         },
         {
           title: 'FoodLink',
@@ -248,8 +263,8 @@ export default {
       ],
 
       results: [
-        { number: '125%', label: 'Engagement increase — Funskool campaign' },
-        { number: '70%',  label: 'Cart abandonment reduction — Forser'     },
+        { number: '125%', label: 'Engagement increase, Funskool campaign' },
+        { number: '70%',  label: 'Cart abandonment reduction, Forser'     },
         { number: '200+', label: 'Digital assets delivered'                },
         { number: '6+',   label: 'Years of experience'                     },
       ],
@@ -821,7 +836,7 @@ export default {
   -webkit-backface-visibility: hidden;
 }
 
-/* Background image fill — slightly oversized to prevent gap at edges during 3D tilt */
+/* Background image fill, slightly oversized to prevent gap at edges during 3D tilt */
 .card-3d-bg {
   position: absolute;
   inset: -2px;

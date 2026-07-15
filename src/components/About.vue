@@ -29,7 +29,7 @@
         <p>
           I started out studying Visual Communication, which gave me a foundation in
           design thinking, typography, and brand craft. From there I spent three years at
-          Smitten Worldwide as a Senior Motion Designer, producing campaigns across
+          Smitten Worldwide as a Senior Graphic Designer, producing campaigns across
           hospitality, retail, and FMCG for brands like JW Marriott, Westin, Funskool,
           and Mount Sinai.
         </p>
@@ -268,7 +268,7 @@ export default {
         },
         {
           year: '2020 – 2023',
-          role: 'Senior Graphic & Motion Designer',
+          role: 'Senior Graphic Designer',
           company: 'Smitten Worldwide',
           desc: 'Led motion and campaign design for 10+ brands including JW Marriott, Westin, Funskool, and Mount Sinai. Funskool campaign drove 125% engagement growth.'
         },

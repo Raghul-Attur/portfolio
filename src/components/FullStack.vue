@@ -6,7 +6,7 @@
       <span class="dev-eyebrow">Portfolio</span>
       <h1 class="dev-page-title">Full Stack<br>Development</h1>
       <p class="dev-page-desc">
-        Web applications, serverless systems, and accessible digital products — built across Vue.js, React, AWS, and Firebase.
+        Web applications, serverless systems, and accessible digital products, built across Vue.js, React, AWS, and Firebase.
       </p>
     </div>
     <div class="dev-header-count">{{ projects.length }} Projects</div>
@@ -84,7 +84,7 @@
           </span>
           <span class="dev-th dev-th--action">
             <span class="dev-expand-btn" :class="{ open: activeIndex === index }">
-              {{ activeIndex === index ? '[ — ]' : '[ + ]' }}
+              {{ activeIndex === index ? '[ - ]' : '[ + ]' }}
             </span>
           </span>
         </div>

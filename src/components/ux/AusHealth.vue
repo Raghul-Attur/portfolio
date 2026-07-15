@@ -24,7 +24,7 @@
         <div class="ux-meta-strip">
           <div class="ux-meta-item">
             <span class="ux-meta-label">Role</span>
-            <span class="ux-meta-value">Solo — UX, UI and Full Stack</span>
+            <span class="ux-meta-value">Solo, UX, UI and Full Stack</span>
           </div>
           <div class="ux-meta-item">
             <span class="ux-meta-label">Year</span>
@@ -49,7 +49,7 @@
             <div class="ux-text-label">The Brief</div>
             <div class="ux-text-content">
               <p>This started as a pitch to Dinesh Kanthiti, Head of Enterprise Intelligence at Bupa Australia. The ask was simple: show what a modern executive dashboard could look like if you started from scratch instead of patching Power BI.</p>
-              <p>I used real APRA quarterly statistics as the data source and built the entire thing solo — design, data layer, charts, AI integration, and deployment.</p>
+              <p>I used real APRA quarterly statistics as the data source and built the entire thing solo, design, data layer, charts, AI integration, and deployment.</p>
             </div>
           </div>
         </div>
@@ -138,7 +138,7 @@
   
         <div class="ux-case-section">
           <img src="/images/ux/aushealth-hero.png" alt="AusHealth Overview" class="ux-section-img" loading="lazy" />
-          <p class="ux-gallery-caption">Overview tab — headline and signal strip generated from real APRA data, KPI tiles with annotation system</p>
+          <p class="ux-gallery-caption">Overview tab, headline and signal strip generated from real APRA data, KPI tiles with annotation system</p>
         </div>
   
         <div class="ux-case-section">

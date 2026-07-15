@@ -133,7 +133,7 @@
             </div>
           </div>
 
-          <!-- Browser mockup — tabbed (Option A) -->
+          <!-- Browser mockup, tabbed (Option A) -->
           <div v-else-if="section.type === 'browsermockup'" class="ux-browser-wrap">
             <div class="ux-browser-tabs">
               <button
@@ -200,13 +200,13 @@ export default {
 
       {
           title: 'AusHealth Dashboard',
-          subtitle: 'An executive intelligence platform for Australian private health insurance — designed to replace Power BI.',
-          summary: 'Full-stack UX and product design for an executive health dashboard built for a Bupa pitch. Features AI-powered natural language search, dynamic board-ready narratives, annotation system, competitor intelligence, and a 3D Australia choropleth map — all powered by real APRA quarterly data.',
+          subtitle: 'An executive intelligence platform for Australian private health insurance, designed to replace Power BI.',
+          summary: 'Full-stack UX and product design for an executive health dashboard built for a Bupa pitch. Features AI-powered natural language search, dynamic board-ready narratives, annotation system, competitor intelligence, and a 3D Australia choropleth map, all powered by real APRA quarterly data.',
           award: null,
           tags: ['Product Design', 'Data Visualisation', 'AI', 'Full Stack'],
           thumbnail: '/images/ux/aushealth-hero.png',
           hero: '/images/ux/aushealth-hero.png',
-          role: 'Solo — UX, UI & Full Stack Development',
+          role: 'Solo, UX, UI & Full Stack Development',
           year: '2025',
           tools: ['Next.js', 'TypeScript', 'D3.js', 'Claude AI API', 'Figma', 'Tailwind'],
           liveUrl: 'https://aushealth-dashboard.vercel.app',
@@ -218,8 +218,8 @@ export default {
         {
           title: 'ReadEase',
           subtitle: 'An accessible reading platform for young Australians with dyslexia.',
-          summary: 'Full-stack accessibility platform combining OCR, AI summarisation, phonetic learning, and gamified reading tools — built for young Australians with dyslexia.',
-          award: 'Best Project — Monash Expo 2025',
+          summary: 'Full-stack accessibility platform combining OCR, AI summarisation, phonetic learning, and gamified reading tools, built for young Australians with dyslexia.',
+          award: 'Best Project, Monash Expo 2025',
           tags: ['UX Design', 'Full Stack', 'Accessibility'],
           thumbnail: '/dev/ReadEase1.png',
           hero: '/dev/ReadEase1.png',
@@ -233,7 +233,7 @@ export default {
             {
               type: 'text',
               label: 'Design Question',
-              content: '<p><strong>How might we</strong> help young Australians with dyslexia by providing functional day-to-day reading tools and real-world support in a way that feels empowering rather than remedial?</p><p>This question shaped every decision from the first wireframe. The brief was not just to make text readable — it was to make the experience feel like something a 15-25 year old would actually want to use.</p>'
+              content: '<p><strong>How might we</strong> help young Australians with dyslexia by providing functional day-to-day reading tools and real-world support in a way that feels empowering rather than remedial?</p><p>This question shaped every decision from the first wireframe. The brief was not just to make text readable, it was to make the experience feel like something a 15-25 year old would actually want to use.</p>'
             },
             {
               type: 'timeline',
@@ -247,7 +247,7 @@ export default {
             {
               type: 'text',
               label: 'Testing Findings',
-              content: '<p><strong>Iteration 2 testing</strong> (mobile and desktop, diverse backgrounds) surfaced several key issues we resolved before Iteration 3:</p><ul><li>Pages were scrolling to the middle on navigation — fixed by enforcing scroll-to-top on every route change.</li><li>The game interface lacked a "Next Word" button and some word content was unclear — we added navigation controls and improved content quality.</li><li>The support page was cut off on mobile — fixed with responsive layout corrections.</li><li>Graph visuals did not match the site aesthetic — redesigned to be consistent with the overall UI.</li><li>Buttons on the home page were not clickable on the support page — fixed interaction inconsistencies across shared layouts.</li></ul><p><strong>Iteration 3 testing</strong> identified further improvements:</p><ul><li>The accessibility panel was not easy to find — we made the entry point more visible and persistent across pages.</li><li>The homepage did not clearly communicate the platform purpose — revised copy and visual hierarchy to establish context immediately on landing.</li><li>The OCR feature struggled with certain image types like maps — we added scope clarification and graceful error handling.</li><li>The school map lacked a legend explaining school types — added explanations and colour coding.</li></ul>'
+              content: '<p><strong>Iteration 2 testing</strong> (mobile and desktop, diverse backgrounds) surfaced several key issues we resolved before Iteration 3:</p><ul><li>Pages were scrolling to the middle on navigation, fixed by enforcing scroll-to-top on every route change.</li><li>The game interface lacked a "Next Word" button and some word content was unclear, we added navigation controls and improved content quality.</li><li>The support page was cut off on mobile, fixed with responsive layout corrections.</li><li>Graph visuals did not match the site aesthetic, redesigned to be consistent with the overall UI.</li><li>Buttons on the home page were not clickable on the support page, fixed interaction inconsistencies across shared layouts.</li></ul><p><strong>Iteration 3 testing</strong> identified further improvements:</p><ul><li>The accessibility panel was not easy to find, we made the entry point more visible and persistent across pages.</li><li>The homepage did not clearly communicate the platform purpose, revised copy and visual hierarchy to establish context immediately on landing.</li><li>The OCR feature struggled with certain image types like maps, we added scope clarification and graceful error handling.</li><li>The school map lacked a legend explaining school types, added explanations and colour coding.</li></ul>'
             },
             {
               type: 'text',
@@ -257,7 +257,7 @@ export default {
             {
               type: 'text',
               label: 'What I Would Do Differently',
-              content: '<p>The biggest constraint we faced was user research access. All three rounds of usability testing were conducted with people outside our primary demographic — none of our testers actually had dyslexia. This meant our accessibility decisions were made on best-practice guidelines and secondhand feedback rather than direct input from the people we were designing for.</p><p>With more time, I would invest heavily in recruiting young Australians with dyslexia for co-design sessions from the very start. Designing with users rather than for them would have surfaced insights we missed — particularly around the emotional experience of using an accessibility tool, which is just as important as the functional experience. The platform works, but I do not know yet whether it feels right to the people it was built for.</p>'
+              content: '<p>The biggest constraint we faced was user research access. All three rounds of usability testing were conducted with people outside our primary demographic, none of our testers actually had dyslexia. This meant our accessibility decisions were made on best-practice guidelines and secondhand feedback rather than direct input from the people we were designing for.</p><p>With more time, I would invest heavily in recruiting young Australians with dyslexia for co-design sessions from the very start. Designing with users rather than for them would have surfaced insights we missed, particularly around the emotional experience of using an accessibility tool, which is just as important as the functional experience. The platform works, but I do not know yet whether it feels right to the people it was built for.</p>'
             },
             {
               type: 'text',
@@ -270,7 +270,7 @@ export default {
                 { label: 'Homepage',     url: 'readease.me',                src: '/dev/ReadEase1.png' },
                 { label: 'Accessibility Panel', url: 'readease.me',         src: '/dev/ReadEase2.png' },
               ],
-              caption: 'ReadEase homepage and accessibility panel — tab to switch between screens'
+              caption: 'ReadEase homepage and accessibility panel, tab to switch between screens'
             },
             {
               type: 'text',
@@ -280,20 +280,20 @@ export default {
             {
               type: 'browsermockup',
               screens: [
-                { label: 'Persona — Student',  url: 'readease.me/research', src: '/dev/ReadEase1.png' },
-                { label: 'Persona — Parent',   url: 'readease.me/research', src: '/dev/ReadEase2.png' },
+                { label: 'Persona, Student',  url: 'readease.me/research', src: '/dev/ReadEase1.png' },
+                { label: 'Persona, Parent',   url: 'readease.me/research', src: '/dev/ReadEase2.png' },
               ],
               caption: 'User personas developed across the Iteration 1 research phase'
             },
             {
               type: 'text',
               label: 'My Contribution',
-              content: '<p>I led the frontend architecture and was responsible for the Vue.js component system, accessibility panel implementation, and the overall UI design. I designed and built the adjustable font, spacing, and colour theme controls that persist across sessions. I also built the OCR document reader interface, the word learning mode UI, and the gamified spelling and word-image matching flows.</p><p>Beyond frontend, I contributed to accessibility compliance — checking every interactive component against WCAG 2.1 AA contrast and spacing requirements using Figma Stark, and documenting each decision with its corresponding WCAG criterion for the development team.</p>'
+              content: '<p>I led the frontend architecture and was responsible for the Vue.js component system, accessibility panel implementation, and the overall UI design. I designed and built the adjustable font, spacing, and colour theme controls that persist across sessions. I also built the OCR document reader interface, the word learning mode UI, and the gamified spelling and word-image matching flows.</p><p>Beyond frontend, I contributed to accessibility compliance, checking every interactive component against WCAG 2.1 AA contrast and spacing requirements using Figma Stark, and documenting each decision with its corresponding WCAG criterion for the development team.</p>'
             },
             {
               type: 'text',
               label: 'Accessibility Design',
-              content: '<p>Accessibility was not retrofitted — it was the brief. Every design decision was made against WCAG 2.1 AA criteria from the first wireframe. Key decisions included: OpenDyslexic font support alongside Lexend Deca and standard options; minimum 16px body text with user-adjustable sizing; six colour themes (Light, Dark, Sepia, Night, Sky, Mint) each independently tested for contrast; generous line height and letter spacing controls; large touch targets across all interactive elements.</p><p>The accessibility panel was designed to be reachable within two interactions from any page and to persist user preferences across sessions without requiring login.</p>'
+              content: '<p>Accessibility was not retrofitted, it was the brief. Every design decision was made against WCAG 2.1 AA criteria from the first wireframe. Key decisions included: OpenDyslexic font support alongside Lexend Deca and standard options; minimum 16px body text with user-adjustable sizing; six colour themes (Light, Dark, Sepia, Night, Sky, Mint) each independently tested for contrast; generous line height and letter spacing controls; large touch targets across all interactive elements.</p><p>The accessibility panel was designed to be reachable within two interactions from any page and to persist user preferences across sessions without requiring login.</p>'
             },
             {
               type: 'browsermockup',
@@ -301,7 +301,7 @@ export default {
                 { label: 'Accessibility Settings', url: 'readease.me/settings', src: '/dev/ReadEase2.png' },
                 { label: 'Reading Interface',       url: 'readease.me/read',     src: '/dev/ReadEase1.png' },
               ],
-              caption: 'Accessibility settings panel and reading interface — font, spacing, and colour theme controls'
+              caption: 'Accessibility settings panel and reading interface, font, spacing, and colour theme controls'
             },
             {
               type: 'text',
@@ -349,7 +349,7 @@ export default {
             {
               type: 'text',
               label: 'Design Question',
-              content: '<p><strong>How might we</strong> reduce the friction of food bank donation so that a first-time donor can complete the full process — from discovery to drop-off — without confusion, hesitation, or giving up?</p>'
+              content: '<p><strong>How might we</strong> reduce the friction of food bank donation so that a first-time donor can complete the full process, from discovery to drop-off, without confusion, hesitation, or giving up?</p>'
             },
             {
               type: 'timeline',
@@ -364,7 +364,7 @@ export default {
             {
               type: 'text',
               label: 'Testing Findings',
-              content: '<p>Usability testing sessions with first-time donors and low-tech users produced three key refinements:</p><ul><li>Map navigation instructions were too dense — simplified into larger, step-by-step cards that users could follow without reading a block of text.</li><li>Users had no way to return to previously viewed food banks — added a Recently Viewed section on the home screen to encourage repeat engagement.</li><li>The chatbot failed when users asked donation-specific FAQs outside its trained responses — improved fallback options with pre-set donation guidance prompts.</li></ul>'
+              content: '<p>Usability testing sessions with first-time donors and low-tech users produced three key refinements:</p><ul><li>Map navigation instructions were too dense, simplified into larger, step-by-step cards that users could follow without reading a block of text.</li><li>Users had no way to return to previously viewed food banks, added a Recently Viewed section on the home screen to encourage repeat engagement.</li><li>The chatbot failed when users asked donation-specific FAQs outside its trained responses, improved fallback options with pre-set donation guidance prompts.</li></ul>'
             },
             {
               type: 'text',
@@ -380,7 +380,7 @@ export default {
               type: 'images',
               layout: 'two-col',
               images: ['/User Personas-01.png', '/User Personas-02.png'],
-              caption: 'User personas — first-time donor and repeat community volunteer'
+              caption: 'User personas, first-time donor and repeat community volunteer'
             },
             {
               type: 'text',
@@ -391,7 +391,7 @@ export default {
               type: 'images',
               layout: 'two-col',
               images: ['/impact-01.png', '/impact-02.png'],
-              caption: 'Research insights — key friction points in the existing donation process'
+              caption: 'Research insights, key friction points in the existing donation process'
             },
             {
               type: 'text',
@@ -402,7 +402,7 @@ export default {
               type: 'images',
               layout: 'two-col',
               images: ['/Foodbank.jpg', '/Foodbank2.jpg'],
-              caption: 'High-fidelity screens — home, map navigation, and donation checklist'
+              caption: 'High-fidelity screens, home, map navigation, and donation checklist'
             },
             {
               type: 'text',
@@ -413,7 +413,7 @@ export default {
               type: 'images',
               layout: 'single',
               images: ['/impact-03.png'],
-              caption: 'Final prototype — refined navigation and feedback flows'
+              caption: 'Final prototype, refined navigation and feedback flows'
             },
           ]
         },
@@ -451,12 +451,12 @@ export default {
             {
               type: 'text',
               label: 'Testing Findings',
-              content: '<p>Testing was conducted across multiple devices and screen sizes with users who represented the target demographic. Key observations: the collapsible filter drawer on mobile was intuitive without instruction — users found and used it immediately. Product card grid reflow from desktop to mobile maintained readability and did not require horizontal scrolling. Checkout step reduction was well received — no users asked "what happens next" during task completion. Minor feedback on button sizing on smaller Android screens was addressed with touch target adjustments.</p>'
+              content: '<p>Testing was conducted across multiple devices and screen sizes with users who represented the target demographic. Key observations: the collapsible filter drawer on mobile was intuitive without instruction, users found and used it immediately. Product card grid reflow from desktop to mobile maintained readability and did not require horizontal scrolling. Checkout step reduction was well received, no users asked "what happens next" during task completion. Minor feedback on button sizing on smaller Android screens was addressed with touch target adjustments.</p>'
             },
             {
               type: 'text',
               label: 'What I Would Do Differently',
-              content: '<p>The design was primarily driven by heuristic evaluation and competitive audit rather than direct research with Stylori Silver customers. With more time I would have conducted interviews with actual shoppers in the target demographic to understand their mental models around jewellery browsing — particularly around how they evaluate trust and product quality before purchasing. This would have informed decisions around photography, sizing information, and social proof that I based on assumptions rather than evidence.</p>'
+              content: '<p>The design was primarily driven by heuristic evaluation and competitive audit rather than direct research with Stylori Silver customers. With more time I would have conducted interviews with actual shoppers in the target demographic to understand their mental models around jewellery browsing, particularly around how they evaluate trust and product quality before purchasing. This would have informed decisions around photography, sizing information, and social proof that I based on assumptions rather than evidence.</p>'
             },
             {
               type: 'text',
@@ -467,7 +467,7 @@ export default {
               type: 'images',
               layout: 'single',
               images: ['/Stylori-02.jpg'],
-              caption: 'Product listing page — redesigned filter system and visual hierarchy'
+              caption: 'Product listing page, redesigned filter system and visual hierarchy'
             },
             {
               type: 'text',
@@ -478,7 +478,7 @@ export default {
               type: 'images',
               layout: 'single',
               images: ['/Stylori-03.jpg'],
-              caption: 'Mobile responsive layout — collapsible filters and touch-friendly grid'
+              caption: 'Mobile responsive layout, collapsible filters and touch-friendly grid'
             },
             {
               type: 'text',
@@ -492,7 +492,7 @@ export default {
         {
           title: 'Corporate Chemistry',
           subtitle: 'Website UI design for a talent acquisition and recruitment firm.',
-          summary: 'Five-page website UI for a recruitment agency — homepage, services, about, application forms, and contact — designed around a bold yellow and charcoal identity system.',
+          summary: 'Five-page website UI for a recruitment agency, homepage, services, about, application forms, and contact, designed around a bold yellow and charcoal identity system.',
           award: null,
           tags: ['UI Design', 'Web Design', 'Brand Application'],
           thumbnail: '/CC_Web_01.jpg',
@@ -507,12 +507,12 @@ export default {
             {
               type: 'text',
               label: 'Brief',
-              content: '<p>Corporate Chemistry is a talent acquisition and recruitment firm specialising in mid to senior-level placements across industries. Alongside the pitch deck (DS-15), the engagement included designing the full public-facing website — five pages covering the brand story, service offering, candidate and company application forms, and contact information.</p><p>The design challenge was to translate the pitch deck\'s visual identity — bold yellow, charcoal, geometric illustration, custom iconography — into a web layout that worked for two distinct audiences simultaneously: companies looking to hire, and candidates looking for roles.</p>'
+              content: '<p>Corporate Chemistry is a talent acquisition and recruitment firm specialising in mid to senior-level placements across industries. Alongside the pitch deck (DS-15), the engagement included designing the full public-facing website, five pages covering the brand story, service offering, candidate and company application forms, and contact information.</p><p>The design challenge was to translate the pitch deck\'s visual identity, bold yellow, charcoal, geometric illustration, custom iconography, into a web layout that worked for two distinct audiences simultaneously: companies looking to hire, and candidates looking for roles.</p>'
             },
             {
               type: 'text',
               label: 'Design System',
-              content: '<p>The visual language carries directly from the brand identity: golden yellow (#FFC107) as the dominant hero colour, dark charcoal (#555555) as the structural colour, and off-white (#F2F2F2) as the page ground. Typography uses a single bold sans-serif across all headings, keeping the design assertive and consistent at every scale.</p><p>Custom line icons were designed for all six service offerings — three for candidates (Consulting, Grooming, Interviewing) and three for companies (Sourcing, Shortlisting, Interviewing). Each icon uses a yellow rounded-square container, giving them a unified, badge-like quality across the services page. The same icons appear in the pitch deck, extending the visual system across both deliverables.</p>'
+              content: '<p>The visual language carries directly from the brand identity: golden yellow (#FFC107) as the dominant hero colour, dark charcoal (#555555) as the structural colour, and off-white (#F2F2F2) as the page ground. Typography uses a single bold sans-serif across all headings, keeping the design assertive and consistent at every scale.</p><p>Custom line icons were designed for all six service offerings, three for candidates (Consulting, Grooming, Interviewing) and three for companies (Sourcing, Shortlisting, Interviewing). Each icon uses a yellow rounded-square container, giving them a unified, badge-like quality across the services page. The same icons appear in the pitch deck, extending the visual system across both deliverables.</p>'
             },
             {
               type: 'browsermockup',
@@ -523,27 +523,27 @@ export default {
                 { label: 'Apply Now',   url: 'corporatechemistry.com/apply',    src: '/CC_Web_04.jpg' },
                 { label: 'Contact Us',  url: 'corporatechemistry.com/contact',  src: '/CC_Web_05.jpg' },
               ],
-              caption: 'All five pages — click the tabs to browse each screen'
+              caption: 'All five pages, click the tabs to browse each screen'
             },
             {
               type: 'text',
               label: 'Homepage',
-              content: '<p>The homepage is structured around a clear binary entry point: Hiring for a job or Looking for a job. Both CTAs appear as equal-weight yellow buttons on a full-bleed black-and-white hero photograph, resolving the dual-audience problem immediately on landing without requiring users to read copy to understand where they belong.</p><p>Below the hero, two content blocks develop the brand positioning. The yellow band introduces the agency with a custom illustration of spotlit candidates — reinforcing the human-centric positioning. The grey section introduces the "chemistry" metaphor through a molecular structure motif rendered in yellow and charcoal, with the brand\'s core line: "We\'re making hiring human."</p>'
+              content: '<p>The homepage is structured around a clear binary entry point: Hiring for a job or Looking for a job. Both CTAs appear as equal-weight yellow buttons on a full-bleed black-and-white hero photograph, resolving the dual-audience problem immediately on landing without requiring users to read copy to understand where they belong.</p><p>Below the hero, two content blocks develop the brand positioning. The yellow band introduces the agency with a custom illustration of spotlit candidates, reinforcing the human-centric positioning. The grey section introduces the "chemistry" metaphor through a molecular structure motif rendered in yellow and charcoal, with the brand\'s core line: "We\'re making hiring human."</p>'
             },
             {
               type: 'text',
               label: 'Services & About',
-              content: '<p>The Services page splits cleanly into two sections — For Candidates on a yellow background, For Companies on charcoal — using colour to establish the division before users read a word. Each service is presented in an identical white card with the custom icon at centre, service name, and a single explanatory line. The symmetry across both sections makes the offering readable at a glance.</p><p>The About Us page uses the same card grid to express four brand values: people-centric, human-centric, connection-centric, and Corporate Chemistry. The layout mirrors the Services page structurally, reducing the cognitive load of navigating between sections. A yellow band at the top maintains the page hierarchy established across the site.</p>'
+              content: '<p>The Services page splits cleanly into two sections, For Candidates on a yellow background, For Companies on charcoal, using colour to establish the division before users read a word. Each service is presented in an identical white card with the custom icon at centre, service name, and a single explanatory line. The symmetry across both sections makes the offering readable at a glance.</p><p>The About Us page uses the same card grid to express four brand values: people-centric, human-centric, connection-centric, and Corporate Chemistry. The layout mirrors the Services page structurally, reducing the cognitive load of navigating between sections. A yellow band at the top maintains the page hierarchy established across the site.</p>'
             },
             {
               type: 'text',
               label: 'Forms & Contact',
-              content: '<p>The Apply Now page handles the most complex content on the site — a 12-field candidate form and a 4-field company form — without feeling overwhelming. Both forms sit in white cards that emerge from their coloured band backgrounds (yellow for candidates, charcoal for companies), visually separating the two audiences while maintaining layout consistency. The yellow Submit button is the only coloured element inside each form, directing attention clearly to the action.</p><p>The Contact page keeps the same card-on-yellow structure and pairs the contact details with an embedded Google Maps panel — practical, clean, and requiring no additional design decisions to be useful.</p>'
+              content: '<p>The Apply Now page handles the most complex content on the site, a 12-field candidate form and a 4-field company form, without feeling overwhelming. Both forms sit in white cards that emerge from their coloured band backgrounds (yellow for candidates, charcoal for companies), visually separating the two audiences while maintaining layout consistency. The yellow Submit button is the only coloured element inside each form, directing attention clearly to the action.</p><p>The Contact page keeps the same card-on-yellow structure and pairs the contact details with an embedded Google Maps panel, practical, clean, and requiring no additional design decisions to be useful.</p>'
             },
             {
               type: 'text',
               label: 'Navigation',
-              content: '<p>The dark charcoal navigation bar persists across all five pages with the active page highlighted in yellow — providing orientation without requiring any additional wayfinding elements. The logo sits top-left in white against charcoal, maintaining legibility regardless of the page content below. The nav system is intentionally minimal: four links, no dropdowns, no hamburger menu at this design phase.</p><p>This project was completed as part of the same engagement as the Corporate Chemistry pitch deck (DS-15), with both deliverables sharing the same visual system and icon library.</p>'
+              content: '<p>The dark charcoal navigation bar persists across all five pages with the active page highlighted in yellow, providing orientation without requiring any additional wayfinding elements. The logo sits top-left in white against charcoal, maintaining legibility regardless of the page content below. The nav system is intentionally minimal: four links, no dropdowns, no hamburger menu at this design phase.</p><p>This project was completed as part of the same engagement as the Corporate Chemistry pitch deck (DS-15), with both deliverables sharing the same visual system and icon library.</p>'
             },
             {
               type: 'stats',
