@@ -264,7 +264,7 @@ export default {
 
       results: [
         { number: '125%', label: 'Engagement increase, Funskool campaign' },
-        { number: '70%',  label: 'Cart abandonment reduction, Forser'     },
+        { number: '70%',  label: 'Cart abandonment reduction, Stylori'     },
         { number: '200+', label: 'Digital assets delivered'                },
         { number: '6+',   label: 'Years of experience'                     },
       ],
