@@ -1,54 +1,59 @@
 <template>
 
-  <!-- ── PAGE HEADER ───────────────────────────────────────── -->
-  <div class="dg-header">
-    <div class="dg-header-inner">
-      <span class="dg-eyebrow">Portfolio</span>
-      <h1 class="dg-page-title">Design<br>&amp; Branding</h1>
-      <p class="dg-page-desc">
-        Brand identity, campaigns, packaging, print, and digital, produced across agency and freelance environments over 6 years.
-      </p>
-    </div>
-    <div class="dg-header-count">{{ filteredProjects.length }} Works</div>
-  </div>
-
-  <!-- ── FILTER TABS ───────────────────────────────────────── -->
-  <div class="dg-filters">
-    <button
-      v-for="cat in categories"
-      :key="cat"
-      class="dg-filter-btn"
-      :class="{ active: activeFilter === cat }"
-      @click="setFilter(cat)"
-    >{{ cat }}</button>
-  </div>
-
-  <!-- ── BENTO GRID ─────────────────────────────────────────── -->
+  <!-- ── INDEX: HEADER + FILTERS + GRID ─────────────────────── -->
   <transition name="grid-fade">
-    <div v-if="selectedProject === null" class="dg-bento">
-      <div
-        v-for="(project, index) in filteredProjects"
-        :key="project.code"
-        class="dg-bento-card"
-        :class="'dg-bento-card--' + project.size"
-        @click="openProject(index)"
-      >
-        <div class="dg-bento-img">
-          <img :src="project.image" :alt="project.title" loading="lazy" />
+    <div v-if="selectedProject === null" class="dg-index">
+
+      <!-- ── PAGE HEADER ─────────────────────────────────────── -->
+      <div class="dg-header">
+        <div class="dg-header-inner">
+          <span class="dg-eyebrow">Portfolio</span>
+          <h1 class="dg-page-title">Design<br>&amp; Branding</h1>
+          <p class="dg-page-desc">
+            Brand identity, campaigns, packaging, print, and digital, produced across agency and freelance environments over 6 years.
+          </p>
         </div>
-        <div class="dg-bento-overlay">
-          <div class="dg-bento-top">
-            <span class="dg-bento-code">{{ project.code }}</span>
-            <span class="dg-bento-cat-badge">{{ project.category }}</span>
+        <div class="dg-header-count">{{ filteredProjects.length }} Works</div>
+      </div>
+
+      <!-- ── FILTER TABS ─────────────────────────────────────── -->
+      <div class="dg-filters">
+        <button
+          v-for="cat in categories"
+          :key="cat"
+          class="dg-filter-btn"
+          :class="{ active: activeFilter === cat }"
+          @click="setFilter(cat)"
+        >{{ cat }}</button>
+      </div>
+
+      <!-- ── BENTO GRID ──────────────────────────────────────── -->
+      <div class="dg-bento">
+        <div
+          v-for="(project, index) in filteredProjects"
+          :key="project.code"
+          class="dg-bento-card"
+          :class="'dg-bento-card--' + project.size"
+          @click="openProject(index)"
+        >
+          <div class="dg-bento-img">
+            <img :src="project.image" :alt="project.title" loading="lazy" />
           </div>
-          <div class="dg-bento-bottom">
-            <span class="dg-bento-client">{{ project.client }}</span>
-            <h3 class="dg-bento-title">{{ project.title }}</h3>
-            <p class="dg-bento-sub">{{ project.subtitle }}</p>
-            <span class="dg-bento-cta">View Project &#x2197;</span>
+          <div class="dg-bento-overlay">
+            <div class="dg-bento-top">
+              <span class="dg-bento-code">{{ project.code }}</span>
+              <span class="dg-bento-cat-badge">{{ project.category }}</span>
+            </div>
+            <div class="dg-bento-bottom">
+              <span class="dg-bento-client">{{ project.client }}</span>
+              <h3 class="dg-bento-title">{{ project.title }}</h3>
+              <p class="dg-bento-sub">{{ project.subtitle }}</p>
+              <span class="dg-bento-cta">View Project &#x2197;</span>
+            </div>
           </div>
         </div>
       </div>
+
     </div>
   </transition>
 
@@ -281,12 +286,12 @@ export default {
             {
               type: 'text',
               label: 'Overview',
-              content: '<p>pH Projecct is a modern fashion label born from the creative collaboration of Pushkal Prasad and Harrshi Padmanabhan. The brand positions itself as a contemporary force in the high-fashion space, targeting audiences who value visual minimalism alongside expressive, editorial-forward aesthetics. The brief was to build a complete identity system that felt luxurious, experimental, and timeless, while resonating with a youthful, design-conscious demographic.</p>'
+              content: '<p>pH Projecct is a modern fashion label founded by Pushkal Prasad and Harrshi Padmanabhan. It sits in the high-fashion space and speaks to an audience that values minimalism as much as expressive, editorial design. The brief was to build a full identity system that felt luxurious and experimental, and that would land with a young, design-conscious market.</p>'
             },
             {
               type: 'text',
               label: 'Strategic Positioning',
-              content: '<p>The name pH Projecct carries a deliberate double meaning. It derives from the founders initials and references the concept of pH balance, harmony through contrast. This idea became the brand\'s core visual language: every decision explored a tension between opposites. Serif vs. sans-serif. Dark vs. light. Structure vs. freedom. Utility vs. ornament.</p>'
+              content: '<p>The name carries a double meaning. It comes from the founders\' initials and points to the idea of pH balance: harmony reached through contrast. That became the brand\'s visual language, with most decisions set up as a tension between opposites such as serif against sans-serif, dark against light, and structure against freedom.</p>'
             },
             {
               type: 'grid',
@@ -300,7 +305,7 @@ export default {
             {
               type: 'text',
               label: 'Identity System',
-              content: '<p>The logo system was developed with multiple lockups, spacing guides, and glyph specifications. The primary wordmark incorporates an extended descender on the j, instantly recognisable while retaining typographic integrity. Plus signs were used throughout as a compositional tool, representing the collaborative founding spirit.</p><p>Typography pairs Bodoni 72 Oldstyle for hero headers and editorial pull quotes with Gotham for body content. The monochrome palette of black, off-white, and soft grey creates a versatile backdrop for editorial applications.</p>'
+              content: '<p>The logo system was built with multiple lockups, spacing guides, and glyph specifications. The primary wordmark extends the descender on the "j" so the mark reads clearly while keeping its typographic structure intact. Plus signs run through the system as a compositional device, a nod to the two founders coming together.</p><p>Typography pairs Bodoni 72 Oldstyle for headers and editorial pull quotes with Gotham for body copy. A monochrome palette of black, off-white, and soft grey gives editorial layouts a flexible backdrop.</p>'
             },
             {
               type: 'grid',
@@ -344,12 +349,12 @@ export default {
             {
               type: 'text',
               label: 'Overview',
-              content: '<p>Ayra Mané is a heritage homestay in the scenic hills of Coorg, coffee estates, tranquil greenery, and cultural depth. The brief was to craft a visual identity that captured the soul of the estate: rooted in tradition, refined in its hospitality. The design needed to balance rustic charm with a luxury feel that matched the authentic experiences the property promises.</p>'
+              content: '<p>Ayra Mané is a heritage homestay in the hills of Coorg, surrounded by coffee estates, greenery, and cultural history. The brief was to build a visual identity that captured the estate itself: rooted in tradition and refined in its hospitality. The design had to balance rustic character with the sense of luxury the property promises its guests.</p>'
             },
             {
               type: 'text',
               label: 'Design Direction',
-              content: '<p>The logo symbol draws from traditional Kolam patterns, sacred geometries drawn outside homes in South India, representing hospitality, harmony, and rootedness. The pattern was stylised with a clean geometric grid to maintain elegance alongside tradition. This same geometric discipline extended to the layout grid and spatial system across all brand materials.</p><p>The colour palette reflects the Coorg environment directly: rich forest greens, muted browns, natural beige, deep charcoal, and off-white. Typography pairs a heritage serif with contemporary legibility.</p>'
+              content: '<p>The logo symbol draws on traditional Kolam patterns, the sacred geometric designs drawn outside South Indian homes as a sign of welcome. The pattern was stylised on a clean geometric grid to keep it elegant as well as traditional, and that same grid discipline carried into the layout and spatial system across all brand materials.</p><p>The colour palette comes straight from the Coorg landscape: forest greens, muted browns, natural beige, deep charcoal, and off-white. Typography pairs a heritage serif with a contemporary, legible companion.</p>'
             },
             {
               type: 'grid',
@@ -367,12 +372,12 @@ export default {
                 { src: '/images/design/ayra-05.jpg', alt: 'Brand application' },
                 { src: '/images/design/ayra-06.jpg', alt: 'Guest touchpoints' },
               ],
-              caption: 'Colour system derived directly from the Coorg environment, forest greens, estate browns, natural beige'
+              caption: 'Colour system drawn directly from the Coorg landscape: forest greens, estate browns, and natural beige'
             },
             {
               type: 'text',
               label: 'Applications',
-              content: '<p>The identity was applied across every guest touchpoint, slippers, mugs, soaps, towels, room signage, and print collateral. Visual consistency across these elements ensured a cohesive and elevated environment from arrival to departure. A final set of postcard-style visuals pays tribute to the timeless, memory-making experiences guests take home.</p>'
+              content: '<p>The identity runs across every guest touchpoint: slippers, mugs, soaps, towels, room signage, and print collateral. Keeping these consistent gives guests a cohesive, considered environment from arrival to departure. A final set of postcard-style visuals captures the kind of memory guests take home with them.</p>'
             },
             {
               type: 'grid',
@@ -402,12 +407,12 @@ export default {
             {
               type: 'text',
               label: 'Overview',
-              content: '<p>Preventika is part of Sanmed&#39;s product line introducing effervescent disinfectant tablets for domestic use. With the Indian market still largely unfamiliar with this product format, the branding and packaging were designed to create awareness, educate users, and position the product as a modern alternative to conventional disinfectants.</p>'
+              content: '<p>Preventika is part of Sanmed\'s range of effervescent disinfectant tablets for home use. Since the format was still new to most of the Indian market, the branding and packaging had to build awareness, explain the product, and position it as a modern alternative to conventional disinfectants.</p>'
             },
             {
               type: 'text',
               label: 'Design Thinking',
-              content: '<p>The brief called for a visual identity that read as safe, modern, and trustworthy while being approachable enough for first-time users. Rather than following the blue-and-white conventions of the Indian hygiene market, a high-contrast yellow and black system was developed to make Preventika immediately recognisable on shelf. The bold colour choice signals efficacy and confidence, while the dot-pattern motif across all packaging references the molecular structure of the active ingredient, giving the brand a science-forward visual language without feeling clinical.</p><p>The system was designed to scale across multiple product formats, tube labels, bulk tubs, and antimicrobial cards, all sharing the same typographic rhythm, icon language, and colour blocking. Each format reads as part of the same family while being optimised for its own packaging shape and retail context.</p>'
+              content: '<p>The brief called for an identity that read as safe, modern, and trustworthy, and stayed approachable for first-time users. Instead of the blue-and-white look common to the Indian hygiene category, the system uses high-contrast yellow and black so Preventika stands out on shelf. The bold colour signals efficacy, and a dot-pattern motif across the packaging references the molecular structure of the active ingredient, which gives the brand a science-led feel that never turns clinical.</p><p>The system scales across formats: tube labels, bulk tubs, and antimicrobial cards. Each one shares the same typographic rhythm, icon language, and colour blocking, so every format reads as part of the same family while suiting its own shape and retail context.</p>'
             },
             {
               type: 'grid',
@@ -416,22 +421,22 @@ export default {
                 { src: '/images/design/Preventika-02.jpg', alt: 'Logo variations' },
                 { src: '/images/design/Preventika-03.jpg', alt: 'Business cards' },
               ],
-              caption: 'Logo system and brand identity, dot motif references the molecular structure of the active ingredient'
+              caption: 'Logo system and brand identity, with the dot motif referencing the molecular structure of the active ingredient'
             },
             {
               type: 'image',
               src: '/Label_Mocks.jpg',
-              caption: 'Tube label packaging, high-contrast yellow and black system designed to stand out in a crowded hygiene category'
+              caption: 'Tube label packaging, high-contrast yellow and black built to stand out in a crowded hygiene category'
             },
             {
               type: 'image',
               src: '/Tub_Mocks_Mocks.jpg',
-              caption: 'Bulk tub format, the same visual language scaled to a larger retail and agricultural distribution format'
+              caption: 'Bulk tub format, the same visual language scaled up for larger retail and agricultural distribution'
             },
             {
               type: 'image',
               src: '/Sanitary_card.jpg',
-              caption: 'Antimicrobial card packaging, a secondary product line maintaining full brand consistency at a compact card format'
+              caption: 'Antimicrobial card packaging, a secondary product line holding full brand consistency at a compact card format'
             },
             {
               type: 'grid',
@@ -441,7 +446,7 @@ export default {
                 { src: '/images/design/Preventika-05.jpg', alt: 'Packaging mockup' },
                 { src: '/images/design/Preventika-06.jpg', alt: 'OOH advertising' },
               ],
-              caption: 'Full packaging range and outdoor advertising, cohesive system launched across retail, collateral, and OOH'
+              caption: 'Full packaging range and outdoor advertising, launched across retail, collateral, and OOH as one system'
             },
           ]
         },
@@ -463,12 +468,12 @@ export default {
             {
               type: 'text',
               label: 'Overview',
-              content: '<p>Villgro\'s iPitch 2021 campaign aimed to scale funding accessibility for social entrepreneurs across India. The initiative involved several funding partners targeting education, agriculture, clean tech, and more. The task was to create a social media campaign that communicated credibility, sector diversity, and urgency for application, cohesive, shareable, and immediately legible in a crowded social feed.</p>'
+              content: '<p>Villgro\'s iPitch 2021 campaign set out to widen funding access for social entrepreneurs across India, working with several partners across education, agriculture, clean tech, and more. The task was a social campaign that carried credibility, showed the range of sectors, and pushed people to apply, all while staying cohesive and legible in a busy social feed.</p>'
             },
             {
               type: 'text',
               label: 'Design Strategy',
-              content: '<p>A modular identity system was developed using abstract geometric icons to represent core sectors, leaves for agriculture, crosses for health, books for education. Each colour block followed a grid-based system allowing flexibility across social formats while maintaining brand consistency. Vibrant flat colours and clean typography ensured legibility and impact across Instagram and LinkedIn.</p><p>The system was designed to scale quickly, every post reused the same visual framework with variations in colour and icon placement, keeping production efficient without sacrificing quality.</p>'
+              content: '<p>The system is modular, built on abstract geometric icons for each sector: leaves for agriculture, crosses for health, books for education. Colour blocks sit on a grid that flexes across social formats without breaking brand consistency, and flat, vibrant colour with clean typography keeps the posts legible on Instagram and LinkedIn.</p><p>It was built to scale quickly. Every post reuses the same framework and swaps only colour and icon placement, which kept production fast without dropping quality.</p>'
             },
             {
               type: 'grid',
@@ -477,7 +482,7 @@ export default {
                 { src: '/images/design/Villgro-02.jpg', alt: 'Colour-coded campaign variants' },
                 { src: '/images/design/Villgro-03.jpg', alt: 'Instagram Story mockup' },
               ],
-              caption: 'Modular grid system, each sector gets its own colour block and icon while remaining visually cohesive across the campaign'
+              caption: 'Modular grid system, where each sector gets its own colour block and icon while staying visually cohesive'
             },
           ]
         },
@@ -499,27 +504,27 @@ export default {
             {
               type: 'text',
               label: 'Overview',
-              content: '<p>Chitra\'m craft chocolates began as a tribute to the founder\'s late mother, Chitra. The brand was built around a desire to create artisanal chocolates tailored to the Indian palette while representing deep-rooted heritage through visual storytelling. The packaging had to appeal to both the local market and a global audience where handcrafted visual identity carries significant weight.</p>'
+              content: '<p>Chitra\'m craft chocolates began as a tribute to the founder\'s late mother, Chitra. The idea was artisanal chocolate made for the Indian palate, with heritage carried through the visual storytelling. The packaging had to work for the local market and for a global audience that responds to a handcrafted identity.</p>'
             },
             {
               type: 'text',
               label: 'Design Direction',
-              content: '<p>Raja Ravi Varma\'s iconic paintings of Indian women served as the visual anchor, chosen for their emotive depth and ability to establish cultural and emotional connection. To balance this classical foundation, the packaging introduced modern digital art elements including geometric forms and molecular motifs, visually representing the fusion of tradition and culinary science behind the chocolate-making process.</p>'
+              content: '<p>Raja Ravi Varma\'s paintings of Indian women anchor the visuals, chosen for their emotional depth and cultural resonance. To balance that classical base, the packaging adds modern digital elements such as geometric forms and molecular motifs, a visual stand-in for the mix of tradition and food science behind the chocolate.</p>'
             },
             {
               type: 'image',
               src: '/images/design/chitram-03.jpg',
-              caption: 'Packaging detail, each variant uses motifs from Raja Ravi Varma alongside molecular and geometric elements'
+              caption: 'Packaging detail, where each variant uses motifs from Raja Ravi Varma alongside molecular and geometric elements'
             },
             {
               type: 'text',
               label: 'Colour System',
-              content: '<p>Each flavour variant has its own colour palette extracted directly from its key ingredient, lemons and moringa for the white chocolate, rich reds and earth tones for the dark palm sugar variant. Every flavour feels distinct while remaining unmistakably part of the same brand system. Chitra\'m becomes more than packaging, it functions as a cultural artifact that bridges Indian storytelling and contemporary aesthetics.</p>'
+              content: '<p>Each flavour has its own palette pulled straight from its key ingredient: lemon and moringa for the white chocolate, deep reds and earth tones for the dark palm-sugar variant. Every flavour feels distinct while staying clearly part of one brand. The result reads less like packaging and more like a small cultural artifact that sits between Indian storytelling and contemporary design.</p>'
             },
             {
               type: 'image',
               src: '/images/design/chitram-02.jpg',
-              caption: 'Final packaging system, cohesive across flavours while each variant carries its own visual identity'
+              caption: 'Final packaging system, cohesive across flavours while each variant keeps its own visual identity'
             },
           ]
         },
@@ -541,12 +546,12 @@ export default {
             {
               type: 'text',
               label: 'Overview',
-              content: '<p>LO.CL is a location-based social platform connecting users to nearby events, places, and shared experiences. The campaign brief was to visually portray how the app enhances everyday decisions, finding a cycling route, a new café, what\'s trending nearby. Each visual captures moments of curiosity, exploration, and spontaneity.</p>'
+              content: '<p>LO.CL is a location-based social platform that connects people to nearby events, places, and experiences. The campaign brief was to show how the app shapes everyday decisions: finding a cycling route, a new café, or whatever is happening nearby. Each visual captures a small moment of curiosity and spontaneity.</p>'
             },
             {
               type: 'text',
               label: 'Visual Strategy',
-              content: '<p>Strong principles of contrast, emphasis, and balance drive every execution. Centre-aligned compositions, embedded UI overlays, and natural colour gradients keep the visuals grounded in real life while feeling modern and dynamic. Each ad reimagines a common search behaviour, near me, in a way that places the user inside the LO.CL experience rather than outside looking in.</p><p>The campaign was designed for multi-channel presence. Ads were customised for bus stop shelters, newspaper spreads, magazine columns, and digital banners. UI elements from the app were embedded directly into real-world photography to blur the line between discovery and reality.</p>'
+              content: '<p>Contrast, emphasis, and balance drive every layout. Centre-aligned compositions, embedded UI overlays, and natural colour gradients keep the visuals grounded in real life while still feeling modern. Each ad reframes a common "near me" search so the viewer sits inside the LO.CL experience rather than watching from outside.</p><p>The campaign was built for multiple channels, with versions for bus-shelter panels, newspaper spreads, magazine columns, and digital banners. Real app UI was placed into real-world photography to blur the line between searching and doing.</p>'
             },
             {
               type: 'grid',
@@ -559,7 +564,7 @@ export default {
             {
               type: 'image',
               src: '/images/design/locl-04.jpg',
-              caption: 'Magazine ad, coffee culture. Minimal typography, lifestyle imagery, and embedded UI reinforce the idea of LO.CL as an intuitive social layer over everyday life.'
+              caption: 'Magazine ad, coffee culture. Minimal typography, lifestyle imagery, and embedded UI present LO.CL as an intuitive social layer over everyday life.'
             },
           ]
         },
@@ -581,12 +586,12 @@ export default {
             {
               type: 'text',
               label: 'Overview',
-              content: '<p>Animated social campaign for Funskool that drove a 125% increase in account engagement over six months. The account moved from static product posts to motion-first content, short looping animations designed specifically for Reels and Stories. Modular animation templates were built in After Effects to allow rapid adaptation across different products and promotions.</p>'
+              content: '<p>An animated social campaign for Funskool that lifted account engagement by 125% over six months. The account shifted from static product posts to motion-first content: short looping animations made specifically for Reels and Stories. Modular animation templates built in After Effects let the work adapt quickly across products and promotions.</p>'
             },
             {
               type: 'text',
               label: 'Approach',
-              content: '<p>Animation was treated as the brief from the start, not a finishing layer. Posts were designed as 15-30 second looping sequences paced for mobile-first viewing. A consistent visual system was maintained across all posts to build brand recognition over time, compounding the engagement numbers across the campaign period.</p>'
+              content: '<p>Animation drove the brief from the start rather than being added at the end. Posts were designed as 15 to 30 second loops paced for mobile viewing. A consistent visual system across every post built brand recognition over time, which is what compounded the engagement numbers through the campaign.</p>'
             },
           ]
         },
@@ -608,12 +613,12 @@ export default {
             {
               type: 'text',
               label: 'Overview',
-              content: '<p>Digital signage and display TV content for JW Marriott Bengaluru, produced across a two-year engagement at Smitten Worldwide. These slides were designed for in-hotel screens throughout the property, lobby areas, elevator banks, and guest corridors, to promote restaurant launches and F&amp;B offerings to hotel guests.</p><p>Two distinct campaigns were produced. ALBA is the hotel&#39;s fine dining Mediterranean restaurant, requiring a dark, editorial aesthetic with full-bleed food photography and restrained typography. The Bengaluru Baking Co (BBC) is a lobby-level patisserie with a warmer, heritage-influenced tone, cream backgrounds, a custom logotype, and a more relaxed typographic system. Both campaigns maintained JW Marriott&#39;s global brand standards while developing distinct visual identities for each venue.</p>'
+              content: '<p>Digital signage and display-TV content for JW Marriott Bengaluru, produced over a two-year engagement at Smitten Worldwide. The slides ran on in-hotel screens across the property, in lobby areas, elevator banks, and guest corridors, promoting restaurant launches and F&amp;B offers to guests.</p><p>Two distinct campaigns came out of it. ALBA is the hotel\'s Mediterranean fine-dining restaurant, which needed a dark, editorial look with full-bleed food photography and restrained typography. The Bengaluru Baking Co (BBC) is a lobby patisserie with a warmer, heritage-influenced tone: cream backgrounds, a custom logotype, and a more relaxed type system. Both held to JW Marriott\'s global brand standards while giving each venue its own identity.</p>'
             },
             {
               type: 'text',
               label: 'Design Approach',
-              content: '<p>Display TV content operates differently from social media, screens are viewed at distance and in passing, so the hierarchy needs to resolve immediately. The split-layout system used across both campaigns divides photography on the left from information on the right, ensuring both panels read clearly at any viewing distance. Typography is set large and tracked wide to hold legibility on low-resolution hotel display screens.</p>'
+              content: '<p>Display TV works differently from social. Screens are seen at a distance and in passing, so the hierarchy has to resolve at a glance. The split layout used across both campaigns keeps photography on the left and information on the right, so both panels read clearly from anywhere in the room. Type is set large and tracked wide to hold up on low-resolution hotel screens.</p>'
             },
             {
               type: 'tvcarousel',
@@ -647,12 +652,12 @@ export default {
             {
               type: 'text',
               label: 'Overview',
-              content: '<p>Print campaign collateral for F&amp;B events at The Westin Chennai Velachery, produced at Smitten Worldwide. Work spanned seasonal dining promotions, festival campaigns, and restaurant event advertising, all within the Westin and Marriott Bonvoy brand system while being adapted for local market messaging.</p><p>Two key campaigns shown here. The New Year Brunch poster for Seasonal Tastes uses a bright, food-centric flat-lay composition, scattered dishes and ingredients surrounding a bold typographic centrepiece. The Navratri Thali campaign takes a completely different tone: warm wood textures, a hero overhead shot of the thali spread, and script typography with cultural warmth to match the occasion.</p>'
+              content: '<p>Print campaign collateral for F&amp;B events at The Westin Chennai Velachery, produced at Smitten Worldwide. The work covered seasonal dining promotions, festival campaigns, and restaurant event advertising, all inside the Westin and Marriott Bonvoy brand system but adapted for local messaging.</p><p>Two campaigns are shown here. The New Year Brunch poster for Seasonal Tastes uses a bright, food-led flat-lay, with dishes and ingredients scattered around a bold typographic centrepiece. The Navratri Thali campaign takes a different tone: warm wood textures, a hero overhead shot of the thali spread, and script typography chosen to match the occasion.</p>'
             },
             {
               type: 'text',
               label: 'Design Approach',
-              content: '<p>Both pieces needed to work as standalone print advertisements and as digital social assets, designed at A3 portrait format with enough visual density to hold attention at small sizes on a phone screen and at full poster scale on a noticeboard. The brand lockup hierarchy places Seasonal Tastes and The Westin together, maintaining Marriott global brand standards while giving each campaign its own personality through photography selection, colour temperature, and typographic tone.</p>'
+              content: '<p>Both pieces had to work as standalone print ads and as digital social assets. They were designed at A3 portrait with enough visual density to hold attention on a phone screen and at full poster scale on a noticeboard. The lockup hierarchy places Seasonal Tastes and The Westin together to keep Marriott brand standards, while photography, colour temperature, and typographic tone give each campaign its own personality.</p>'
             },
             {
               type: 'easel',
@@ -682,12 +687,12 @@ export default {
             {
               type: 'text',
               label: 'Overview',
-              content: '<p>Ayuni is a Middle Eastern condiment brand built around Amba, a pickled and spiced mango sauce with roots in Iraqi and Levantine cuisine. The brief called for a complete identity system that could carry the brand across retail packaging and physical touchpoints while positioning it for a modern international audience unfamiliar with the product.</p><p>The name Ayuni (عيوني) means "my eyes" in Arabic, a term of deep endearment. The brand leans into that warmth: familiar, inviting, and rooted in cultural pride without being inaccessible.</p>'
+              content: '<p>Ayuni is a Middle Eastern condiment brand built around Amba, a pickled and spiced mango sauce with roots in Iraqi and Levantine cooking. The brief was a full identity system that could carry the brand across retail packaging and physical touchpoints, and position it for an international audience that may not know the product.</p><p>The name Ayuni (عيوني) means "my eyes" in Arabic, a term of real endearment. The brand leans into that warmth: familiar and inviting, rooted in cultural pride but never hard to approach.</p>'
             },
             {
               type: 'text',
               label: 'Logo & Wordmark',
-              content: '<p>The wordmark was designed as a custom lettering system, not a typeface selection. The letters of "ayuni" are drawn with flowing, continuous strokes that echo Arabic calligraphic forms while reading clearly in the Latin script. The descender of the "y" loops through the "u" and "n" of the second syllable, connecting both halves of the word into a single interlocking mark. A filled dot anchors the junction point, functioning both as a visual punctuation and a subtle nod to the dot forms in Arabic script.</p><p>The result is a logo that carries cultural specificity without relying on literal Arabesque ornamentation. It works at the small scale of a bottle label and scales cleanly to the large format of a shopping bag.</p>'
+              content: '<p>The wordmark is custom lettering rather than a chosen typeface. The letters of "ayuni" are drawn with flowing, continuous strokes that echo Arabic calligraphy while still reading clearly in Latin script. The descender of the "y" loops through the "u" and "n" of the second syllable, tying both halves of the word into one interlocking mark. A filled dot anchors the junction, working as both punctuation and a quiet nod to the dots in Arabic script.</p><p>The result carries cultural specificity without leaning on literal Arabesque ornament. It holds up small on a bottle label and scales cleanly to a shopping bag.</p>'
             },
             {
               type: 'grid',
@@ -701,7 +706,7 @@ export default {
             {
               type: 'text',
               label: 'Packaging System',
-              content: '<p>Three heat variants were developed for the Amba Sauce range, Mild, Spicy, and Lava. Each bottle uses a distinct background colour drawn directly from the sauce inside: golden yellow for Mild, orange for Spicy, and deep red-orange for Lava. This gives the range immediate shelf legibility, customers can identify their heat level at a glance without reading copy.</p><p>The label centres the Ayuni wordmark set inside a mango silhouette, which doubles as a brand icon across all packaging. Below the logo, the heat level is called out in a high-contrast black band, bold, unambiguous, and consistent across the range. The bottom of each label carries a cityscape silhouette of Middle Eastern architecture with palm trees, grounding the brand in its cultural origin without being heavy-handed.</p><p>Typography throughout is confident and utilitarian, the product descriptor "Pickled and Spiced Mango" sits in a tight tracking above the product name, and the variant band reads clearly at bottle scale and on-shelf at distance.</p>'
+              content: '<p>The Amba Sauce range has three heat levels: Mild, Spicy, and Lava. Each bottle takes its background colour from the sauce inside, golden yellow for Mild, orange for Spicy, and deep red-orange for Lava, so shoppers can spot their heat level without reading a word.</p><p>Each label centres the Ayuni wordmark inside a mango silhouette, which also works as a brand icon across the packaging. Below it, the heat level sits in a high-contrast black band that stays consistent across the range. A cityscape silhouette of Middle Eastern architecture and palm trees runs along the bottom, grounding the brand in its origin without overstating it.</p><p>Typography stays confident and utilitarian. The descriptor "Pickled and Spiced Mango" sits in tight tracking above the product name, and the variant band reads clearly at bottle scale and from a distance on shelf.</p>'
             },
             {
               type: 'image',
@@ -711,7 +716,7 @@ export default {
             {
               type: 'text',
               label: 'Brand Language',
-              content: '<p>Across the shopping bag, a wave-form landscape silhouette runs along the base, palm trees rising from a dark undulating ground plane, with the Ayuni dot motif appearing again as a compositional element. The pale blue-grey of the bag grounds the brand outside of the warm condiment palette, giving the identity room to breathe across a wider set of touchpoints.</p><p>The overall system is intentionally minimal. The logo does the heavy lifting of cultural storytelling; the packaging system then uses colour and silhouette as fast-read signals. Both layers work together to make Ayuni feel credible on a retail shelf and considered in the hand.</p>'
+              content: '<p>On the shopping bag, a wave-form landscape runs along the base, with palm trees rising from a dark, undulating ground and the Ayuni dot motif reappearing as a compositional element. The pale blue-grey of the bag sits outside the warm condiment palette, which gives the identity room to breathe across a wider set of touchpoints.</p><p>The system is deliberately minimal. The logo does the cultural storytelling, and the packaging leans on colour and silhouette as fast-read signals. Together they make Ayuni feel credible on a retail shelf and considered in the hand.</p>'
             },
           ]
         },
@@ -733,12 +738,12 @@ export default {
             {
               type: 'text',
               label: 'Overview',
-              content: '<p>Pitch deck design for Corporate Chemistry, a talent acquisition and recruitment firm specialising in mid to senior-level placements across industries. The deck was built to communicate the brand&#39;s positioning, methodology, and client experience to potential business partners and investors.</p><p>The design system uses a high-energy yellow and light grey palette with bold sans-serif typography, geometric abstract shapes, and custom line icon illustrations. The visual language needed to feel confident and modern without being cold, the brand&#39;s core idea of making hiring human called for warmth alongside professionalism.</p>'
+              content: '<p>Pitch-deck design for Corporate Chemistry, a talent acquisition and recruitment firm focused on mid to senior-level placements across industries. The deck had to communicate the firm\'s positioning, method, and client experience to potential partners and investors.</p><p>The system uses a high-energy yellow and light-grey palette with bold sans-serif type, abstract geometric shapes, and custom line-icon illustrations. It needed to feel confident and modern without going cold, since the firm\'s core idea, "making hiring human", calls for warmth alongside the professionalism.</p>'
             },
             {
               type: 'text',
               label: 'Design System',
-              content: '<p>A modular slide template was developed so each section of the deck could be adapted quickly while maintaining visual consistency. Yellow is used as a full-bleed background for high-impact statements, and as an accent colour against grey for data-heavy slides. Custom illustrations across the deck replace stock photography, keeping the visual language ownable and consistent throughout.</p>'
+              content: '<p>A modular slide template let each section adapt quickly while staying visually consistent. Yellow works as a full-bleed background for high-impact statements and as an accent against grey on data-heavy slides. Custom illustrations replace stock photography throughout, which keeps the visual language ownable from slide to slide.</p>'
             },
             {
               type: 'carousel',
@@ -782,12 +787,12 @@ export default {
             {
               type: 'text',
               label: 'Overview',
-              content: '<p>Trifold brochure and menu design for Flavours of Colombo, a Sri Lankan food festival hosted at JW Kitchen, JW Marriott Bengaluru. The brief was to create a premium printed piece that felt culturally immersive, transporting guests to Colombo through the design before they even sat down to eat.</p><p>The visual language centres on a watercolour treatment of aerial coastal photography, evoking the beaches, ocean, and landscape of Sri Lanka. Illustrated birds in flight carry across all three panels, tying the folded piece together as a single composition when opened flat. The result sits between editorial and hospitality design, refined enough for a five-star property while warm enough to feel like a genuine celebration of the cuisine.</p>'
+              content: '<p>Trifold brochure and menu design for Flavours of Colombo, a Sri Lankan food festival at JW Kitchen, JW Marriott Bengaluru. The brief was a premium printed piece that felt culturally immersive, one that could carry guests to Colombo through the design before the food arrived.</p><p>The visuals centre on a watercolour treatment of aerial coastal photography that evokes Sri Lanka\'s beaches, ocean, and landscape. Illustrated birds in flight carry across all three panels, tying the folded piece into a single composition when it opens flat. The result sits between editorial and hospitality design, refined for a five-star property yet still warm enough to read as a genuine celebration of the cuisine.</p>'
             },
             {
               type: 'text',
               label: 'Design Approach',
-              content: '<p>The challenge with trifold print is designing for two states simultaneously, the folded cover view and the fully open spread. The watercolour imagery was positioned to bleed across all three panels so the piece reads as one cohesive landscape when unfolded. The cover leads with the JW Kitchen and JW Marriott lockup alongside a bold serif headline, anchored by a photography composite of the Colombo Lotus Tower, palm trees, and a hero dish of curried crab.</p><p>Inside, the menu type hierarchy was set in a combination of serif headings and light body text to maintain an editorial tone throughout. The colour palette of muted navy, soft teal, and cream keeps the piece feeling premium without competing with the food imagery.</p>'
+              content: '<p>The challenge with a trifold is designing for two states at once: the folded cover and the fully open spread. The watercolour imagery bleeds across all three panels so the piece reads as one landscape when unfolded. The cover leads with the JW Kitchen and JW Marriott lockup and a bold serif headline, anchored by a composite of the Colombo Lotus Tower, palm trees, and a hero dish of curried crab.</p><p>Inside, the menu hierarchy pairs serif headings with light body text to keep an editorial tone. A palette of muted navy, soft teal, and cream keeps the piece premium without competing with the food photography.</p>'
             },
             {
               type: 'grid',
@@ -796,7 +801,7 @@ export default {
                 { src: '/JW_Colombo_1.jpg', alt: 'Trifold brochure open spread' },
                 { src: '/JW_Colombo_2.jpg', alt: 'Trifold brochure cover close-up' },
               ],
-              caption: 'Trifold menu for Flavours of Colombo, watercolour coastal photography carries across all three panels as a single composition'
+              caption: 'Trifold menu for Flavours of Colombo, with watercolour coastal photography carrying across all three panels as one composition'
             },
           ]
         },
@@ -818,12 +823,12 @@ export default {
             {
               type: 'text',
               label: 'Overview',
-              content: '<p>OOH billboard campaign for Level 12, the rooftop bar at DoubleTree by Hilton Pune, Chinchwad. The campaign promoted the venue as a premium destination with a promotional offer, designed to drive footfall through outdoor advertising across the city.</p><p>Two distinct creative directions were developed for the campaign. The first uses a dark navy palette with gold typography, a split-format layout pairing a venue photograph with bold copy and a promotional CTA. The second shifts to a lighter, more aspirational tone, white space, script typography, and a rooftop lifestyle image, leading with the emotional appeal before the offer. Both executions were built within DoubleTree and Hilton brand guidelines while giving Level 12 its own distinct visual identity as a venue property.</p>'
+              content: '<p>OOH billboard campaign for Level 12, the rooftop bar at DoubleTree by Hilton Pune, Chinchwad. The campaign promoted the venue as a premium destination with a limited offer, built to drive footfall through outdoor advertising across the city.</p><p>Two creative directions were developed. The first uses a dark navy palette with gold typography and a split layout that pairs a venue photograph with bold copy and a promotional CTA. The second is lighter and more aspirational, with white space, script typography, and a rooftop lifestyle image, leading with the mood before the offer. Both sit inside DoubleTree and Hilton brand guidelines while giving Level 12 its own identity as a venue.</p>'
             },
             {
               type: 'text',
               label: 'Design Approach',
-              content: '<p>Billboard design operates on a two-second read. The layout hierarchy was structured to land in order: venue name, key message, then offer. The split composition with the venue photograph on one half and copy on the other gives each billboard visual weight and legibility at distance without relying on the image alone to communicate. Typography was sized and tracked for maximum impact at large-format print scale.</p>'
+              content: '<p>A billboard gets about a two-second read. The hierarchy was structured to land in order: venue name, key message, then offer. Splitting the layout, with the venue photograph on one half and copy on the other, gives each board weight and keeps it legible at a distance instead of relying on the image alone. Type was sized and tracked for impact at large-format print scale.</p>'
             },
             {
               type: 'grid',
@@ -832,7 +837,7 @@ export default {
                 { src: '/Doubletree_Billboard_1.jpg', alt: 'Level 12 billboard, dark navy variant' },
                 { src: '/Doubletree_Billboard_2.jpg', alt: 'Level 12 billboard, light aspirational variant' },
               ],
-              caption: 'Two creative directions, dark and premium for the discount CTA variant, light and lifestyle-led for the brand awareness variant'
+              caption: 'Two creative directions: dark and premium for the discount CTA, light and lifestyle-led for brand awareness'
             },
           ]
         },
@@ -854,7 +859,7 @@ export default {
             {
               type: 'text',
               label: 'Overview',
-              content: '<p>Two single covers designed for independent Indian artists working in hip-hop and R&amp;B. The brief for both was to create artwork that felt contemporary and shelf-ready, visuals that could sit alongside international releases without looking like an afterthought.</p><p>Each cover was built around the artist&#39;s visual identity and the emotional tone of the track. Audacity leans into a laid-back, sun-drenched energy with a teal palette, stacked display typography, and a candid street photograph that captures the looseness of the song. Kanave goes editorial and cinematic, with a warm gradient, floating abstract forms, and a digitally treated portrait that gives the cover a magazine-style finish.</p><p>Independent music in India is often underserved on the visual side. These were designed to close that gap: bold enough to read as a thumbnail on Spotify, refined enough to hold up at physical print size.</p>'
+              content: '<p>Two single covers for independent Indian artists working in hip-hop and R&amp;B. Both briefs were the same at heart: artwork that felt contemporary and shelf-ready, able to sit next to international releases without looking like an afterthought.</p><p>Each cover was built around the artist\'s identity and the mood of the track. Audacity leans into a loose, sun-drenched energy with a teal palette, stacked display type, and a candid street photograph. Kanave goes cinematic, with a warm gradient, floating abstract forms, and a digitally treated portrait that gives it a magazine-style finish.</p><p>Independent music in India is often underserved on the visual side, so these were made to close that gap: bold enough to read as a Spotify thumbnail and refined enough to hold up at physical print size.</p>'
             },
             {
               type: 'grid',
@@ -1006,6 +1011,7 @@ export default {
   color: #ccc;
   font-family: Arial, sans-serif;
   padding-bottom: 0.5rem;
+  white-space: nowrap;
 }
 
 /* ── FILTERS ─────────────────────────────────────────────────── */
@@ -1352,6 +1358,7 @@ export default {
 .dg-img-grid {
   display: grid;
   gap: 8px;
+  align-items: start;
 }
 
 .dg-img-grid--2 { grid-template-columns: 1fr 1fr; }
@@ -1360,11 +1367,18 @@ export default {
 
 .dg-img-grid img {
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  height: auto;          /* natural ratio, nothing gets cropped */
   border-radius: 8px;
   display: block;
-  opacity: 1;
+}
+
+/* Opt-in: uniform cropped boxes for a row of photographic mockups,
+   where a clean grid matters more than showing every edge.
+   Use class "dg-img-grid--3 dg-img-grid--uniform" on the section. */
+.dg-img-grid--uniform img {
+  aspect-ratio: 4 / 3;
+  height: 100%;
+  object-fit: cover;
 }
 
 .dg-img-caption {
@@ -1786,9 +1800,27 @@ export default {
   }
 }
 
+/* Tablet: ease the header down before the full mobile stack */
+@media (max-width: 900px) {
+  .dg-header { padding: 7rem 4vw 3rem; }
+  .dg-filters { padding: 1.3rem 4vw; }
+  .dg-detail-hero-overlay { padding: 3rem 4vw; }
+  .dg-detail-body { padding: 3rem 4vw 5rem; }
+}
+
 @media (max-width: 768px) {
   .dg-header { padding: 6rem 1.5rem 3rem; flex-direction: column; align-items: flex-start; gap: 1rem; }
   .dg-filters { padding: 1.2rem 1.5rem; top: 60px; }
+
+  /* Let the sticky filter row scroll sideways instead of wrapping to 3 lines */
+  .dg-filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .dg-filters::-webkit-scrollbar { display: none; }
+  .dg-filter-btn { flex-shrink: 0; }
 
   .dg-bento {
     grid-template-columns: repeat(2, 1fr);
@@ -1806,6 +1838,7 @@ export default {
   .dg-bento-cta { opacity: 1; transform: none; }
 
   .dg-detail-hero { height: 50vh; margin-top: 60px; }
+  .dg-detail-hero-overlay { padding: 2rem 1.5rem; }
   .dg-detail-body { padding: 2rem 1.5rem 4rem; }
 
   .dg-case-section:has(.dg-section-label) {
@@ -1827,5 +1860,8 @@ export default {
   .dg-bento-card--wide,
   .dg-bento-card--large,
   .dg-bento-card--tall { grid-column: 1; grid-row: span 1; }
+
+  .dg-detail-title { font-size: clamp(2.2rem, 11vw, 3rem); }
+  .dg-meta-strip { gap: 1.25rem 1.75rem; }
 }
 </style>

@@ -34,8 +34,8 @@ export default {
       isOpen: false,
       navLinks: [
         { name: 'Home',   path: '/'            },
-        { name: 'UX',     path: '/ux'          },
         { name: 'Design', path: '/design'      },
+        { name: 'UX',     path: '/ux'          },
         { name: 'Videos', path: '/videography' },
         { name: 'Dev',    path: '/dev'         },
         { name: 'About',  path: '/About'       },

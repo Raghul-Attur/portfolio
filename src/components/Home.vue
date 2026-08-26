@@ -21,12 +21,16 @@
         </p>
 
         <div class="hero-cta">
-          <a href="#portfolio" class="hero-btn hero-btn--primary" @click.prevent="scrollToPortfolio">
-            View My Work
-          </a>
-          <a href="/Raghul_Sukumar_Resume.pdf" download class="hero-btn hero-btn--secondary">
-            Download Resume
-          </a>
+          <button
+            type="button"
+            class="scroll-indicator"
+            aria-label="Scroll to portfolio"
+            @click="scrollToPortfolio"
+          >
+            <svg class="scroll-indicator-arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 9L12 16L19 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
         </div>
       </div>
 
@@ -35,17 +39,6 @@
         <img src="/Raghul_Image.png" alt="Raghul Sukumar" class="hero-photo" />
       </div>
 
-    </div>
-  </div>
-
-  <!-- ── MARQUEE BAND ───────────────────────────────────────── -->
-  <div class="marquee-band">
-    <div class="marquee-track">
-      <span v-for="n in 3" :key="n">
-        UI/UX Design &nbsp;✦&nbsp; Motion Graphics &nbsp;✦&nbsp; Brand Identity &nbsp;✦&nbsp;
-        Web Development &nbsp;✦&nbsp; Campaign Design &nbsp;✦&nbsp; Accessibility &nbsp;✦&nbsp;
-        Video Production &nbsp;✦&nbsp; Design Systems &nbsp;✦&nbsp;
-      </span>
     </div>
   </div>
 
@@ -96,24 +89,6 @@
     </div>
   </div>
 
-  <!-- ── TOOLS & SKILLS ────────────────────────────────────── -->
-  <div class="tools-section">
-    <h2 class="tools-heading">Tools & Skills</h2>
-    <div class="tools-categories">
-
-      <div class="tools-category" v-for="cat in toolCategories" :key="cat.name">
-        <h3 class="tools-cat-label">{{ cat.name }}</h3>
-        <div class="tools-grid">
-          <div class="tool-item" v-for="tool in cat.tools" :key="tool.name">
-            <img :src="tool.icon" :alt="tool.name" />
-            <span class="tool-tooltip">{{ tool.name }}</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
   <!-- ── FEATURED WORK ──────────────────────────────────────── -->
   <div class="featured-section">
     <div class="featured-header">
@@ -139,16 +114,6 @@
           {{ project.result }}
         </div>
         <router-link :to="project.link" class="featured-link">View Project →</router-link>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── RESULTS STRIP ──────────────────────────────────────── -->
-  <div class="results-strip">
-    <div class="results-inner">
-      <div class="result-item" v-for="(r, i) in results" :key="i">
-        <div class="result-number">{{ r.number }}</div>
-        <div class="result-label">{{ r.label }}</div>
       </div>
     </div>
   </div>
@@ -189,18 +154,19 @@ export default {
       floatTimers: [null, null, null, null],
 
       sections: [
-        {
-          name: 'UX',
-          cat: 'UI / UX Design',
-          path: '/ux',
-          image: new URL('/home/1.png', import.meta.url).href,
-          position: 'center'
-        },
-        {
+        
+      {
           name: 'Design',
           cat: 'Brand & Campaign',
           path: '/design',
           image: new URL('/home/3.png', import.meta.url).href,
+          position: 'center'
+        },
+      {
+          name: 'UX',
+          cat: 'UI / UX Design',
+          path: '/ux',
+          image: new URL('/home/1.png', import.meta.url).href,
           position: 'center'
         },
         {
@@ -220,21 +186,14 @@ export default {
       ],
 
       featuredProjects: [
-        {
-          title: 'ReadEase',
-          tag: 'UX Design / Full Stack',
-          description: 'An accessible learning platform built for young Australians with dyslexia. OCR document reader, AI summarisation, phonetic support, and gamified learning tools.',
-          result: 'Best Project, Monash University Expo 2025',
-          image: '/dev/ReadEase1.png',
-          link: '/dev',
-        },
+        
         {
           title: 'pH Projecct',
           tag: 'Brand Identity',
           description: 'Full visual identity system for a high-fashion apparel label. Logo system, typography, colour palette, and brand collateral built for runway and editorial applications.',
           result: '',
           image: '/images/design/ph-01.jpg',
-          link: '/design',
+          link: '/design/phProjecct',
         },
         {
           title: 'Preventika',
@@ -242,7 +201,7 @@ export default {
           description: 'Brand identity and packaging for effervescent hygiene tablets. High-contrast yellow and black system designed to stand out in the Indian hygiene category.',
           result: '',
           image: '/images/design/Preventika-01.jpg',
-          link: '/design',
+          link: '/design/preventika',
         },
         {
           title: 'FoodLink',
@@ -250,7 +209,7 @@ export default {
           description: 'A gamified donation platform designed to reduce friction for first-time donors. Built with accessibility and usability at the core.',
           result: '',
           image: '/ux1.jpg',
-          link: '/ux',
+          link: '/ux/foodLink',
         },
         {
           title: 'Villgro Campaign',
@@ -259,6 +218,14 @@ export default {
           result: '',
           image: '/Design-thumb-5.png',
           link: '/design/Villgro',
+        },
+        {
+          title: 'ReadEase',
+          tag: 'UX Design / Full Stack',
+          description: 'An accessible learning platform built for young Australians with dyslexia. OCR document reader, AI summarisation, phonetic support, and gamified learning tools.',
+          result: 'Best Project, Monash University Expo 2025',
+          image: '/dev/ReadEase1.png',
+          link: '/dev/ReadEase',
         },
       ],
 
@@ -655,6 +622,36 @@ export default {
 .hero-btn--primary:hover  { background: transparent; color: #000; }
 .hero-btn--secondary { background: transparent; color: #000; border: 2px solid #000; }
 .hero-btn--secondary:hover { background: #000; color: #fff; }
+
+.scroll-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0.55;
+  transition: opacity 0.25s ease;
+}
+
+.scroll-indicator:hover {
+  opacity: 1;
+}
+
+.scroll-indicator-arrow {
+  transition: transform 0.2s ease;
+}
+
+.scroll-indicator:hover .scroll-indicator-arrow {
+  animation: scroll-arrow-bounce 0.7s ease-in-out infinite;
+}
+
+@keyframes scroll-arrow-bounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(5px); }
+}
 
 .hero-image-wrap {
   flex: 0 0 auto;
