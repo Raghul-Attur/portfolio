@@ -7,9 +7,9 @@
         <span class="about-eyebrow">About</span>
         <h1 class="about-heading">Designer and developer,<br>six years in.</h1>
         <p class="about-lead">
-          I'm Raghul, a designer and developer based in Melbourne with full work rights.
-          For the last six years I've worked across brand design, UX, and front-end
-          development, usually on the same projects rather than sticking to one.
+          I'm Raghul, a multimedia designer and developer based in Melbourne with full work rights.
+          For the last six years I've worked across brand design, UX, motion design, video and front-end
+          development.
         </p>
 
         <!-- Quick actions -->
@@ -169,9 +169,9 @@ export default {
         },
         {
           year: '2022 – 2023',
-          role: 'Senior Digital Designer',
+          role: 'Senior Multimedia Designer',
           company: 'Smitten Worldwide',
-          desc: 'Moved into web and product design, leading UX and interface work across client digital projects.'
+          desc: 'Moved into web, product and motion design, leading UX and interface work across client digital projects.'
         },
         {
           year: '2023 – 2025',

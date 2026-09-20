@@ -16,8 +16,8 @@
         </div>
 
         <p class="hero-bio">
-          Designer and developer based in Melbourne.<br>
-          6+ years crafting brands, motion, and digital products.
+          Multimedia Designer and Developer based in Melbourne.<br>
+          3+ years crafting brands, motion, video and digital products.
         </p>
 
         <div class="hero-cta">
@@ -137,7 +137,7 @@ export default {
 
   data() {
     return {
-      roles: ['UX Designer.', 'Motion Designer.', 'Developer.', 'Brand Designer.', 'Graphic Designer.', 'Digital Designer.'],
+      roles: ['UX Designer.', 'Motion Designer.', 'Developer.', 'Brand Designer.', 'Graphic Designer.', 'Multimedia Designer.'],
       roleIndex: 0,
       charIndex: 0,
       displayedRole: '',
